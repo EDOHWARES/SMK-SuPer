@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const MarqueeText = () => {
   return (
-    <div className="w-full overflow-hidden bg-gradient-to-r from-[#00247D] to-[#003891] py-4">
+    <div className="w-full overflow-hidden bg-gradient-to-r from-[#00247D] to-[#003891] py-4 mb-[4rem]">
       <motion.div
         className="whitespace-nowrap text-white text-2xl font-bold"
         animate={{ x: ["100%", "-100%"] }}
