@@ -4,7 +4,7 @@ import logo from "../../assets/images/logo.png";
 
 const Hero = () => {
   return (
-    <section className="bg-gradient-to-r from-[#00247D] to-[#003891] min-h-[60vh] flex items-center justify-center mt-[6rem]">
+    <section className="bg-gradient-to-r from-[#00247D] to-[#003891] min-h-[60vh] flex items-center justify-center mt-[5rem]">
       <div className="max-w-[1440px] py-10 px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
         
         {/* Left Column - School Logo */}
@@ -34,8 +34,8 @@ const Hero = () => {
 
           {/* Bottom Row - School Description */}
           <div className="text-center md:text-left space-y-4">
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              <span className="font-bold text-white ">Full Residential School</span> with a unique ethos - instilling discipline, independence, a thirst for knowledge, and achievement driven by the school's motto: <span className="font-bold text-white ">SEKOLAH Bersatu Berusaha Berjaya</span>
+            <p className="text-base md:text-xl text-gray-300 leading-relaxed">
+              <span className="font-bold text-gray-200 ">Full Residential School</span> with a unique ethos - instilling discipline, independence, a thirst for knowledge, and achievement driven by the school's motto: <span className="font-bold text-gray-200 ">SEKOLAH Bersatu Berusaha Berjaya</span>
             </p>
 
           </div>

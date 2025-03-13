@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../../assets/images/logo.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,12 +14,13 @@ const Header = () => {
       <div className="flex items-center justify-between max-w-[1440px] mx-auto p-4">
         {/* Logo */}
         <div className="logo">
-          <img width={60} src={logo} alt="logo" />
+          <img width={50} src={logo} alt="logo" />
         </div>
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center xl:space-x-8 md:space-x-6">
           {navItems.map((item) => (
+            <Link to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/ /g, "-")}`}>
             <li
               key={item}
               onClick={() => setActive(item)}
@@ -34,6 +36,7 @@ const Header = () => {
                 }`}
               ></span>
             </li>
+            </Link>
           ))}
         </ul>
 
@@ -45,8 +48,9 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <ul className="md:hidden flex flex-col items-center space-y-4 py-4 bg-white shadow-md">
+        <ul className="md:hidden flex flex-col items-center py-4 bg-white shadow-md h-screen">
           {navItems.map((item) => (
+            <Link className='border-b w-full border-gray-300 p-4 hover:bg-gray-100 duration-500' to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/ /g, "-")}`}>
             <li
               key={item}
               onClick={() => {
@@ -59,6 +63,7 @@ const Header = () => {
             >
               {item}
             </li>
+            </Link>
           ))}
         </ul>
       )}

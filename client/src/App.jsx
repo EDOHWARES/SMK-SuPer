@@ -1,20 +1,15 @@
 import "./App.css";
-import Header from "./components/Header/Header";
-import Hero from "./components/Hero/Hero";
-import Welcome from "./components/Welcome/Welcome";
-import MarqueeText from "./components/MarqueeText/MarqueeText";
-import SocialFeeds from "./components/SocialFeeds/SocialFeeds";
-import Posts from "./components/Posts/Posts";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
 
 function App() {
   return (
     <>
-      <Header />
-      <Hero />
-      <Welcome />
-      <MarqueeText />
-      <SocialFeeds />
-      <Posts />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about-us/*" element={<About />} />
+      </Routes>
     </>
   );
 }
