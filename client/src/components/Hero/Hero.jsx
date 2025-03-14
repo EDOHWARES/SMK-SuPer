@@ -1,8 +1,11 @@
 import React from "react";
 import { FaBook, FaLightbulb, FaUsers, FaTools } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="bg-gradient-to-r from-[#00247D] to-[#003891] min-h-[60vh] flex items-center justify-center mt-[5rem]">
       <div className="max-w-[1440px] py-10 px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
@@ -18,10 +21,10 @@ const Hero = () => {
           {/* Top Row - Icons with Titles */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { icon: <FaBook />, title: "Knowledge" },
-              { icon: <FaLightbulb />, title: "Innovation" },
-              { icon: <FaUsers />, title: "Self-Belief" },
-              { icon: <FaTools />, title: "Hardwork" },
+              { icon: <FaBook />, title: t("knowledge") },
+              { icon: <FaLightbulb />, title: t("innovation") },
+              { icon: <FaUsers />, title: t("self_belief") },
+              { icon: <FaTools />, title: t("hardwork") },
             ].map((item, index) => (
               <div key={index} className="flex flex-col items-center group">
                 <div className="text-[#FFD700] text-4xl md:text-5xl transition-transform transform group-hover:scale-110">
@@ -35,9 +38,9 @@ const Hero = () => {
           {/* Bottom Row - School Description */}
           <div className="text-center md:text-left space-y-4">
             <p className="text-base md:text-xl text-gray-300 leading-relaxed">
-              <span className="font-bold text-gray-200 ">Full Residential School</span> with a unique ethos - instilling discipline, independence, a thirst for knowledge, and achievement driven by the school's motto: <span className="font-bold text-gray-200 ">SEKOLAH Bersatu Berusaha Berjaya</span>
+              <span className="font-bold text-gray-200">{t("school_description")}</span>  
+              <span className="font-bold text-gray-200"> {t("school_motto")}</span>
             </p>
-
           </div>
         </div>
       </div>
