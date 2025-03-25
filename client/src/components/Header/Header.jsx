@@ -15,7 +15,7 @@ const Header = () => {
   const navItems = [
     { key: "home", path: "/" },
     { key: "about_us", path: "/about-us" },
-    { key: "vision_mission", path: "/vision-mission" },
+    { key: "vision_mission", path: "/vision-&-mission" },
     { key: "ibdp", path: "/ibdp" },
     { key: "ads_school", path: "/ads-school" },
     { key: "school_calendar", path: "/school-calendar" },
