@@ -1,6 +1,12 @@
 {
-  "home": "Home",
-  "about_us": "About Us",
+  "Home": "Home",
+  "About Us": "About Us",
+  "News": "News",
+  "Administration": "Administration",
+  "School Cooperative": "School Cooperative",
+  "Achievements": "Achievements",
+  "Contact Us": "Contact Us",
+  
   "vision_mission": "Vision & Mission",
   "ibdp": "IBDP",
   "ads_school": "ADS School",
