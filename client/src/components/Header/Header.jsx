@@ -3,7 +3,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "../../context/LanguageContext"; // Import context
+import { useLanguage } from "../../context/LanguageContext";
+import { GoChevronDown } from "react-icons/go";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -36,17 +37,18 @@ const Header = () => {
       key: "About Us",
       path: "/about-us",
       subNavs: [
-        { key: "School History", path: "school-history" },
+        { key: "School History", path: "/about-us/school-history" },
         {
           key: "School Organizational Chart",
-          path: "/school-organizational-chart",
+          path: "/about-us/school-organizational-chart",
         },
         {
           key: "National Education Philosophy",
-          path: "/national-education-philosophy",
+          path: "/about-us/national-education-philosophy",
         },
-        { key: "School Identity", path: "/school-identity" },
-        { key: "School Song", path: "/school-song" },
+        { key: "School Identity", path: "/about-us/school-identity" },
+        { key: "School Song", path: "/about-us/school-song" },
+        {key: "Maps & Directions", path: "/about-us/maps&directions"},
       ],
     },
     {
@@ -120,15 +122,19 @@ const Header = () => {
               <Link
                 to={path || "#"}
                 onClick={() => setActive(key)}
-                className={`${
+                className={`flex items-center ${
                   active === key ? "text-[#00247D]" : "text-gray-800"
                 }`}
               >
                 {t(key)}
+                {subNavs && (
+                  <GoChevronDown className="ml-2 text-gray-600" />
+                )}{" "}
+                {/* Add Chevron Down Icon */}
               </Link>
               {subNavs && (
-                <div className="absolute left-0 top-[1rem] bg-transparent">
-                  <ul className=" mt-9 bg-white w-[15rem] shadow-md rounded-md border border-gray-300 hidden group-hover:block">
+                <div className="absolute left-0 top-full mt-2 bg-white shadow-md rounded-md border hidden group-hover:block">
+                  <ul className="w-[15rem]">
                     {subNavs.map(({ key: subKey, path: subPath }) => (
                       <li
                         key={subKey}
@@ -192,10 +198,12 @@ const Header = () => {
           {navItems.map(({ key, path, subNavs }) => (
             <li key={key} className="w-full">
               <div
-                className="block border-b cursor-pointer border-gray-200 w-full p-4 hover:bg-gray-100 duration-500"
+                className="block border-b cursor-pointer border-gray-200 w-full p-4 hover:bg-gray-100 duration-500 flex justify-between items-center"
                 onClick={() => setOpenSubNav(openSubNav === key ? null : key)} // Toggle subNav visibility
               >
                 <span className="text-gray-800 text-lg">{t(key)}</span>
+                {subNavs && <GoChevronDown className="text-gray-600" />}{" "}
+                {/* Add Chevron Down Icon */}
               </div>
               {subNavs &&
                 openSubNav === key && ( // Show subNavs only if the current item is active

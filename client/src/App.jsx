@@ -31,6 +31,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Header from "./components/Header/Header";
+import MapsAndDirections from "./pages/About/MapsAndDirections/MapsAndDirections";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
         <Route path="/about-us/national-education-philosophy" element={<div>National Education Philosophy Page</div>} />
         <Route path="/about-us/school-identity" element={<div>School Identity Page</div>} />
         <Route path="/about-us/school-song" element={<div>School Song Page</div>} />
+        <Route path="/about-us/maps&directions" element={<MapsAndDirections />} />
 
         {/* News SubNavs */}
         <Route path="/news/school-highlights" element={<div>School Highlights Page</div>} />
