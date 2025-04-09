@@ -39,7 +39,7 @@ const Hero = () => {
           <div className="text-center md:text-left space-y-4">
             <p className="text-base md:text-xl text-gray-300 leading-relaxed">
               <span className="font-bold text-gray-200">{t("school_description")}</span>  
-              <span className="font-bold text-gray-200"> {t("school_motto")}</span>
+              {/* <span className="font-bold text-gray-200"> {t("school_motto")}</span> */}
             </p>
           </div>
         </div>

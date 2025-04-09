@@ -32,6 +32,7 @@ import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Header from "./components/Header/Header";
 import MapsAndDirections from "./pages/About/MapsAndDirections/MapsAndDirections";
+import SchoolHistory from "./pages/About/SchoolHistory/SchoolHistory";
 
 function App() {
   return (
@@ -50,7 +51,7 @@ function App() {
         <Route path="/upcoming-events" element={<div>Upcoming Events Page</div>} />
 
         {/* About Us SubNavs */}
-        <Route path="/about-us/school-history" element={<div>School History Page</div>} />
+        <Route path="/about-us/school-history" element={<SchoolHistory />} />
         <Route path="/about-us/school-organizational-chart" element={<div>School Organizational Chart Page</div>} />
         <Route path="/about-us/national-education-philosophy" element={<div>National Education Philosophy Page</div>} />
         <Route path="/about-us/school-identity" element={<div>School Identity Page</div>} />
