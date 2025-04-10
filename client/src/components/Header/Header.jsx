@@ -39,6 +39,7 @@ const Header = () => {
         { key: "School Identity", path: "/about-us/school-identity" },
         { key: "School Song", path: "/about-us/school-song" },
         {key: "Maps & Directions", path: "/about-us/maps&directions"},
+        {key: "Vision & Mission", path: "/about-us/vision&mission"},
       ],
     },
     {
