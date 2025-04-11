@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
+import bookingRoutes from "./routes/booking.js";
+import { auth } from "./middleware/auth.js";
 
 
 dotenv.config();
@@ -19,6 +21,7 @@ app.use(cors({ origin: "*" }));
 // });
 
 // app.use("/api/auth", authRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 // Connect to MongoDB
 connectDB();

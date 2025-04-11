@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import MapsAndDirections from "./pages/About/MapsAndDirections/MapsAndDirections";
 import SchoolHistory from "./pages/About/SchoolHistory/SchoolHistory";
 import BookingForm from "./pages/RoomBooking/RoomBooking";
+import Login from "./pages/Auth/Login";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         {/* TEST ROUTES */}
         <Route path="/room-booking" element={<BookingForm />} />
+        <Route path="/login" element={<Login />} />
 
         {/* Main Navigation Routes */}
         <Route path="/" element={<Home />} />
