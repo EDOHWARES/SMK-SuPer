@@ -67,8 +67,8 @@ const Header = () => {
       ],
     },
     {
-      key: "School Cooperative",
-      path: "/school-cooperative",
+      key: "Committee",
+      path: "/Committee",
       subNavs: [
         {
           key: "Parent-Teacher Association (PTA)",

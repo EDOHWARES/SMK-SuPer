@@ -3,8 +3,8 @@ import React from "react";
 const SchoolHistory = () => {
   return (
     <section className="mt-[5rem]">
-      <div className="text-2xl md:text-3xl text-gray-700 bg-gray-400">
-        <h1 className="max-w-[1440px] mx-auto py-10 px-6 md:px-12 lg:px-20">School history</h1>
+      <div className="text-2xl md:text-3xl text-gray-700 bg-gray-300">
+        <h1 className="max-w-[1440px] mx-auto py-5 md:py-10 px-6 md:px-12 lg:px-20">School history</h1>
       </div>
       <div className="px-6 md:px-12 lg:px-20 mt-[2rem] max-w-[1440px] mx-auto">
         <div className="text-[rgb(124,124,124)] leading-[25.6px] tracking-wide">
