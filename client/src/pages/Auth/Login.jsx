@@ -49,8 +49,8 @@ const Login = ({ setToken, setUser }) => {
 
       <button
         type="submit"
-        className="bg-[#276100ce] text-white py-2 px-4 rounded hover:bg-[#276100]"
-      >
+        className="bg-[#003891] text-white py-2 px-4 rounded hover:bg-[#00247D] duration-500"
+z      >
         Login
       </button>
     </form>

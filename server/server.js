@@ -3,8 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import bookingRoutes from "./routes/booking.js";
-import { auth } from "./middleware/auth.js";
-
+import authRoutes from "./routes/auth.js";
 
 dotenv.config();
 
@@ -16,11 +15,11 @@ app.use(express.json());
 app.use(cors({ origin: "*" }));
 
 // // Default Route
-// app.get("/", (req, res) => {
-//   res.send("Waitly Server is Running 🚀");
-// });
+app.get("/", (req, res) => {
+  res.send("SMK Server is Running 🚀");
+});
 
-// app.use("/api/auth", authRoutes);
+app.use("/api/auth", authRoutes);
 app.use('/api/bookings', bookingRoutes);
 
 // Connect to MongoDB
