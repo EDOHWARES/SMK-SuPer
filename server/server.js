@@ -5,6 +5,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import bookingRoutes from "./routes/booking.js";
 import authRoutes from "./routes/auth.js";
+import roomRoutes from "./routes/rooms.js";
 
 import seedRooms from "./config/seedRooms.js";
 
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/rooms', roomRoutes);
 
 // Connect to MongoDB
 connectDB();
