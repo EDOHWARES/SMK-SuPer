@@ -1,9 +1,17 @@
 import "./App.css";
+import { Toaster } from "react-hot-toast";
+import AdminPanel from "./pages/AdminPanel/AdminPanel";
 
 function App() {
-  return <>
-  <h1 className="text-blue-500 text-5xl">Admin Directory</h1>
-  </>;
+  return (
+    <section>
+      <Toaster position="top-right" reverseOrder={false} />
+
+      <div>
+        <AdminPanel />
+      </div>
+    </section>
+  );
 }
 
 export default App;
