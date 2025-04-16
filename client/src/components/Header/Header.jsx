@@ -96,7 +96,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white shadow-md fixed w-full z-10 left-0 top-0">
+    <header className="bg-white shadow-md fixed w-full left-0 top-0 z-[999999999]">
       <div className="flex items-center justify-between max-w-[1440px] mx-auto p-4">
         {/* Logo */}
         <div className="logo">
@@ -185,11 +185,11 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <ul className="xl:hidden h-screen absolute top-full left-0 w-1/2 sm:w-1/3 bg-white shadow-md flex flex-col items-center py-4">
+        <ul className={`xl:hidden h-screen absolute top-full left-0 w-1/2 sm:w-1/3 bg-white shadow-md flex flex-col items-center py-4 transition-transform duration-500 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
           {navItems.map(({ key, path, subNavs }) => (
             <li key={key} className="w-full">
               <div
-                className="block border-b cursor-pointer border-gray-200 w-full p-4 hover:bg-gray-100 duration-500 flex justify-between items-center"
+                className=" border-b cursor-pointer border-gray-200 w-full p-4 hover:bg-gray-100 duration-500 flex justify-between items-center"
                 onClick={() => setOpenSubNav(openSubNav === key ? null : key)} // Toggle subNav visibility
               >
                 <span className="text-gray-800 text-lg">{t(key)}</span>

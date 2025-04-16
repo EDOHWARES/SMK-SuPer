@@ -25,7 +25,7 @@ bookingRoutes.post('/', auth, async (req, res) => {
       return res.status(400).json({ error: 'Time slot already booked for this room' });
     }
 
-    // Create booking
+    // Create booking with status always set to 'pending'
     const booking = new Booking({
       userId: req.user._id,
       roomId,
@@ -33,7 +33,7 @@ bookingRoutes.post('/', auth, async (req, res) => {
       timeSlot,
       attendees,
       isSpecial: isSpecial || false,
-      status: isSpecial ? 'pending' : 'approved',
+      status: 'pending', // Always set status to 'pending'
     });
 
     await booking.save();
