@@ -9,9 +9,11 @@ const bookingRoutes = express.Router();
 bookingRoutes.post('/', auth, async (req, res) => {
   try {
     const { roomId, date, timeSlot, attendees, isSpecial } = req.body;
+    console.log(roomId, date, timeSlot, attendees, isSpecial);
 
     // Validate room existence
     const room = await Room.findById(roomId);
+    console.log(room);
     if (!room) return res.status(404).json({ error: 'Room not found' });
 
     // Validate room capacity
@@ -39,7 +41,7 @@ bookingRoutes.post('/', auth, async (req, res) => {
     await booking.save();
     res.status(201).json(booking);
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server errorr' });
   }
 });
 

@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
 import { FaStore } from "react-icons/fa6";
+import logo from "../../assets/images/logo.png";
 
 
 const AdminPanel = ({ token }) => {
@@ -109,9 +110,11 @@ const AdminPanel = ({ token }) => {
 
   const Header = () => (
     <div className="bg-white shadow p-4 flex justify-between items-center">
+      <img src={logo} alt="logo" width={50} />
       <h1 className="text-xl font-bold text-blue-700">
         Room Booking Admin Panel
       </h1>
+      <div></div>
     </div>
   );
 
@@ -194,14 +197,14 @@ const AdminPanel = ({ token }) => {
                 {rooms.map((r) => (
                   <li
                     key={r._id}
-                    className="flex justify-between border px-3 py-2 rounded"
+                    className="flex justify-between border px-3 py-2 rounded hover:bg-gray-300 duration-500"
                   >
                     <span>
                       {r.name} (type - {r.type}, capacity - {r.capacity})
                     </span>
                     <button
                       onClick={() => handleRoomDelete(r._id)}
-                      className="text-red-600"
+                      className="text-red-600 cursor-pointer"
                     >
                       Delete
                     </button>

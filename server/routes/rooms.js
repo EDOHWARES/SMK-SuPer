@@ -25,7 +25,7 @@ roomRoutes.post('/', auth, roleCheck(['admin']), async (req, res) => {
 });
 
 // Get all rooms
-roomRoutes.get('/', auth, async (req, res) => {
+roomRoutes.get('/', async (req, res) => {
   try {
     const rooms = await Room.find();
     res.status(200).json(rooms);

@@ -7,7 +7,7 @@ const SocialFeeds = () => {
       <div className="w-full">
         <iframe
           className="w-full h-64 rounded-lg shadow-lg"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+          src="https://www.youtube.com/embed/NqTg6E2a4BM" 
           title="YouTube video"
           allowFullScreen
         ></iframe>

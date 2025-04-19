@@ -8,6 +8,7 @@ import MapsAndDirections from "./pages/About/MapsAndDirections/MapsAndDirections
 import SchoolHistory from "./pages/About/SchoolHistory/SchoolHistory";
 import BookingForm from "./pages/RoomBooking/RoomBooking";
 import Login from "./pages/Auth/Login";
+import TeachersAndStaffs from "./pages/Administration/TeachersAndStaffs/TeachersAndStaffs";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <Header />
       <Routes>
         {/* TEST ROUTES */}
-        <Route path="/room-booking" element={<BookingForm />} />
+        <Route path="/room-booking" element={<BookingForm userRole={"teacher"} token={"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmRhMmU1NGMzODcwNGI3YThjNThjNiIsImlhdCI6MTc0NDgwOTg1NSwiZXhwIjoxNzQ0ODk2MjU1fQ.i3aJ1iTsPIjV3m0PYdqIJW4o3ar0N2JYE5JIEFchIjQ"} />} />
         <Route path="/login" element={<Login />} />
 
         {/* Main Navigation Routes */}
@@ -81,7 +82,7 @@ function App() {
         />
         <Route
           path="/administration/teachers&staff-directory"
-          element={<div>Teachers & Staff Directory Page</div>}
+          element={<TeachersAndStaffs />}
         />
         <Route
           path="/administration/student-affairs-unit"
