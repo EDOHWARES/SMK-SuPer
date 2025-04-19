@@ -11,7 +11,6 @@ import { MdPayment } from "react-icons/md";
 import { FaStore } from "react-icons/fa6";
 import logo from "../../assets/images/logo.png";
 
-
 const AdminPanel = ({ token }) => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [bookings, setBookings] = useState([]);
@@ -67,6 +66,20 @@ const AdminPanel = ({ token }) => {
     }
   };
 
+  const handleStatusChange = async (id, status) => {
+    try {
+      await axios.patch(
+        `http://localhost:5003/api/bookings/${id}`,
+        { status },
+        { headers }
+      );
+      toast.success(`Booking ${status}`);
+      fetchData();
+    } catch (err) {
+      toast.error("Failed to update booking status");
+    }
+  };
+
   const Sidebar = () => (
     <div className="bg-gray-800 text-white w-60 h-screen space-y-6">
       <h2 className="text-2xl font-bold p-5">Admin</h2>
@@ -110,11 +123,37 @@ const AdminPanel = ({ token }) => {
 
   const Header = () => (
     <div className="bg-white shadow p-4 flex justify-between items-center">
+      {/* Logo */}
       <img src={logo} alt="logo" width={50} />
-      <h1 className="text-xl font-bold text-blue-700">
-        Room Booking Admin Panel
-      </h1>
-      <div></div>
+
+      {/* Navigation or Admin Actions */}
+      <div className="flex items-center gap-6">
+        {/* Welcome Message */}
+        <span className="text-gray-700 text-lg font-medium">
+          Welcome, Admin
+        </span>
+
+        {/* Account Dropdown */}
+        <div className="relative group">
+          <button className="flex items-center gap-2 text-gray-700 hover:text-blue-700">
+            <FaUser className="text-xl" />
+            <span>Account</span>
+          </button>
+          <ul className="absolute right-0 mt-2 w-40 bg-white shadow-md rounded-md border hidden group-hover:block">
+            <li className="p-2 hover:bg-gray-100 cursor-pointer">Profile</li>
+            <li className="p-2 hover:bg-gray-100 cursor-pointer">Settings</li>
+            <li
+              className="p-2 hover:bg-gray-100 cursor-pointer text-red-600"
+              onClick={() => {
+                // Add logout functionality here
+                toast.success("Logged out successfully");
+              }}
+            >
+              Logout
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 
@@ -136,6 +175,7 @@ const AdminPanel = ({ token }) => {
                       <th>Date</th>
                       <th>Slot</th>
                       <th>Status</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -145,7 +185,39 @@ const AdminPanel = ({ token }) => {
                         <td>{b.roomId?.name}</td>
                         <td>{new Date(b.date).toLocaleDateString()}</td>
                         <td>{b.timeSlot}</td>
-                        <td>{b.status}</td>
+                        <td
+                          className={`p-2 font-semibold ${
+                            b.status === "approved"
+                              ? "bg-green-100 text-green-700"
+                              : b.status === "pending"
+                              ? "bg-yellow-100 text-yellow-700"
+                              : "bg-red-100 text-red-700"
+                          }`}
+                        >
+                          {b.status}
+                        </td>
+                        <td className="p-2">
+                          {b.status === "pending" && (
+                            <div className="flex gap-2 justify-center">
+                              <button
+                                onClick={() =>
+                                  handleStatusChange(b._id, "approved")
+                                }
+                                className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                              >
+                                Approve
+                              </button>
+                              <button
+                                onClick={() =>
+                                  handleStatusChange(b._id, "rejected")
+                                }
+                                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                              >
+                                Reject
+                              </button>
+                            </div>
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

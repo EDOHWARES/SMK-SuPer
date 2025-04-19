@@ -10,7 +10,7 @@ function App() {
       <Toaster position="top-right" reverseOrder={false} />
 
       <div>
-        <AdminPanel token={'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmZkN2I2ZjhiY2FkNmU1MDI0MTc1MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NDgyMDIwNSwiZXhwIjoxNzQ0OTA2NjA1fQ.hr9Tkgbciv-tIIWIl1AvDxYpqYl8BDTr7rTJPP_xHeQ'} />
+        <AdminPanel token={'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmZkN2I2ZjhiY2FkNmU1MDI0MTc1MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NTA1Mzc5NiwiZXhwIjoxNzQ1MTQwMTk2fQ.OGYFfAr_3HKZyDfrmN4685keT2Wc4OdQitOKBEVthnU'} />
       </div>
     </section>
   );
