@@ -3,13 +3,10 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import {
   FaUser,
-  FaDoorOpen,
-  FaCalendarAlt,
-  FaSignOutAlt,
 } from "react-icons/fa";
-import { MdPayment } from "react-icons/md";
-import { FaStore } from "react-icons/fa6";
 import logo from "../../assets/images/logo.png";
+import {Routes, Route} from "react-router-dom";
+import Sidebar from "../../components/Sidebar";
 
 const AdminPanel = ({ token }) => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -80,47 +77,6 @@ const AdminPanel = ({ token }) => {
     }
   };
 
-  const Sidebar = () => (
-    <div className="bg-gray-800 text-white w-60 h-screen space-y-6">
-      <h2 className="text-2xl font-bold p-5">Admin</h2>
-      <div className="space-y-4">
-        <button
-          onClick={() => setActiveTab("dashboard")}
-          className="flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer"
-        >
-          <FaCalendarAlt /> Dashboard
-        </button>
-        <button
-          onClick={() => setActiveTab("rooms")}
-          className="flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer"
-        >
-          <FaDoorOpen /> Rooms
-        </button>
-        <button
-          onClick={() => setActiveTab("pibg")}
-          className="flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer"
-        >
-          <MdPayment /> PIBG
-        </button>
-        <button
-          onClick={() => setActiveTab("pibg")}
-          className="flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer"
-        >
-          <FaStore /> School Store
-        </button>
-        <button
-          onClick={() => setActiveTab("users")}
-          className="flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer"
-        >
-          <FaUser /> Users
-        </button>
-        <button className="flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer">
-          <FaSignOutAlt /> Logout
-        </button>
-      </div>
-    </div>
-  );
-
   const Header = () => (
     <div className="bg-white shadow p-4 flex justify-between items-center">
       {/* Logo */}
@@ -159,7 +115,7 @@ const AdminPanel = ({ token }) => {
 
   return (
     <div className="flex h-screen">
-      <Sidebar />
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       <div className="flex-1 flex flex-col">
         <Header />
         <main className="p-6 overflow-y-auto">
