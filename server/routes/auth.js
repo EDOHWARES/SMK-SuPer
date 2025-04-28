@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import dotenv from 'dotenv';
+import { auth } from '../middleware/auth.js';
 dotenv.config();
 
 const authRoutes = express.Router();
@@ -104,6 +105,12 @@ authRoutes.post('/admin/login', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
+});
+
+// Token Validation Route
+authRoutes.get('/validate', auth, (req, res) => {
+  // If the token is valid, the `auth` middleware will attach the user to `req.user`
+  res.status(200).json({ message: 'Token is valid', user: req.user });
 });
 
 export default authRoutes;

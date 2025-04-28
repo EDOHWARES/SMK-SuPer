@@ -37,12 +37,6 @@ const Sidebar = ({activeTab, setActiveTab}) => {
         >
           <FaStore /> School Store
         </button>
-        <button
-          onClick={() => setActiveTab("users")}
-          className={`${activeTab == "dashboard" ? "bg-gray-500" : "bg-transparent"} flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer`}
-        >
-          <FaUser /> Users
-        </button>
         <button className="flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer">
           <FaSignOutAlt /> Logout
         </button>

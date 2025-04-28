@@ -2,6 +2,7 @@ import "./App.css";
 import { Toaster } from "react-hot-toast";
 import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import { Routes, Route } from "react-router-dom";
+import SignIn from "./pages/Auth/SignIn";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               />
             }
           />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="*" element={<div>404 error, page not found.</div>} />
         </Routes>
       </div>

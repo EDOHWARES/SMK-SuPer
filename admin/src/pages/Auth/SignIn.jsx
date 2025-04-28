@@ -1,24 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const SignIn = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const { email, password } = formData;
+    console.log(formData);
 
-    // Dummy login validation (replace with real auth logic)
-    if (email === 'admin@example.com' && password === 'admin123') {
-      setError('');
-      // Replace with your login success logic
-      console.log('Logged in as admin');
-    } else {
-      setError('Invalid credentials');
+    try {
+      // Use the API URL from environment vairables
+      const api_url = `${import.meta.env.VITE_API_URL}/auth/admin/login`;
+
+      // Make the API req to log in
+      const resp = await axios.post(api_url, { email, password });
+
+      // Handle successful login
+      const { token } = resp.data;
+      localStorage.setItem("adminToken", token); // save token
+      toast.success("Login successful");
+      setError(""); // clear previous errors
+      window.location.href = "/";
+    } catch (error) {
+      // Handle errors
+      if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error); // Display server error message
+      } else {
+        setError("An unexpected error occurred. Please try again.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,7 +91,7 @@ const SignIn = () => {
             type="submit"
             className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg transition-all"
           >
-            Login
+            {loading ? "Loading..." : "Login"}
           </button>
         </form>
       </div>

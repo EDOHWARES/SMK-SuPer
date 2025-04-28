@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import {
-  FaUser,
-} from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
-import {Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
+import { useNavigate } from "react-router-dom";
 
 const AdminPanel = ({ token }) => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [bookings, setBookings] = useState([]);
   const [rooms, setRooms] = useState([]);
-  const [users, setUsers] = useState([]);
   const [newRoom, setNewRoom] = useState({
     name: "",
     type: "library",
     capacity: 100,
   });
+  const [loading, setLoading] = useState(false); // Loader state
 
   console.log(bookings);
   console.log(rooms);
@@ -25,46 +25,84 @@ const AdminPanel = ({ token }) => {
   const headers = { Authorization: `Bearer ${token}` };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    const token = localStorage.getItem("adminToken");
 
-  const fetchData = async () => {
+    if (!token) {
+      toast.error("Unauthorized! Please log in.");
+      navigate("/signin");
+      return;
+    }
+
+    const validateToken = async () => {
+      try {
+        setLoading(true); // Show loader
+        const api_url = import.meta.env.VITE_API_URL;
+        await axios.get(`${api_url}/auth/validate`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        fetchData(token);
+      } catch (err) {
+        toast.error("Session expired! Please log in again.");
+        localStorage.removeItem("adminToken");
+        navigate("/signin");
+      } finally {
+        setLoading(false); // Hide loader
+      }
+    };
+
+    validateToken();
+  }, [navigate]);
+
+  const fetchData = async (token) => {
     try {
-      const [bRes, rRes, uRes] = await Promise.all([
-        axios.get("http://localhost:5003/api/bookings", { headers }),
-        axios.get("http://localhost:5003/api/rooms", { headers }),
-        axios.get("/api/users", { headers }),
+      setLoading(true); // Show loader
+      const api_url = import.meta.env.VITE_API_URL;
+      const [bRes, rRes] = await Promise.all([
+        axios.get(`${api_url}/bookings`, {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get(`${api_url}/rooms`, {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
       ]);
       setBookings(bRes.data);
       setRooms(rRes.data);
-      setUsers(uRes.data);
     } catch (err) {
       toast.error("Failed to load admin data");
+    } finally {
+      setLoading(false); // Hide loader
     }
   };
 
   const handleRoomCreate = async () => {
     try {
+      setLoading(true); // Show loader
       await axios.post("http://localhost:5003/api/rooms", newRoom, { headers });
       toast.success("Room added");
       fetchData();
     } catch (err) {
       toast.error(err.response?.data?.error || "Room add failed");
+    } finally {
+      setLoading(false); // Hide loader
     }
   };
 
   const handleRoomDelete = async (id) => {
     try {
+      setLoading(true); // Show loader
       await axios.delete(`http://localhost:5003/api/rooms/${id}`, { headers });
       toast.success("Room deleted");
       fetchData();
     } catch (err) {
       toast.error("Failed to delete room");
+    } finally {
+      setLoading(false); // Hide loader
     }
   };
 
   const handleStatusChange = async (id, status) => {
     try {
+      setLoading(true); // Show loader
       await axios.patch(
         `http://localhost:5003/api/bookings/${id}`,
         { status },
@@ -74,22 +112,16 @@ const AdminPanel = ({ token }) => {
       fetchData();
     } catch (err) {
       toast.error("Failed to update booking status");
+    } finally {
+      setLoading(false); // Hide loader
     }
   };
 
   const Header = () => (
     <div className="bg-white shadow p-4 flex justify-between items-center">
-      {/* Logo */}
       <img src={logo} alt="logo" width={50} />
-
-      {/* Navigation or Admin Actions */}
       <div className="flex items-center gap-6">
-        {/* Welcome Message */}
-        <span className="text-gray-700 text-lg font-medium">
-          Welcome, Admin
-        </span>
-
-        {/* Account Dropdown */}
+        <span className="text-gray-700 text-lg font-medium">Welcome, Admin</span>
         <div className="relative group">
           <button className="flex items-center gap-2 text-gray-700 hover:text-blue-700">
             <FaUser className="text-xl" />
@@ -101,7 +133,6 @@ const AdminPanel = ({ token }) => {
             <li
               className="p-2 hover:bg-gray-100 cursor-pointer text-red-600"
               onClick={() => {
-                // Add logout functionality here
                 toast.success("Logged out successfully");
               }}
             >
@@ -119,7 +150,12 @@ const AdminPanel = ({ token }) => {
       <div className="flex-1 flex flex-col">
         <Header />
         <main className="p-6 overflow-y-auto">
-          {activeTab === "dashboard" && (
+          {loading && (
+            <div className="flex justify-center items-center">
+              <div className="loader border-t-4 border-blue-500 w-12 h-12 rounded-full animate-spin"></div>
+            </div>
+          )}
+          {!loading && activeTab === "dashboard" && (
             <section>
               <h2 className="text-2xl font-semibold mb-4">All Bookings</h2>
               <div className="overflow-auto">
@@ -182,7 +218,7 @@ const AdminPanel = ({ token }) => {
             </section>
           )}
 
-          {activeTab === "rooms" && (
+          {!loading && activeTab === "rooms" && (
             <section>
               <h2 className="text-2xl font-semibold mb-4">Manage Rooms</h2>
               <div className="flex gap-2 mb-4">
@@ -236,19 +272,6 @@ const AdminPanel = ({ token }) => {
                     >
                       Delete
                     </button>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {activeTab === "users" && (
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Users</h2>
-              <ul className="space-y-2">
-                {users.map((u) => (
-                  <li key={u._id} className="border px-3 py-2 rounded">
-                    {u.name} ({u.email}) - <strong>{u.role}</strong>
                   </li>
                 ))}
               </ul>
