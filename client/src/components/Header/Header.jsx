@@ -124,8 +124,8 @@ const Header = () => {
                 {/* Add Chevron Down Icon */}
               </Link>
               {subNavs && (
-                <div className="absolute left-0 top-full mt-2 bg-white shadow-md rounded-md border hidden group-hover:block">
-                  <ul className="w-[15rem]">
+                <div className="absolute left-0 top-[.6rem] mt-2 bg-transparent rounded-md border-none hidden group-hover:block">
+                  <ul className="w-[15rem] bg-white mt-[2rem] border shadow-md">
                     {subNavs.map(({ key: subKey, path: subPath }) => (
                       <li
                         key={subKey}
