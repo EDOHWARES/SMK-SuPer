@@ -42,7 +42,7 @@ const Welcome = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <p className="text-gray-700 mt-2">
+          <p className="text-gray-700 mt-2 px-2 md:px-0">
             In the spirit of Ihya’ Ramadhan, we invite all PPKI (Special
             Education Program) students to join a joyful and creative coloring
             activity designed to celebrate the month of reflection and
@@ -59,7 +59,7 @@ const Welcome = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <p className="text-gray-700 mt-2">
+          <p className="text-gray-700 mt-2 px-2 md:px-0">
             SMK SURIA PERDANA official registration day where students can
             enroll in various sports and athletic activities as part of their
             co-curricular engagement.
@@ -75,7 +75,7 @@ const Welcome = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <p className="text-gray-700 mt-2">
+          <p className="text-gray-700 mt-2 px-2 md:px-0">
             A dedicated day for students to sign up for a wide range of sports
             and athletic programs, encouraging active participation in
             co-curricular activities and fostering team spirit and personal
