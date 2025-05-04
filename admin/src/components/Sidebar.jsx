@@ -17,7 +17,7 @@ const Sidebar = ({activeTab, setActiveTab}) => {
           onClick={() => setActiveTab("dashboard")}
           className={`${activeTab == "dashboard" ? "bg-gray-500" : "bg-transparent"} flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer`}
         >
-          <FaCalendarAlt /> Dashboard
+          <FaCalendarAlt /> Bookings
         </button>
         <button
           onClick={() => setActiveTab("rooms")}

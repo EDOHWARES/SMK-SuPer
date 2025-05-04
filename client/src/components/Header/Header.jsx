@@ -38,16 +38,16 @@ const Header = () => {
         },
         { key: "School Identity", path: "/about-us/school-identity" },
         { key: "School Song", path: "/about-us/school-song" },
-        {key: "Maps & Directions", path: "/about-us/maps&directions"},
-        {key: "Vision & Mission", path: "/about-us/vision&mission"},
+        { key: "Maps & Directions", path: "/about-us/maps&directions" },
+        { key: "Vision & Mission", path: "/about-us/vision&mission" },
       ],
     },
     {
       key: "News",
       path: "/news",
       subNavs: [
-        { key: "School Highlights", path: "/school-highlights" },
-        { key: "Program Documentation", path: "/program-documentation" },
+        { key: "School Highlights", path: "/news/school-highlights" },
+        { key: "Program Documentation", path: "/news/program-documentation" },
       ],
     },
     {
@@ -56,10 +56,22 @@ const Header = () => {
       subNavs: [
         { key: "Principal", path: "/administration/principal" },
         { key: "School Management", path: "/administration/school-management" },
-        { key: "Teachers & Staff Directory", path: "/administration/teachers&staff-directory" },
-        { key: "Student Affairs Unit", path: "/administration/student-affairs-unit" },
-        { key: "Curriculum Management", path: "/administration/curriculum-management" },
-        { key: "Co-Curriculum Management", path: "/administration/co-curriculum-management" },
+        {
+          key: "Teachers & Staff Directory",
+          path: "/administration/teachers&staff-directory",
+        },
+        {
+          key: "Student Affairs Unit",
+          path: "/administration/student-affairs-unit",
+        },
+        {
+          key: "Curriculum Management",
+          path: "/administration/curriculum-management",
+        },
+        {
+          key: "Co-Curriculum Management",
+          path: "/administration/co-curriculum-management",
+        },
         {
           key: "Special Education Integration Program (SEIP) Management",
           path: "/administration/special-education-integration-program-manaagement",
@@ -72,14 +84,14 @@ const Header = () => {
       subNavs: [
         {
           key: "Parent-Teacher Association (PTA)",
-          path: "/parent-teacher-association",
+          path: "/committee/parent-teacher-association",
         },
         {
           key: "Parent and Community Involvement",
-          path: "/parent&community-involvement",
+          path: "/committee/parent&community-involvement",
         },
-        { key: "Bonding & Networking", path: "/bonding&networking" },
-        { key: "PTA Payments", path: "/pta-payments" },
+        { key: "Bonding & Networking", path: "/committee/bonding&networking" },
+        { key: "PTA Payments", path: "/committee/pta-payments" },
       ],
     },
     { key: "Achievements", path: "/achievements" },
@@ -87,10 +99,16 @@ const Header = () => {
       key: "Contact Us",
       path: "/contact-us",
       subNavs: [
-        { key: "School Location", path: "/school-location" },
-        { key: "Office Operating Hours", path: "/office-operating-hours" },
-        { key: "Official Email Address", path: "/official-email-address" },
-        { key: "Phone & Fax Number", path: "/phone&fax-number" },
+        { key: "School Location", path: "/contact-us/school-location" },
+        {
+          key: "Office Operating Hours",
+          path: "/contact-us/office-operating-hours",
+        },
+        {
+          key: "Official Email Address",
+          path: "/contact-us/official-email-address",
+        },
+        { key: "Phone & Fax Number", path: "/contact-us/phone&fax-number" },
       ],
     },
   ];
@@ -185,7 +203,11 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <ul className={`xl:hidden h-screen absolute top-full left-0 w-1/2 sm:w-1/3 bg-white shadow-md flex flex-col items-center py-4 transition-transform duration-500 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <ul
+          className={`xl:hidden h-screen absolute top-full left-0 w-1/2 sm:w-1/3 bg-white shadow-md flex flex-col items-center py-4 transition-transform duration-500 ${
+            isOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
           {navItems.map(({ key, path, subNavs }) => (
             <li key={key} className="w-full">
               <div

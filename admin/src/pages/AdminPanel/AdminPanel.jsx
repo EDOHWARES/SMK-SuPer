@@ -6,11 +6,14 @@ import logo from "../../assets/images/logo.png";
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useNavigate } from "react-router-dom";
+import Pibg from "../Pibg/Pibg";
 
-const AdminPanel = ({ token }) => {
+const AdminPanel = () => {
   const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem("adminToken"));
   const [activeTab, setActiveTab] = useState("dashboard");
   const [bookings, setBookings] = useState([]);
+  console.log(bookings);
   const [rooms, setRooms] = useState([]);
   const [newRoom, setNewRoom] = useState({
     name: "",
@@ -20,12 +23,9 @@ const AdminPanel = ({ token }) => {
   const [loading, setLoading] = useState(false); // Loader state
 
   console.log(bookings);
-  console.log(rooms);
-
-  const headers = { Authorization: `Bearer ${token}` };
 
   useEffect(() => {
-    const token = localStorage.getItem("adminToken");
+    setToken(localStorage.getItem("adminToken"));
 
     if (!token) {
       toast.error("Unauthorized! Please log in.");
@@ -75,11 +75,15 @@ const AdminPanel = ({ token }) => {
   };
 
   const handleRoomCreate = async () => {
+    const headers = { Authorization: `Bearer ${token}` };
     try {
       setLoading(true); // Show loader
-      await axios.post("http://localhost:5003/api/rooms", newRoom, { headers });
+      const api_url = import.meta.env.VITE_API_URL;
+      await axios.post(`${api_url}/rooms`, newRoom, {
+        headers,
+      });
       toast.success("Room added");
-      fetchData();
+      fetchData(token);
     } catch (err) {
       toast.error(err.response?.data?.error || "Room add failed");
     } finally {
@@ -88,11 +92,13 @@ const AdminPanel = ({ token }) => {
   };
 
   const handleRoomDelete = async (id) => {
+    const headers = { Authorization: `Bearer ${token}` };
     try {
       setLoading(true); // Show loader
-      await axios.delete(`http://localhost:5003/api/rooms/${id}`, { headers });
+      const api_url = import.meta.env.VITE_API_URL;
+      await axios.delete(`${api_url}/rooms/${id}`, { headers });
       toast.success("Room deleted");
-      fetchData();
+      fetchData(token);
     } catch (err) {
       toast.error("Failed to delete room");
     } finally {
@@ -100,16 +106,29 @@ const AdminPanel = ({ token }) => {
     }
   };
 
-  const handleStatusChange = async (id, status) => {
+  const handleBookingApproval = async (id) => {
+    const headers = { Authorization: `Bearer ${token}` };
     try {
       setLoading(true); // Show loader
-      await axios.patch(
-        `http://localhost:5003/api/bookings/${id}`,
-        { status },
-        { headers }
-      );
-      toast.success(`Booking ${status}`);
-      fetchData();
+      const api_url = import.meta.env.VITE_API_URL;
+      await axios.patch(`${api_url}/bookings/${id}/approve`, null, { headers });
+      toast.success(`Booking Approved!`);
+      fetchData(token);
+    } catch (err) {
+      toast.error("Failed to update booking status");
+    } finally {
+      setLoading(false); // Hide loader
+    }
+  };
+
+  const handleBookingRejection = async (id) => {
+    const headers = { Authorization: `Bearer ${token}` };
+    try {
+      setLoading(true); // Show loader
+      const api_url = import.meta.env.VITE_API_URL;
+      await axios.patch(`${api_url}/bookings/${id}/reject`, null, { headers });
+      toast.success(`Booking Rejected!`);
+      fetchData(token);
     } catch (err) {
       toast.error("Failed to update booking status");
     } finally {
@@ -121,7 +140,9 @@ const AdminPanel = ({ token }) => {
     <div className="bg-white shadow p-4 flex justify-between items-center">
       <img src={logo} alt="logo" width={50} />
       <div className="flex items-center gap-6">
-        <span className="text-gray-700 text-lg font-medium">Welcome, Admin</span>
+        <span className="text-gray-700 text-lg font-medium">
+          Welcome, Admin
+        </span>
         <div className="relative group">
           <button className="flex items-center gap-2 text-gray-700 hover:text-blue-700">
             <FaUser className="text-xl" />
@@ -151,8 +172,10 @@ const AdminPanel = ({ token }) => {
         <Header />
         <main className="p-6 overflow-y-auto">
           {loading && (
-            <div className="flex justify-center items-center">
+            <div className="flex flex-col gap-4 justify-center items-center">
               <div className="loader border-t-4 border-blue-500 w-12 h-12 rounded-full animate-spin"></div>
+
+              <p className="text-gray-600 mt-6 text-center">Please wait...</p>
             </div>
           )}
           {!loading && activeTab === "dashboard" && (
@@ -192,17 +215,13 @@ const AdminPanel = ({ token }) => {
                           {b.status === "pending" && (
                             <div className="flex gap-2 justify-center">
                               <button
-                                onClick={() =>
-                                  handleStatusChange(b._id, "approved")
-                                }
+                                onClick={() => handleBookingApproval(b._id)}
                                 className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
                               >
                                 Approve
                               </button>
                               <button
-                                onClick={() =>
-                                  handleStatusChange(b._id, "rejected")
-                                }
+                                onClick={() => handleBookingRejection(b._id)}
                                 className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                               >
                                 Reject
@@ -277,6 +296,8 @@ const AdminPanel = ({ token }) => {
               </ul>
             </section>
           )}
+
+          {!loading && activeTab === "pibg" && <Pibg />}
         </main>
       </div>
     </div>

@@ -10,6 +10,7 @@ import BookingForm from "./pages/RoomBooking/RoomBooking";
 import Login from "./pages/Auth/Login";
 import TeachersAndStaffs from "./pages/Administration/TeachersAndStaffs/TeachersAndStaffs";
 import VisionMission from "./pages/About/VissionMission/VissionMission";
+import PtaPayment from "./pages/PtaPayment/PtaPayment";
 
 function App() {
   return (
@@ -35,37 +36,37 @@ function App() {
         {/* Main Navigation Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<About />} />
-        <Route path="/achievements" element={<div>Achievements Page</div>} />
-        <Route path="/contact-us" element={<div>Contact Us Page</div>} />
+        <Route path="/achievements" element={<div className="mt-30 ml-4">Achievements Page</div>} />
+        <Route path="/contact-us" element={<div className="mt-30 ml-4">Contact Us Page</div>} />
 
         {/* Sub-navigation Routes */}
         {/* Home SubNavs */}
         <Route
           path="/latest-announcement"
-          element={<div>Latest Announcements Page</div>}
+          element={<div className="mt-30 ml-4">Latest Announcements Page</div>}
         />
         <Route
           path="/upcoming-events"
-          element={<div>Upcoming Events Page</div>}
+          element={<div className="mt-30 ml-4">Upcoming Events Page</div>}
         />
 
         {/* About Us SubNavs */}
         <Route path="/about-us/school-history" element={<SchoolHistory />} />
         <Route
           path="/about-us/school-organizational-chart"
-          element={<div>School Organizational Chart Page</div>}
+          element={<div className="mt-30 ml-4">School Organizational Chart Page</div>}
         />
         <Route
           path="/about-us/national-education-philosophy"
-          element={<div>National Education Philosophy Page</div>}
+          element={<div className="mt-30 ml-4">National Education Philosophy Page</div>}
         />
         <Route
           path="/about-us/school-identity"
-          element={<div>School Identity Page</div>}
+          element={<div className="mt-30 ml-4">School Identity Page</div>}
         />
         <Route
           path="/about-us/school-song"
-          element={<div>School Song Page</div>}
+          element={<div className="mt-30 ml-4">School Song Page</div>}
         />
         <Route
           path="/about-us/maps&directions"
@@ -76,21 +77,21 @@ function App() {
         {/* News SubNavs */}
         <Route
           path="/news/school-highlights"
-          element={<div>School Highlights Page</div>}
+          element={<div className="mt-30 ml-4">School Highlights Page</div>}
         />
         <Route
           path="/news/program-documentation"
-          element={<div>Program Documentation Page</div>}
+          element={<div className="mt-30 ml-4">Program Documentation Page</div>}
         />
 
         {/* Administration SubNavs */}
         <Route
           path="/administration/principal"
-          element={<div>Principal Page</div>}
+          element={<div className="mt-30 ml-4">Principal Page</div>}
         />
         <Route
           path="/administration/school-management"
-          element={<div>School Management Page</div>}
+          element={<div className="mt-30 ml-4">School Management Page</div>}
         />
         <Route
           path="/administration/teachers&staff-directory"
@@ -98,20 +99,20 @@ function App() {
         />
         <Route
           path="/administration/student-affairs-unit"
-          element={<div>Student Affairs Unit Page</div>}
+          element={<div className="mt-30 ml-4">Student Affairs Unit Page</div>}
         />
         <Route
           path="/administration/curriculum-management"
-          element={<div>Curriculum Management Page</div>}
+          element={<div className="mt-30 ml-4">Curriculum Management Page</div>}
         />
         <Route
           path="/administration/co-curriculum-management"
-          element={<div>Co-Curriculum Management Page</div>}
+          element={<div className="mt-30 ml-4">Co-Curriculum Management Page</div>}
         />
         <Route
           path="/administration/special-education-integration-program-manaagement"
           element={
-            <div>
+            <div className="mt-30 ml-4">
               Special Education Integration Program (SEIP) Management Page
             </div>
           }
@@ -120,41 +121,41 @@ function App() {
         {/* Committee SubNavs */}
         <Route
           path="/committee/parent-teacher-association"
-          element={<div>Parent-Teacher Association (PTA) Page</div>}
+          element={<div className="mt-30 ml-4">Parent-Teacher Association (PTA) Page</div>}
         />
         <Route
           path="/committee/parent&community-involvement"
-          element={<div>Parent and Community Involvement Page</div>}
+          element={<div className="mt-30 ml-4">Parent and Community Involvement Page</div>}
         />
         <Route
           path="/committee/bonding&networking"
-          element={<div>Bonding & Networking Page</div>}
+          element={<div className="mt-30 ml-4">Bonding & Networking Page</div>}
         />
         <Route
           path="/committee/pta-payments"
-          element={<div>PTA Payments Page</div>}
+          element={<PtaPayment />}
         />
 
         {/* Contact Us SubNavs */}
         <Route
           path="/contact-us/school-location"
-          element={<div>School Location Page</div>}
+          element={<div className="mt-30 ml-4">School Location Page</div>}
         />
         <Route
           path="/contact-us/office-operating-hours"
-          element={<div>Office Operating Hours Page</div>}
+          element={<div className="mt-30 ml-4">Office Operating Hours Page</div>}
         />
         <Route
           path="/contact-us/official-email-address"
-          element={<div>Official Email Address Page</div>}
+          element={<div className="mt-30 ml-4">Official Email Address Page</div>}
         />
         <Route
           path="/contact-us/phone&fax-number"
-          element={<div>Phone & Fax Number Page</div>}
+          element={<div className="mt-30 ml-4">Phone & Fax Number Page</div>}
         />
 
         {/* Fallback Route */}
-        <Route path="*" element={<h1>404 Not Found</h1>} />
+        <Route path="*" element={<h1 className="mt-30 ml-4">404 Not Found</h1>} />
       </Routes>
     </section>
   );

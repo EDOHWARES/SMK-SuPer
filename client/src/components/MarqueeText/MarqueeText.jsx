@@ -4,15 +4,16 @@ const MarqueeText = () => {
   return (
     <div className="w-full overflow-hidden bg-gradient-to-r from-[#00247D] to-[#003891] py-4 mb-[4rem]">
       <motion.div
-        className="whitespace-nowrap text-white text-sm md:text-2xl font-bold"
+        className="whitespace-nowrap text-white text-sm md:text-xl font-bold"
         animate={{ x: ["100%", "-100%"] }}
         transition={{
           repeat: Infinity,
-          duration: 10,
+          duration: 25,
           ease: "linear",
         }}
       >
-        🚀 Welcome to our platform! Enjoy seamless experiences. 🌟 Welcome to our platform! Enjoy seamless experiences.
+        Education trains the mind to think and contribute. Embrace challenges,
+        SMK Super; they build your potential to shape a brighter future 🌟
       </motion.div>
     </div>
   );

@@ -55,8 +55,9 @@ bookingRoutes.get('/', auth, roleCheck(['admin']), async (req, res) => {
   }
 });
 
-// Principal can approve special bookings
-bookingRoutes.patch('/:id/approve', auth, roleCheck(['principal']), async (req, res) => {
+// Principal or admin can approve bookings
+bookingRoutes.patch('/:id/approve', auth, roleCheck(['admin', 'principal']), async (req, res) => {
+  console.log("working...")
   try {
     const booking = await Booking.findByIdAndUpdate(
       req.params.id,
