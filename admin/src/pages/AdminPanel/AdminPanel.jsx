@@ -165,7 +165,7 @@ const AdminPanel = () => {
   return (
     <div className="flex h-screen">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col ">
         <Header />
         <main className="p-6 overflow-y-auto">
           {loading && (
@@ -178,7 +178,7 @@ const AdminPanel = () => {
           {!loading && activeTab === "dashboard" && (
             <section>
               <h2 className="text-2xl font-semibold mb-4">All Bookings</h2>
-              <div className="overflow-auto">
+              <div className="overflow-x-scroll">
                 <table className="w-full text-sm border">
                   <thead className="bg-gray-100">
                     <tr>
@@ -235,7 +235,7 @@ const AdminPanel = () => {
           )}
 
           {!loading && activeTab === "rooms" && (
-            <section>
+            <section className="overflow-x-scroll">
               <h2 className="text-2xl font-semibold mb-4">Manage Rooms</h2>
               <div className="flex gap-2 mb-4">
                 <input

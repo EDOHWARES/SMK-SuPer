@@ -61,7 +61,7 @@ const Pibg = () => {
   };
 
   return (
-    <section className="mt-12 p-6">
+    <section className="p-1">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Payment Records</h2>
         <button

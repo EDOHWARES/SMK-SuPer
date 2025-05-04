@@ -6,7 +6,7 @@ import { auth, roleCheck } from '../middleware/auth.js';
 const bookingRoutes = express.Router();
 
 // Create a booking (students and teachers)
-bookingRoutes.post('/', auth, async (req, res) => {
+bookingRoutes.post('/', async (req, res) => {
   try {
     const { roomId, date, timeSlot, attendees, isSpecial } = req.body;
     console.log(roomId, date, timeSlot, attendees, isSpecial);
@@ -47,6 +47,7 @@ bookingRoutes.post('/', auth, async (req, res) => {
 
 // Admin can view all bookings
 bookingRoutes.get('/', auth, roleCheck(['admin']), async (req, res) => {
+  console.log("working...")
   try {
     const bookings = await Booking.find().populate('userId roomId');
     res.json(bookings);
@@ -56,7 +57,7 @@ bookingRoutes.get('/', auth, roleCheck(['admin']), async (req, res) => {
 });
 
 // Principal or admin can approve bookings
-bookingRoutes.patch('/:id/approve', auth, roleCheck(['admin', 'principal']), async (req, res) => {
+bookingRoutes.patch('/:id/approve', roleCheck(['admin', 'principal']), async (req, res) => {
   console.log("working...")
   try {
     const booking = await Booking.findByIdAndUpdate(
@@ -72,7 +73,7 @@ bookingRoutes.patch('/:id/approve', auth, roleCheck(['admin', 'principal']), asy
 });
 
 // Principal or admin can reject bookings
-bookingRoutes.patch('/:id/reject', auth, roleCheck(['principal', 'admin']), async (req, res) => {
+bookingRoutes.patch('/:id/reject', roleCheck(['principal', 'admin']), async (req, res) => {
   try {
     const booking = await Booking.findByIdAndUpdate(
       req.params.id,
@@ -87,7 +88,7 @@ bookingRoutes.patch('/:id/reject', auth, roleCheck(['principal', 'admin']), asyn
 });
 
 // User can view their own bookings
-bookingRoutes.get('/my-bookings', auth, async (req, res) => {
+bookingRoutes.get('/my-bookings', async (req, res) => {
   try {
     const bookings = await Booking.find({ userId: req.user._id }).populate('roomId');
     res.json(bookings);

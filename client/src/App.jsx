@@ -20,24 +20,20 @@ function App() {
       <Header />
       <Routes>
         {/* TEST ROUTES */}
-        <Route
-          path="/room-booking"
-          element={
-            <BookingForm
-              userRole={"teacher"}
-              token={
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmRhMmU1NGMzODcwNGI3YThjNThjNiIsImlhdCI6MTc0NDgwOTg1NSwiZXhwIjoxNzQ0ODk2MjU1fQ.i3aJ1iTsPIjV3m0PYdqIJW4o3ar0N2JYE5JIEFchIjQ"
-              }
-            />
-          }
-        />
+        <Route path="/room-booking" element={<BookingForm />} />
         <Route path="/login" element={<Login />} />
 
         {/* Main Navigation Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<About />} />
-        <Route path="/achievements" element={<div className="mt-30 ml-4">Achievements Page</div>} />
-        <Route path="/contact-us" element={<div className="mt-30 ml-4">Contact Us Page</div>} />
+        <Route
+          path="/achievements"
+          element={<div className="mt-30 ml-4">Achievements Page</div>}
+        />
+        <Route
+          path="/contact-us"
+          element={<div className="mt-30 ml-4">Contact Us Page</div>}
+        />
 
         {/* Sub-navigation Routes */}
         {/* Home SubNavs */}
@@ -54,11 +50,15 @@ function App() {
         <Route path="/about-us/school-history" element={<SchoolHistory />} />
         <Route
           path="/about-us/school-organizational-chart"
-          element={<div className="mt-30 ml-4">School Organizational Chart Page</div>}
+          element={
+            <div className="mt-30 ml-4">School Organizational Chart Page</div>
+          }
         />
         <Route
           path="/about-us/national-education-philosophy"
-          element={<div className="mt-30 ml-4">National Education Philosophy Page</div>}
+          element={
+            <div className="mt-30 ml-4">National Education Philosophy Page</div>
+          }
         />
         <Route
           path="/about-us/school-identity"
@@ -107,7 +107,9 @@ function App() {
         />
         <Route
           path="/administration/co-curriculum-management"
-          element={<div className="mt-30 ml-4">Co-Curriculum Management Page</div>}
+          element={
+            <div className="mt-30 ml-4">Co-Curriculum Management Page</div>
+          }
         />
         <Route
           path="/administration/special-education-integration-program-manaagement"
@@ -121,20 +123,25 @@ function App() {
         {/* Committee SubNavs */}
         <Route
           path="/committee/parent-teacher-association"
-          element={<div className="mt-30 ml-4">Parent-Teacher Association (PTA) Page</div>}
+          element={
+            <div className="mt-30 ml-4">
+              Parent-Teacher Association (PTA) Page
+            </div>
+          }
         />
         <Route
           path="/committee/parent&community-involvement"
-          element={<div className="mt-30 ml-4">Parent and Community Involvement Page</div>}
+          element={
+            <div className="mt-30 ml-4">
+              Parent and Community Involvement Page
+            </div>
+          }
         />
         <Route
           path="/committee/bonding&networking"
           element={<div className="mt-30 ml-4">Bonding & Networking Page</div>}
         />
-        <Route
-          path="/committee/pta-payments"
-          element={<PtaPayment />}
-        />
+        <Route path="/committee/pta-payments" element={<PtaPayment />} />
 
         {/* Contact Us SubNavs */}
         <Route
@@ -143,11 +150,15 @@ function App() {
         />
         <Route
           path="/contact-us/office-operating-hours"
-          element={<div className="mt-30 ml-4">Office Operating Hours Page</div>}
+          element={
+            <div className="mt-30 ml-4">Office Operating Hours Page</div>
+          }
         />
         <Route
           path="/contact-us/official-email-address"
-          element={<div className="mt-30 ml-4">Official Email Address Page</div>}
+          element={
+            <div className="mt-30 ml-4">Official Email Address Page</div>
+          }
         />
         <Route
           path="/contact-us/phone&fax-number"
@@ -155,7 +166,10 @@ function App() {
         />
 
         {/* Fallback Route */}
-        <Route path="*" element={<h1 className="mt-30 ml-4">404 Not Found</h1>} />
+        <Route
+          path="*"
+          element={<h1 className="mt-30 ml-4">404 Not Found</h1>}
+        />
       </Routes>
     </section>
   );

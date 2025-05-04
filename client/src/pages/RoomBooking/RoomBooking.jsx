@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 
 import seminar_room from "../../assets/images/semina-room.jpg";
 
-const BookingForm = ({ token, userRole }) => {
+const BookingForm = () => {
   const [rooms, setRooms] = useState([]);
   const [form, setForm] = useState({
     roomId: "",
@@ -14,49 +14,15 @@ const BookingForm = ({ token, userRole }) => {
     isSpecial: false,
   });
 
-  console.log(form)
+  console.log(form);
 
-  // useEffect(() => {
-  //   // Dummy rooms data
-  //   const dummyRooms = [
-  //     { _id: "1", name: "Room A", capacity: 10, type: "library" },
-  //     { _id: "2", name: "Room B", capacity: 15, type: "meeting" },
-  //     { _id: "3", name: "Room C", capacity: 20, type: "special" },
-  //     { _id: "4", name: "Room D", capacity: 25, type: "library" },
-  //     { _id: "5", name: "Room E", capacity: 30, type: "meeting" },
-  //     { _id: "6", name: "Room F", capacity: 35, type: "special" },
-  //     { _id: "7", name: "Room G", capacity: 40, type: "library" },
-  //     { _id: "8", name: "Room H", capacity: 45, type: "meeting" },
-  //     { _id: "9", name: "Room I", capacity: 50, type: "special" },
-  //     { _id: "10", name: "Room J", capacity: 55, type: "library" },
-  //     { _id: "11", name: "Room K", capacity: 60, type: "meeting" },
-  //     { _id: "12", name: "Room L", capacity: 65, type: "special" },
-  //     { _id: "13", name: "Room M", capacity: 70, type: "library" },
-  //     { _id: "14", name: "Room N", capacity: 75, type: "meeting" },
-  //     { _id: "15", name: "Room O", capacity: 80, type: "special" },
-  //     { _id: "16", name: "Room P", capacity: 85, type: "library" },
-  //     { _id: "17", name: "Room Q", capacity: 90, type: "meeting" },
-  //     { _id: "18", name: "Room R", capacity: 95, type: "special" },
-  //     { _id: "19", name: "Room S", capacity: 100, type: "library" },
-  //     { _id: "20", name: "Room T", capacity: 105, type: "meeting" },
-  //     { _id: "21", name: "Room U", capacity: 110, type: "special" },
-  //     { _id: "22", name: "Room V", capacity: 115, type: "library" },
-  //     { _id: "23", name: "Room W", capacity: 120, type: "meeting" },
-  //     { _id: "24", name: "Room X", capacity: 125, type: "special" },
-  //     { _id: "25", name: "Room Y", capacity: 130, type: "library" },
-  //     { _id: "26", name: "Room Z", capacity: 135, type: "meeting" },
-  //   ];
-
-  //   setRooms(dummyRooms);
-  // }, []);
-
-    useEffect(() => {
-      const api_url = import.meta.env.VITE_API_URL;
-      axios.get(`${api_url}/rooms`, {
-        headers: { Authorization: `Bearer ${token}` }
-      }).then(res => setRooms(res.data))
-        .catch(err => toast.error('Failed to load rooms'));
-    }, [token]);
+  useEffect(() => {
+    const api_url = import.meta.env.VITE_API_URL;
+    axios
+      .get(`${api_url}/rooms`)
+      .then((res) => setRooms(res.data))
+      .catch((err) => toast.error("Failed to load rooms"));
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -64,13 +30,16 @@ const BookingForm = ({ token, userRole }) => {
   };
 
   const handleSubmit = async (e) => {
+    if (!form.roomId || !form.date || !form.timeSlot || !form.attendees) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
     const api_url = import.meta.env.VITE_API_URL;
-    console.log('submitting')
+    console.log("submitting");
     e.preventDefault();
     try {
-      const res = await axios.post(`${api_url}/bookings`, form, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.post(`${api_url}/bookings`, form);
       console.log(res.data);
       toast.success("Booking successful");
     } catch (err) {
@@ -147,18 +116,16 @@ const BookingForm = ({ token, userRole }) => {
             className="w-full mb-4 p-2 border rounded"
           />
 
-          {["teacher", "principal"].includes(userRole) && (
-            <label className="inline-flex items-center mb-4">
-              <input
-                type="checkbox"
-                name="isSpecial"
-                checked={form.isSpecial}
-                onChange={handleChange}
-                className="mr-2"
-              />
-              <span>Special Booking</span>
-            </label>
-          )}
+          <label className="inline-flex items-center mb-4">
+            <input
+              type="checkbox"
+              name="isSpecial"
+              checked={form.isSpecial}
+              onChange={handleChange}
+              className="mr-2"
+            />
+            <span>Special Booking</span>
+          </label>
 
           <button
             type="submit"
