@@ -51,7 +51,8 @@ const BookingForm = ({ token, userRole }) => {
   // }, []);
 
     useEffect(() => {
-      axios.get('http://localhost:5003/api/rooms', {
+      const api_url = import.meta.env.VITE_API_URL;
+      axios.get(`${api_url}/rooms`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => setRooms(res.data))
         .catch(err => toast.error('Failed to load rooms'));
@@ -63,10 +64,11 @@ const BookingForm = ({ token, userRole }) => {
   };
 
   const handleSubmit = async (e) => {
+    const api_url = import.meta.env.VITE_API_URL;
     console.log('submitting')
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5003/api/bookings", form, {
+      const res = await axios.post(`${api_url}/bookings`, form, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(res.data);
