@@ -24,10 +24,18 @@ const PtaPayment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.childName || !formData.class || !formData.amount || !formData.date || !formData.receipt) {
+    if (
+      !formData.childName ||
+      !formData.class ||
+      !formData.amount ||
+      !formData.date ||
+      !formData.receipt
+    ) {
       alert("Please fill in all fields and upload a receipt.");
       return;
     }
+
+    const api_url = import.meta.env.VITE_API_URL;
 
     const data = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
@@ -36,7 +44,7 @@ const PtaPayment = () => {
 
     setLoading(true);
     try {
-      await axios.post("/api/payments", data);
+      await axios.post(`${api_url}/pibg`, data);
       alert("✅ Payment submitted successfully");
       setFormData({
         childName: "",
@@ -55,10 +63,18 @@ const PtaPayment = () => {
 
   return (
     <section className="max-w-xl  mx-auto mt-35 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-6 text-center">PTA Payment Submission</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
+      <h2 className="text-2xl font-semibold mb-6 text-center">
+        PTA Payment Submission
+      </h2>
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="space-y-4"
+      >
         <div>
-          <label className="block text-sm font-medium text-gray-700">Child's Name</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Child's Name
+          </label>
           <input
             type="text"
             name="childName"
@@ -70,7 +86,9 @@ const PtaPayment = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">Class</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Class
+          </label>
           <input
             type="text"
             name="class"
@@ -82,7 +100,9 @@ const PtaPayment = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">Amount (₦)</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Amount (MYR)
+          </label>
           <input
             type="number"
             name="amount"
@@ -94,7 +114,9 @@ const PtaPayment = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">Payment Date</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Payment Date
+          </label>
           <input
             type="date"
             name="date"
@@ -106,7 +128,9 @@ const PtaPayment = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">Upload Receipt</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Upload Receipt
+          </label>
           <input
             type="file"
             onChange={handleFileChange}
@@ -128,7 +152,6 @@ const PtaPayment = () => {
 };
 
 export default PtaPayment;
-
 
 // // BACKEND - paymentController.js
 // const Payment = require('../models/paymentModel');

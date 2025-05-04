@@ -6,9 +6,14 @@ const Pibg = () => {
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState(null);
 
+  const rawApiUrl = import.meta.env.VITE_API_URL;
+  const baseUrl = rawApiUrl.replace(/\/api\/?$/, "");
+  
+
   const fetchPayments = async () => {
+    const api_url = import.meta.env.VITE_API_URL;
     try {
-      const res = await axios.get("/api/payments");
+      const res = await axios.get(`${api_url}/pibg`);
       setPayments(res.data);
     } catch (err) {
       console.error(err);
@@ -19,13 +24,14 @@ const Pibg = () => {
   };
 
   useEffect(() => {
-    // fetchPayments();
+    fetchPayments();
   }, []);
 
   const handleStatusChange = async (id, status) => {
+    const api_url = import.meta.env.VITE_API_URL;
     setUpdatingId(id);
     try {
-      await axios.patch(`/api/payments/${id}`, { status });
+      await axios.patch(`${api_url}/pibg/${id}`, { status });
       fetchPayments();
     } catch (err) {
       console.error(err);
@@ -36,8 +42,9 @@ const Pibg = () => {
   };
 
   const downloadReport = async () => {
+    const api_url = import.meta.env.VITE_API_URL;
     try {
-      const res = await axios.get("/api/payments/report", {
+      const res = await axios.get(`${api_url}/pibg/report`, {
         responseType: "blob",
       });
       const url = window.URL.createObjectURL(new Blob([res.data]));
@@ -76,7 +83,7 @@ const Pibg = () => {
               <tr>
                 <th className="px-4 py-2 border">Child Name</th>
                 <th className="px-4 py-2 border">Class</th>
-                <th className="px-4 py-2 border">Amount (₦)</th>
+                <th className="px-4 py-2 border">Amount (MYR)</th>
                 <th className="px-4 py-2 border">Date</th>
                 <th className="px-4 py-2 border">Status</th>
                 <th className="px-4 py-2 border">Receipt</th>
@@ -86,29 +93,35 @@ const Pibg = () => {
             <tbody>
               {payments.map((p) => (
                 <tr key={p._id}>
-                  <td className="px-4 py-2 border">{p.childName}</td>
-                  <td className="px-4 py-2 border">{p.class}</td>
-                  <td className="px-4 py-2 border">₦{p.amount}</td>
-                  <td className="px-4 py-2 border">
+                  <td className="px-4 py-2 border text-center">
+                    {p.childName}
+                  </td>
+                  <td className="px-4 py-2 border text-center">{p.class}</td>
+                  <td className="px-4 py-2 border text-center">₦{p.amount}</td>
+                  <td className="px-4 py-2 border text-center">
                     {new Date(p.date).toLocaleDateString()}
                   </td>
-                  <td className="px-4 py-2 border capitalize">{p.status || "pending"}</td>
-                  <td className="px-4 py-2 border">
+                  <td className="px-4 py-2 border capitalize text-center mx-auto">
+                    {p.status || "pending"}
+                  </td>
+                  <td className="px-4 py-2 border text-center">
                     <a
-                      href={`/${p.receipt}`}
+                      href={`${baseUrl}/${p.receipt}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-500 underline"
+                      className="text-blue-500 underline text-center"
                     >
                       View
                     </a>
                   </td>
-                  <td className="px-4 py-2 border">
+                  <td className="px-4 py-2 border text-center">
                     <select
                       value={p.status || "pending"}
                       disabled={updatingId === p._id}
-                      onChange={(e) => handleStatusChange(p._id, e.target.value)}
-                      className="border rounded px-2 py-1"
+                      onChange={(e) =>
+                        handleStatusChange(p._id, e.target.value)
+                      }
+                      className="border rounded px-2 py-1 text-center"
                     >
                       <option value="pending">Pending</option>
                       <option value="verified">Verified</option>

@@ -16,7 +16,7 @@ const upload = multer({ storage });
 
 /** 
  * @desc Parent uploads payment
- * @route POST /api/payments
+ * @route POST /api/pibg
  */
 pibgRoutes.post("/", upload.single("receipt"), async (req, res) => {
   try {
@@ -66,7 +66,7 @@ pibgRoutes.post("/", upload.single("receipt"), async (req, res) => {
 
 /**
  * @desc Treasurer views all payments
- * @route GET /api/payments
+ * @route GET /api/pibg
  */
 pibgRoutes.get("/", async (req, res) => {
   try {
@@ -79,7 +79,7 @@ pibgRoutes.get("/", async (req, res) => {
 
 /**
  * @desc Treasurer verifies or updates status of a payment
- * @route PATCH /api/payments/:id
+ * @route PATCH /api/pibg/:id
  */
 pibgRoutes.patch("/:id", async (req, res) => {
   try {
@@ -97,7 +97,7 @@ pibgRoutes.patch("/:id", async (req, res) => {
 
 /**
  * @desc Admin downloads all payments (CSV-style data)
- * @route GET /api/payments/report
+ * @route GET /api/pibg/report
  */
 pibgRoutes.get("/report", async (req, res) => {
   try {

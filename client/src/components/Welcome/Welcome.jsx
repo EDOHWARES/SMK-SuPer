@@ -34,32 +34,52 @@ const Welcome = () => {
       {/* Bottom Section */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 border-t-4 border-green-900">
         {/* About Placeholder */}
-        <div className="text-center">
+        <div className="text-left">
           <div className="w-full h-48 bg-gray-300">
-            <img src={student_activity_img} alt="activities_img" className="w-full h-full object-cover" />
+            <img
+              src={student_activity_img}
+              alt="activities_img"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <p className="text-gray-700 px-4 mt-2">
-            SMK SURIA PERDANA premier fully-residential school situated in Bandar Enstek, Malaysia, established in 1947.
+          <p className="text-gray-700 mt-2">
+            In the spirit of Ihya’ Ramadhan, we invite all PPKI (Special
+            Education Program) students to join a joyful and creative coloring
+            activity designed to celebrate the month of reflection and
+            expression.
           </p>
         </div>
 
         {/* Achievement Placeholder */}
-        <div className="text-center border-t-4 border-yellow-500">
+        <div className="text-left border-t-4 border-yellow-500">
           <div className="w-full h-48 bg-gray-300">
-            <img src={extracurricula_img} alt="extra_curricular_activities" className="w-full h-full object-cover" />
+            <img
+              src={extracurricula_img}
+              alt="extra_curricular_activities"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <p className="text-gray-700 px-4 mt-2">
-            An emphasis on learning, extra-curricular, and STEM in International, National, and State levels.
+          <p className="text-gray-700 mt-2">
+            SMK SURIA PERDANA official registration day where students can
+            enroll in various sports and athletic activities as part of their
+            co-curricular engagement.
           </p>
         </div>
 
         {/* Legacy Placeholder */}
-        <div className="text-center border-t-4 border-green-900">
+        <div className="text-left border-t-4 border-green-900">
           <div className="w-full h-48 bg-gray-300">
-            <img src={curricular_img} alt="services" className="w-full h-full object-cover" />
+            <img
+              src={curricular_img}
+              alt="services"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <p className="text-gray-700 px-4 mt-2">
-            A rich history of service and contributions to the Nation from among the Alumni ranks.
+          <p className="text-gray-700 mt-2">
+            A dedicated day for students to sign up for a wide range of sports
+            and athletic programs, encouraging active participation in
+            co-curricular activities and fostering team spirit and personal
+            growth.
           </p>
         </div>
       </div>

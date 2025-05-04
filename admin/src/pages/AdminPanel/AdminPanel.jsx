@@ -3,7 +3,6 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FaUser } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
-import { Routes, Route } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useNavigate } from "react-router-dom";
 import Pibg from "../Pibg/Pibg";
@@ -21,8 +20,6 @@ const AdminPanel = () => {
     capacity: 100,
   });
   const [loading, setLoading] = useState(false); // Loader state
-
-  console.log(bookings);
 
   useEffect(() => {
     setToken(localStorage.getItem("adminToken"));
