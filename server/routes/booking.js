@@ -13,7 +13,6 @@ bookingRoutes.post('/', async (req, res) => {
 
     // Validate room existence
     const room = await Room.findById(roomId);
-    console.log(room);
     if (!room) return res.status(404).json({ error: 'Room not found' });
 
     // Validate room capacity
@@ -21,15 +20,20 @@ bookingRoutes.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Exceeds room capacity' });
     }
 
+    console.log("working2...")
+
     // Check for conflicting bookings
     const conflictingBooking = await Booking.findOne({ roomId, date, timeSlot });
     if (conflictingBooking) {
       return res.status(400).json({ error: 'Time slot already booked for this room' });
     }
 
+    // 👇 Using a hardcoded or dummy userId
+    const dummyUserId = '6635fc20b4f18f1094cd243e'; // Replace with a real user ID from your DB
+
     // Create booking with status always set to 'pending'
     const booking = new Booking({
-      userId: req.user._id,
+      userId: dummyUserId,
       roomId,
       date,
       timeSlot,
@@ -37,6 +41,8 @@ bookingRoutes.post('/', async (req, res) => {
       isSpecial: isSpecial || false,
       status: 'pending', // Always set status to 'pending'
     });
+
+    console.log("working3...", booking)
 
     await booking.save();
     res.status(201).json(booking);
