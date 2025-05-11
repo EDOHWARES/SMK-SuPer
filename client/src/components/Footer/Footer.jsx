@@ -1,0 +1,184 @@
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+} from "lucide-react";
+import { FaFacebook } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaInstagramSquare } from "react-icons/fa";
+
+import logo from "../../assets/images/logo.png";
+
+// Footer Component
+export const Footer = () => {
+  return (
+    <footer className="bg-blue-900 text-white pt-16 pb-8">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div>
+            <div className="flex items-center mb-6">
+                <img src={logo} alt="smk logo" width={50} />
+            </div>
+            <p className="text-blue-100 mb-4">
+              Building tomorrow's leaders through quality education since 1995.
+            </p>
+            <div className="flex space-x-4">
+              <a
+                href="#"
+                className="text-white hover:text-yellow-400 transition-colors"
+              >
+                <FaFacebook />{" "}
+              </a>
+              <a
+                href="#"
+                className="text-white hover:text-yellow-400 transition-colors"
+              >
+                <FaSquareXTwitter />
+              </a>
+              <a
+                href="#"
+                className="text-white hover:text-yellow-400 transition-colors"
+              >
+                <FaInstagramSquare />
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="/about-us"
+                  className="text-blue-100 hover:text-yellow-400 transition-colors"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/admissions"
+                  className="text-blue-100 hover:text-yellow-400 transition-colors"
+                >
+                  Admissions
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/academics"
+                  className="text-blue-100 hover:text-yellow-400 transition-colors"
+                >
+                  Academics
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/calendar"
+                  className="text-blue-100 hover:text-yellow-400 transition-colors"
+                >
+                  School Calendar
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/news"
+                  className="text-blue-100 hover:text-yellow-400 transition-colors"
+                >
+                  News & Events
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Contact Us</h3>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <MapPin className="w-5 h-5 text-yellow-400 mr-3 mt-1 flex-shrink-0" />
+                <span className="text-blue-100">
+                  123 Education Lane, Learning City, LC 12345
+                </span>
+              </li>
+              <li className="flex items-center">
+                <Phone className="w-5 h-5 text-yellow-400 mr-3 flex-shrink-0" />
+                <a
+                  href="tel:+11234567890"
+                  className="text-blue-100 hover:text-yellow-400 transition-colors"
+                >
+                  (123) 456-7890
+                </a>
+              </li>
+              <li className="flex items-center">
+                <Mail className="w-5 h-5 text-yellow-400 mr-3 flex-shrink-0" />
+                <a
+                  href="mailto:info@excellenceacademy.edu"
+                  className="text-blue-100 hover:text-yellow-400 transition-colors"
+                >
+                  info@excellenceacademy.edu
+                </a>
+              </li>
+              <li className="flex items-center">
+                <Clock className="w-5 h-5 text-yellow-400 mr-3 flex-shrink-0" />
+                <span className="text-blue-100">
+                  Mon-Fri: 8:00 AM - 4:00 PM
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Newsletter</h3>
+            <p className="text-blue-100 mb-4">
+              Subscribe to our newsletter to receive updates and news.
+            </p>
+            <form className="space-y-3">
+              <div>
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="w-full px-4 py-2 rounded-lg bg-blue-800 border border-blue-700 text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-medium py-2 px-4 rounded-lg transition-colors"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div className="border-t border-blue-800 pt-8 mt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-blue-200 text-sm mb-4 md:mb-0">
+              © {new Date().getFullYear()} Excellence Academy. All rights
+              reserved.
+            </p>
+            <div className="flex space-x-6 text-sm">
+              <a
+                href="/privacy-policy"
+                className="text-blue-200 hover:text-yellow-400 transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="/terms-of-service"
+                className="text-blue-200 hover:text-yellow-400 transition-colors"
+              >
+                Terms of Service
+              </a>
+              <a
+                href="/sitemap"
+                className="text-blue-200 hover:text-yellow-400 transition-colors"
+              >
+                Sitemap
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
