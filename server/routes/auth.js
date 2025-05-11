@@ -62,13 +62,13 @@ authRoutes.post("/signup", async (req, res) => {
 authRoutes.post(
   "/create-user",
   auth,
-  roleCheck(["admin", "principal"]),
+  roleCheck("principal"),
   async (req, res) => {
     try {
       const { name, email, password, role } = req.body;
 
       const allowedRoles = [
-        "admin",
+        "school_admin",
         "principal",
         "class_teacher",
         "regular_teacher",
@@ -136,3 +136,5 @@ authRoutes.get("/validate", auth, (req, res) => {
 });
 
 export default authRoutes;
+
+// "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjA5YmM5ZmMwMGEzZmMwNzgyYTE0ZSIsInJvbGUiOiJwcmluY2lwYWwiLCJpYXQiOjE3NDY5Njc0OTcsImV4cCI6MTc0NzA1Mzg5N30.D2E2UeLS6NLdBo9XZspLGTAJ0UZsddYg5Yb_HXizhwU"

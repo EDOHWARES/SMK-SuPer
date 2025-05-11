@@ -29,12 +29,17 @@ const auth = async (req, res, next) => {
 
 // Pass one or more roles allowed to access the route
 const roleCheck = (...roles) => (req, res, next) => {
-  if (!req.user?.role) {
-    console.warn('❌ Access denied - No user or role in request');
+  if (!req.user?.role || typeof req.user.role !== 'string') {
+    console.warn('❌ Access denied - No user or invalid role in request');
     return res.status(403).json({ error: 'Forbidden - No user or role' });
   }
 
-  if (!roles.includes(req.user.role)) {
+  const normalizedUserRole = req.user.role.toLowerCase();
+  const normalizedRoles = roles
+    .filter(role => typeof role === 'string') // Ensure the role is a string
+    .map(role => role.toLowerCase());
+
+  if (!normalizedRoles.includes(normalizedUserRole)) {
     console.warn(`❌ Access denied - '${req.user.role}' not in [${roles.join(', ')}]`);
     return res.status(403).json({
       error: `Forbidden - Requires role(s): ${roles.join(', ')}`,
@@ -43,6 +48,8 @@ const roleCheck = (...roles) => (req, res, next) => {
 
   next();
 };
+
+
 
 export { auth, roleCheck };
 
