@@ -1,116 +1,138 @@
-import express from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
-import dotenv from 'dotenv';
-import { auth } from '../middleware/auth.js';
-dotenv.config();
+import express from "express";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
+import dotenv from "dotenv";
+import { auth } from "../middleware/auth.js";
+import { roleCheck } from "../middleware/auth.js";
 
+dotenv.config();
 const authRoutes = express.Router();
 
-// Login Route
-authRoutes.post('/login', async (req, res) => {
+// Utility: Generate JWT
+const generateToken = (user) => {
+  return jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+    expiresIn: "1d",
+  });
+};
+
+// 🔐 Login Route (Shared for All)
+authRoutes.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  if (!user) return res.status(400).json({ error: 'Invalid email or password' });
+  if (!user)
+    return res.status(400).json({ error: "Invalid email or password" });
 
   const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) return res.status(400).json({ error: 'Invalid email or password' });
+  if (!isMatch)
+    return res.status(400).json({ error: "Invalid email or password" });
 
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+  const token = generateToken(user);
   res.json({ token, user });
 });
 
-// Signup Route
-authRoutes.post('/signup', async (req, res) => {
+// 👨‍🎓 Signup Route (Students only)
+authRoutes.post("/signup", async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
-    // Check if the user already exists
     const existingUser = await User.findOne({ email });
-    if (existingUser) return res.status(400).json({ error: 'Email already in use' });
+    if (existingUser)
+      return res.status(400).json({ error: "Email already in use" });
 
-    // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
     const user = new User({
       name,
       email,
       password: hashedPassword,
-      role,
+      role: "student", // Fixed to student
     });
 
     await user.save();
-
-    // Generate a token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const token = generateToken(user);
 
     res.status(201).json({ token, user });
-  } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
-// Admin Signup Route
-authRoutes.post('/admin/signup', async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
+// 👑 Create Users (Admin/Principal only)
+authRoutes.post(
+  "/create-user",
+  auth,
+  roleCheck(["admin", "principal"]),
+  async (req, res) => {
+    try {
+      const { name, email, password, role } = req.body;
 
-    // Check if the admin already exists
-    const existingAdmin = await User.findOne({ email, role: 'admin' });
-    if (existingAdmin) return res.status(400).json({ error: 'Admin already exists' });
+      const allowedRoles = [
+        "admin",
+        "principal",
+        "class_teacher",
+        "regular_teacher",
+        "school_admin",
+        "room_supervisor",
+        "pta_treasurer",
+        "store_admin",
+      ];
 
-    // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+      if (!allowedRoles.includes(role)) {
+        return res
+          .status(400)
+          .json({ error: "Invalid or restricted role assignment" });
+      }
 
-    // Create a new admin user
-    const admin = new User({
-      name,
-      email,
-      password: hashedPassword,
-      role: 'admin', // Explicitly set the role to 'admin'
-    });
+      const existing = await User.findOne({ email });
+      if (existing)
+        return res.status(400).json({ error: "User already exists" });
 
-    await admin.save();
+      const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Generate a token
-    const token = jwt.sign({ id: admin._id, role: admin.role }, process.env.JWT_SECRET, { expiresIn: '1d' });
+      const newUser = new User({ name, email, password: hashedPassword, role });
+      await newUser.save();
 
-    res.status(201).json({ token, admin });
-  } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+      res.status(201).json({ message: "User created", user: newUser });
+    } catch (err) {
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
+);
+
+// 🚨 ONE-TIME SETUP: Create First Superuser (only in dev or controlled environment)
+authRoutes.post("/setup-superadmin", async (req, res) => {
+  const { name, email, password, role, setupKey } = req.body;
+
+  if (setupKey !== process.env.SETUP_KEY) {
+    return res.status(403).json({ error: "Unauthorized setup access" });
+  }
+
+  const allowedRoles = ["school_admin", "principal"];
+  if (!allowedRoles.includes(role)) {
+    return res.status(400).json({ error: "Invalid role for setup" });
+  }
+
+  const exists = await User.findOne({ email });
+  if (exists) return res.status(400).json({ error: "User already exists" });
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const user = new User({ name, email, password: hashedPassword, role });
+  await user.save();
+
+  const token = jwt.sign(
+    { id: user._id, role: user.role },
+    process.env.JWT_SECRET,
+    { expiresIn: "1d" }
+  );
+
+  res.status(201).json({ message: "Superuser created", user, token });
 });
 
-// Admin Login Route
-authRoutes.post('/admin/login', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    // Check if the admin exists
-    const admin = await User.findOne({ email, role: 'admin' });
-    if (!admin) return res.status(400).json({ error: 'Invalid email or password' });
-
-    // Compare passwords
-    const isMatch = await bcrypt.compare(password, admin.password);
-    if (!isMatch) return res.status(400).json({ error: 'Invalid email or password' });
-
-    // Generate a token
-    const token = jwt.sign({ id: admin._id, role: admin.role }, process.env.JWT_SECRET, { expiresIn: '1d' });
-
-    res.json({ token, admin });
-  } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-// Token Validation Route
-authRoutes.get('/validate', auth, (req, res) => {
-  // If the token is valid, the `auth` middleware will attach the user to `req.user`
-  res.status(200).json({ message: 'Token is valid', user: req.user });
+// 🔄 Validate Token
+authRoutes.get("/validate", auth, (req, res) => {
+  res.status(200).json({ message: "Token is valid", user: req.user });
 });
 
 export default authRoutes;
