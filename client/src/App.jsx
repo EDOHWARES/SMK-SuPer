@@ -7,7 +7,6 @@ import About from "./pages/About/About";
 import { Header } from "./components/Header/Header";
 import MapsAndDirections from "./pages/About/MapsAndDirections/MapsAndDirections";
 import SchoolHistory from "./pages/About/SchoolHistory/SchoolHistory";
-import BookingForm from "./pages/RoomBooking/RoomBooking";
 import Login from "./pages/Auth/Login";
 import TeachersAndStaffs from "./pages/Administration/TeachersAndStaffs/TeachersAndStaffs";
 import VisionMission from "./pages/About/VissionMission/VissionMission";
@@ -21,6 +20,7 @@ import { UpcomingEvents } from "./components/UpcomingEvents/UpcomingEvents";
 import { Testimonials } from "./components/Testimonials/Testimonials";
 import { CallToAction } from "./components/CallToAction/CallToAction";
 import { Footer } from "./components/Footer/Footer";
+import RoomBookingSystem from "./pages/RoomBooking/RoomBooking";
 
 function App() {
   // Mock navigation items from the provided data
@@ -129,7 +129,7 @@ function App() {
       <Header navItems={navItems} />
       <Routes>
         {/* TEST ROUTES */}
-        <Route path="/room-booking" element={<BookingForm />} />
+        <Route path="/room-booking" element={<RoomBookingSystem />} />
         <Route path="/login" element={<Login />} />
 
         {/* Main Navigation Routes */}
