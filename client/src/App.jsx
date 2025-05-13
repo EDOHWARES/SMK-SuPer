@@ -7,7 +7,6 @@ import About from "./pages/About/About";
 import { Header } from "./components/Header/Header";
 import MapsAndDirections from "./pages/About/MapsAndDirections/MapsAndDirections";
 import SchoolHistory from "./pages/About/SchoolHistory/SchoolHistory";
-import Login from "./pages/Auth/Login";
 import TeachersAndStaffs from "./pages/Administration/TeachersAndStaffs/TeachersAndStaffs";
 import VisionMission from "./pages/About/VissionMission/VissionMission";
 import PtaPayment from "./pages/PtaPayment/PtaPayment";
@@ -21,6 +20,8 @@ import { Testimonials } from "./components/Testimonials/Testimonials";
 import { CallToAction } from "./components/CallToAction/CallToAction";
 import { Footer } from "./components/Footer/Footer";
 import RoomBookingSystem from "./pages/RoomBooking/RoomBooking";
+import SignUp from "./pages/Auth/SignUp";
+import SignIn from "./pages/Auth/SignIn";
 
 function App() {
   // Mock navigation items from the provided data
@@ -130,7 +131,6 @@ function App() {
       <Routes>
         {/* TEST ROUTES */}
         <Route path="/room-booking" element={<RoomBookingSystem />} />
-        <Route path="/login" element={<Login />} />
 
         {/* Main Navigation Routes */}
         <Route
@@ -291,6 +291,9 @@ function App() {
           path="/contact-us/phone&fax-number"
           element={<div className="mt-30 ml-4">Phone & Fax Number Page</div>}
         />
+
+          <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
 
         {/* Fallback Route */}
         <Route

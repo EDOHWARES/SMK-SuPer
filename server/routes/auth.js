@@ -31,14 +31,22 @@ authRoutes.post("/login", async (req, res) => {
   res.json({ token, user });
 });
 
-// 👨‍🎓 Signup Route (Students only)
+// 👨‍🎓 Signup Route (Students + JPN PPD Individual only)
 authRoutes.post("/signup", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
+
+    const allowedRoles = ["student", "jpn_ppd_individual"];
+    const userRole = role ? role.toLowerCase() : "student";
+
+    if (!allowedRoles.includes(userRole)) {
+      return res.status(400).json({ error: "Invalid role" });
+    }
 
     const existingUser = await User.findOne({ email });
-    if (existingUser)
+    if (existingUser) {
       return res.status(400).json({ error: "Email already in use" });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -46,7 +54,7 @@ authRoutes.post("/signup", async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role: "student", // Fixed to student
+      role: userRole,
     });
 
     await user.save();
@@ -57,6 +65,7 @@ authRoutes.post("/signup", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 // 👑 Create Users (Admin/Principal only)
 authRoutes.post(

@@ -1,0 +1,20 @@
+{
+    "kind": "collectionType",
+    "collectionName": "home_pages",
+    "info": {
+        "singularName": "home-page",
+        "pluralName": "home-pages",
+        "displayName": "HomePage"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "sections": {
+            "type": "dynamiczone",
+            "components": [
+                "home-page.hero-section"
+            ]
+        }
+    }
+}
