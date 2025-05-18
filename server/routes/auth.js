@@ -54,12 +54,12 @@ authRoutes.post("/login", async (req, res) => {
   res.json({ token, user });
 });
 
-// 👨‍🎓 Signup Route (Students + JPN PPD Individual only)
+// 👨‍🎓 Signup Route (Teacher + JPN PPD Individual only)
 authRoutes.post("/signup", async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
-    const allowedRoles = ["student", "jpn_ppd_individual"];
+    const allowedRoles = ["class_teacher", "regular_teacher", "jpn_ppd_individual"];
     const userRole = role ? role.toLowerCase() : "student";
 
     if (!allowedRoles.includes(userRole)) {

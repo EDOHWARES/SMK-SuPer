@@ -91,7 +91,7 @@ export const SocialFeeds = () => {
             <p className="text-gray-600 mt-2">Stay connected with our school community activities</p>
           </div>
           <div className="hidden md:block">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors">
+            <a href="https://web.facebook.com/suriaperdana?mibextid=LQQJ4d&_rdc=1&_rdr" target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors">
               <Facebook className="w-5 h-5 mr-2" />
               Follow Us on Facebook
             </a>
@@ -122,7 +122,7 @@ export const SocialFeeds = () => {
                       {post.comments} Comments
                     </span>
                   </div>
-                  <a href={`/post/${post.id}`} className="text-blue-900 hover:text-yellow-600 font-medium text-sm">Read More</a>
+                  <a href={`https://web.facebook.com/suriaperdana?mibextid=LQQJ4d&_rdc=1&_rdr`} className="text-blue-900 hover:text-yellow-600 font-medium text-sm">Read More</a>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ export const SocialFeeds = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <a href="/news" className="inline-flex items-center bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors">
+          <a href="https://web.facebook.com/suriaperdana?mibextid=LQQJ4d&_rdc=1&_rdr" className="inline-flex items-center bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors">
             View All Updates
             <ChevronRight className="ml-2 w-5 h-5" />
           </a>

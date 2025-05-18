@@ -89,13 +89,13 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="/admissions"
+              href="#"
               className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-semibold px-6 py-3 rounded-lg shadow-lg transition-all transform hover:-translate-y-1"
             >
               Apply Now
             </a>
             <a
-              href="/virtual-tour"
+              href="#"
               className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all transform hover:-translate-y-1"
             >
               Virtual Tour

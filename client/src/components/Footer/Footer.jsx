@@ -2,6 +2,7 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaInstagramSquare } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
 
 import logo from "../../assets/images/logo.png";
 
@@ -22,22 +23,22 @@ export const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://web.facebook.com/suriaperdana?mibextid=LQQJ4d&_rdc=1&_rdr"
                 className="text-white hover:text-yellow-400 transition-colors"
               >
-                <FaFacebook />{" "}
+                <FaFacebook className="text-3xl" />{" "}
               </a>
               <a
-                href="#"
+                href="https://www.tiktok.com/@smksuriaperdana?_t=ZN-8wTA2YQOEqc&_r=1"
                 className="text-white hover:text-yellow-400 transition-colors"
               >
-                <FaSquareXTwitter />
+                <FaTiktok className="text-3xl" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/smksuriaperdana/"
                 className="text-white hover:text-yellow-400 transition-colors"
               >
-                <FaInstagramSquare />
+                <FaInstagramSquare className="text-3xl" />
               </a>
             </div>
           </div>

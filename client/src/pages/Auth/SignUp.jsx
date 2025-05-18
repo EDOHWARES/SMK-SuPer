@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    userType: "",
+    role: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -15,8 +16,9 @@ export default function SignUp() {
 
   const userTypes = [
     { value: "", label: "Select User Type" },
-    { value: "student", label: "Student" },
-    { value: "jpn", label: "jpn_ppd_individual" },
+    { value: "class_teacher", label: "Class_Teacher" },
+    { value: "regular_teacher", label: "Regular_Teacher" },
+    { value: "jpn", label: "JPN_PPD_Individual" },
   ];
 
   const handleChange = (e) => {
@@ -51,7 +53,7 @@ export default function SignUp() {
     }
 
     // User type validation
-    if (!formData.userType) {
+    if (!formData.role) {
       newErrors.userType = "Please select a user type";
     }
 
@@ -66,10 +68,12 @@ export default function SignUp() {
       try {
         const api_url = import.meta.env.VITE_API_URL;
         console.log(api_url)
+        console.log(formData)
+
 
         // Send the form data to the signup API
         const response = await axios.post(`${api_url}/auth/signup`, formData);
-        console.log(response)
+        console.log(response);
 
         // Handle successful signup
         console.log("Signup successful:", response.data);
@@ -90,6 +94,8 @@ export default function SignUp() {
           toast.error("Signup failed. Please try again later.");
           setLoading(false);
         }
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -183,7 +189,7 @@ export default function SignUp() {
                 ${errors.userType ? "border-red-500" : "border-gray-300"}`}
             >
               {userTypes.map((type) => (
-                <option key={type.value} value={type.value}>
+                <option key={type.value} name="role" value={type.value}>
                   {type.label}
                 </option>
               ))}

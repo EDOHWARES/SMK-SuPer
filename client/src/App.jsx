@@ -37,7 +37,7 @@ function App() {
     },
     {
       key: "About Us",
-      path: "/about-us",
+      path: "/about-us/school-history",
       subNavs: [
         { key: "School History", path: "/about-us/school-history" },
         {
@@ -55,7 +55,7 @@ function App() {
     },
     {
       key: "News",
-      path: "/news",
+      path: "/news/school-highlights",
       subNavs: [
         { key: "School Highlights", path: "/news/school-highlights" },
         { key: "Program Documentation", path: "/news/program-documentation" },
@@ -63,7 +63,7 @@ function App() {
     },
     {
       key: "Administration",
-      path: "/administration",
+      path: "/administration/principal",
       subNavs: [
         { key: "Principal", path: "/administration/principal" },
         { key: "School Management", path: "/administration/school-management" },
@@ -91,7 +91,7 @@ function App() {
     },
     {
       key: "Committee",
-      path: "/Committee",
+      path: "/committee/parent-teacher-association",
       subNavs: [
         {
           key: "Parent-Teacher Association (PTA)",
@@ -104,6 +104,10 @@ function App() {
         { key: "Bonding & Networking", path: "/committee/bonding&networking" },
         { key: "PTA Payments", path: "/committee/pta-payments" },
         {
+          key: "Room booking",
+          path: "/committee/room-booking",
+        },
+        {
           key: "Login Guru",
           path: "/committee/signupaguru",
         },
@@ -112,7 +116,7 @@ function App() {
     { key: "Achievements", path: "/achievements" },
     {
       key: "Contact Us",
-      path: "/contact-us",
+      path: "/contact-us/school-location",
       subNavs: [
         { key: "School Location", path: "/contact-us/school-location" },
         {
@@ -271,8 +275,6 @@ function App() {
         <Route path="/committee/pta-payments" element={<PtaPayment />} />
         <Route path="/committee/signupaguru" element={<SignIn />} />
 
-
-
         {/* Contact Us SubNavs */}
         <Route
           path="/contact-us/school-location"
@@ -301,7 +303,20 @@ function App() {
         {/* Fallback Route */}
         <Route
           path="*"
-          element={<h1 className="mt-30 ml-4">404 Not Found</h1>}
+          element={
+            <div>
+              <Hero />
+              <MarqueeText />
+              <main className="flex-grow">
+                <ExtracurricularActivities />
+                <SchoolStats />
+                <SocialFeeds />
+                <AcademicPrograms />
+                <Testimonials />
+              </main>
+              <Footer />
+            </div>
+          }
         />
       </Routes>
     </section>

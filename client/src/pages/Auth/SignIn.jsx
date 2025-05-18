@@ -110,7 +110,7 @@ export default function SignIn() {
               onChange={handleChange}
               className={`w-full px-3 py-2 border rounded-md focus:outline-none 
                 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="Create a password"
+              placeholder="Enter your password"
             />
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">{errors.password}</p>

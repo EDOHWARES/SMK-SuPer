@@ -142,7 +142,7 @@ export const ExtracurricularActivities = () => {
                 <p className="text-gray-600">{activity.details}</p>
                 <div className="mt-6">
                   <a
-                    href={`/activities/${activity.id}`}
+                    href={`https://web.facebook.com/suriaperdana?mibextid=LQQJ4d&_rdc=1&_rdr`}
                     className="inline-flex items-center text-yellow-600 font-medium hover:text-yellow-700 transition-colors"
                   >
                     Learn More
@@ -156,7 +156,7 @@ export const ExtracurricularActivities = () => {
 
         <div className="mt-12 text-center">
           <a
-            href="/extracurricular-activities"
+            href="https://web.facebook.com/suriaperdana?mibextid=LQQJ4d&_rdc=1&_rdr"
             className="inline-flex items-center bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors"
           >
             View All Activities
