@@ -480,23 +480,37 @@
 
 // export default TeachersAndStaffs;
 
-
 import React, { useState, useEffect } from "react";
-import { Search, ChevronDown, ChevronUp, Users, Award, BookOpen } from "lucide-react";
+import {
+  Search,
+  ChevronDown,
+  ChevronUp,
+  Users,
+  Award,
+  BookOpen,
+} from "lucide-react";
+
+import teacher_1_img from "../../../assets/images/teacher-1.png";
+import teacher_2_img from "../../../assets/images/teacher-2.png";
+import teacher_3_img from "../../../assets/images/teacher-3.png";
+import teacher_4_img from "../../../assets/images/teacher-4.png";
 
 const TeachersAndStaffs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("All");
-  const [sortConfig, setSortConfig] = useState({ key: "bil", direction: "ascending" });
+  const [sortConfig, setSortConfig] = useState({
+    key: "bil",
+    direction: "ascending",
+  });
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [selectedTeacher, setSelectedTeacher] = useState(null);
-  
+
   // Placeholder for teacher images
   const teacherImages = {
-    principal: "/api/placeholder/400/400",
-    deputy1: "/api/placeholder/400/400",
-    deputy2: "/api/placeholder/400/400",
-    deputy3: "/api/placeholder/400/400"
+    principal: teacher_1_img,
+    deputy1: teacher_2_img,
+    deputy2: teacher_3_img,
+    deputy3: teacher_4_img,
   };
 
   const teachers = [
@@ -508,7 +522,7 @@ const TeachersAndStaffs = () => {
       opsyen: "Pengajian Melayu",
       department: "Administration",
       featured: true,
-      image: teacherImages.principal
+      image: teacherImages.principal,
     },
     {
       bil: 2,
@@ -518,7 +532,7 @@ const TeachersAndStaffs = () => {
       opsyen: "Matematik",
       department: "Administration",
       featured: true,
-      image: teacherImages.deputy1
+      image: teacherImages.deputy1,
     },
     {
       bil: 3,
@@ -528,7 +542,7 @@ const TeachersAndStaffs = () => {
       opsyen: "B. Melayu",
       department: "Administration",
       featured: true,
-      image: teacherImages.deputy2
+      image: teacherImages.deputy2,
     },
     {
       bil: 4,
@@ -538,7 +552,7 @@ const TeachersAndStaffs = () => {
       opsyen: "Ekonomi",
       department: "Administration",
       featured: true,
-      image: teacherImages.deputy3
+      image: teacherImages.deputy3,
     },
     {
       bil: 5,
@@ -546,7 +560,7 @@ const TeachersAndStaffs = () => {
       gred: "DG12",
       jawatan: "GKMP Bahasa",
       opsyen: "Sains",
-      department: "Language"
+      department: "Language",
     },
     {
       bil: 6,
@@ -554,7 +568,7 @@ const TeachersAndStaffs = () => {
       gred: "DG12",
       jawatan: "GKMP Kemanusiaan",
       opsyen: "Ekonomi",
-      department: "Humanities"
+      department: "Humanities",
     },
     {
       bil: 7,
@@ -562,7 +576,7 @@ const TeachersAndStaffs = () => {
       gred: "DG14",
       jawatan: "GKMP Teknik & Vokasional",
       opsyen: "P. Akaun",
-      department: "Technical"
+      department: "Technical",
     },
     {
       bil: 8,
@@ -570,7 +584,7 @@ const TeachersAndStaffs = () => {
       gred: "DG13",
       jawatan: "GKMP Sains & Matematik",
       opsyen: "Bio/Kimia",
-      department: "Science"
+      department: "Science",
     },
     {
       bil: 9,
@@ -578,7 +592,7 @@ const TeachersAndStaffs = () => {
       gred: "DG9",
       jawatan: "Penyelaras PPKI",
       opsyen: "Pend. Khas",
-      department: "Special Education"
+      department: "Special Education",
     },
     // Adding the rest of the teachers with departments
     {
@@ -587,7 +601,7 @@ const TeachersAndStaffs = () => {
       gred: "DG14",
       jawatan: "Kaunselor /SU UBK",
       opsyen: "Kaunseling",
-      department: "Counseling"
+      department: "Counseling",
     },
     // Continuing with the rest of the teachers - I've shortened the list for brevity
     // In a real implementation, all teachers would be included
@@ -597,7 +611,7 @@ const TeachersAndStaffs = () => {
       gred: "DG12",
       jawatan: "KP BI/Ketua Sepak Takraw/SU HIP",
       opsyen: "B. Inggeris",
-      department: "Language"
+      department: "Language",
     },
     {
       bil: 37,
@@ -605,7 +619,7 @@ const TeachersAndStaffs = () => {
       gred: "DG10",
       jawatan: "KP Tasawur Islam/SU SPM",
       opsyen: "Pend. Islam",
-      department: "Islamic Studies"
+      department: "Islamic Studies",
     },
     {
       bil: 40,
@@ -613,7 +627,7 @@ const TeachersAndStaffs = () => {
       gred: "DG10",
       jawatan: "KP Kimia/ Penyelaras SPBT/ Ketua Kelab SPBT",
       opsyen: "Kimia",
-      department: "Science"
+      department: "Science",
     },
     {
       bil: 45,
@@ -621,7 +635,7 @@ const TeachersAndStaffs = () => {
       gred: "DG9",
       jawatan: "SU Kurikulum/ Pen. SU Koperasi/ K. Permainan Tradisional",
       opsyen: "Sains Pertanian",
-      department: "Science"
+      department: "Science",
     },
     {
       bil: 56,
@@ -629,21 +643,26 @@ const TeachersAndStaffs = () => {
       gred: "DG9",
       jawatan: "SU KBAT/Pen. Ketua Rumah Biru/Minit Mesyuarat",
       opsyen: "Sastera Melayu",
-      department: "Language"
-    }
+      department: "Language",
+    },
   ];
 
   // Get all unique departments
-  const departments = ["All", ...Array.from(new Set(teachers.map(teacher => teacher.department)))];
+  const departments = [
+    "All",
+    ...Array.from(new Set(teachers.map((teacher) => teacher.department))),
+  ];
 
   // Filter teachers based on search and department
-  const filteredTeachers = teachers.filter(teacher => {
-    const matchesSearch = teacher.nama.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                         teacher.jawatan.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         teacher.opsyen.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesDepartment = selectedDepartment === "All" || teacher.department === selectedDepartment;
-    
+  const filteredTeachers = teachers.filter((teacher) => {
+    const matchesSearch =
+      teacher.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      teacher.jawatan.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      teacher.opsyen.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesDepartment =
+      selectedDepartment === "All" || teacher.department === selectedDepartment;
+
     return matchesSearch && matchesDepartment;
   });
 
@@ -670,13 +689,17 @@ const TeachersAndStaffs = () => {
   // Get sort direction icon
   const getSortDirectionIcon = (name) => {
     if (sortConfig.key === name) {
-      return sortConfig.direction === "ascending" ? <ChevronUp size={16} /> : <ChevronDown size={16} />;
+      return sortConfig.direction === "ascending" ? (
+        <ChevronUp size={16} />
+      ) : (
+        <ChevronDown size={16} />
+      );
     }
     return null;
   };
 
   // Featured teachers (management team)
-  const featuredTeachers = teachers.filter(teacher => teacher.featured);
+  const featuredTeachers = teachers.filter((teacher) => teacher.featured);
 
   useEffect(() => {
     // Reset selected teacher when filters change
@@ -693,7 +716,8 @@ const TeachersAndStaffs = () => {
             <h1 className="text-3xl md:text-4xl font-bold">Our Educators</h1>
           </div>
           <p className="text-center text-gray-500 text-lg max-w-3xl">
-            Meet our dedicated team of teachers and staff committed to providing quality education and guidance to our students.
+            Meet our dedicated team of teachers and staff committed to providing
+            quality education and guidance to our students.
           </p>
         </div>
       </div>
@@ -702,27 +726,34 @@ const TeachersAndStaffs = () => {
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 flex items-center justify-center">
-            <Award className="mr-2 text-blue-600" size={24} /> 
+            <Award className="mr-2 text-blue-600" size={24} />
             School Leadership
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {featuredTeachers.map((teacher) => (
-            <div key={teacher.bil} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src={teacher.image || "/api/placeholder/400/400"} 
-                  alt={teacher.nama} 
-                  className="w-full h-full object-cover object-center"
+            <div
+              key={teacher.bil}
+              className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1"
+            >
+              <div className="h-auto overflow-hidden">
+                <img
+                  src={teacher.image || "/api/placeholder/400/400"}
+                  alt={teacher.nama}
+                  className="w-full h-full object-fit object-center"
                 />
               </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-800 mb-1">{teacher.nama}</h3>
-                <p className="text-blue-600 font-medium mb-2">{teacher.jawatan}</p>
+              {/* <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                  {teacher.nama}
+                </h3>
+                <p className="text-blue-600 font-medium mb-2">
+                  {teacher.jawatan}
+                </p>
                 <p className="text-sm text-gray-600">{teacher.opsyen}</p>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
@@ -733,11 +764,11 @@ const TeachersAndStaffs = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
           <div className="flex items-center">
             <h2 className="text-xl font-bold text-gray-800 flex items-center">
-              <BookOpen size={20} className="mr-2 text-blue-600" /> 
+              <BookOpen size={20} className="mr-2 text-blue-600" />
               Teaching Staff
             </h2>
           </div>
-          
+
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
             {/* Department Filter */}
             <div className="relative">
@@ -780,7 +811,11 @@ const TeachersAndStaffs = () => {
             className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
           >
             <span>Filters & Sorting</span>
-            {showMobileFilters ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            {showMobileFilters ? (
+              <ChevronUp size={16} />
+            ) : (
+              <ChevronDown size={16} />
+            )}
           </button>
         </div>
       </div>
@@ -793,56 +828,66 @@ const TeachersAndStaffs = () => {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => requestSort("bil")}
                     >
                       <div className="flex items-center">
                         <span>No.</span>
-                        <span className="ml-1">{getSortDirectionIcon("bil")}</span>
+                        <span className="ml-1">
+                          {getSortDirectionIcon("bil")}
+                        </span>
                       </div>
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => requestSort("nama")}
                     >
                       <div className="flex items-center">
                         <span>Name</span>
-                        <span className="ml-1">{getSortDirectionIcon("nama")}</span>
+                        <span className="ml-1">
+                          {getSortDirectionIcon("nama")}
+                        </span>
                       </div>
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hidden md:table-cell"
                       onClick={() => requestSort("gred")}
                     >
                       <div className="flex items-center">
                         <span>Grade</span>
-                        <span className="ml-1">{getSortDirectionIcon("gred")}</span>
+                        <span className="ml-1">
+                          {getSortDirectionIcon("gred")}
+                        </span>
                       </div>
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => requestSort("jawatan")}
                     >
                       <div className="flex items-center">
                         <span>Position</span>
-                        <span className="ml-1">{getSortDirectionIcon("jawatan")}</span>
+                        <span className="ml-1">
+                          {getSortDirectionIcon("jawatan")}
+                        </span>
                       </div>
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hidden md:table-cell"
                       onClick={() => requestSort("opsyen")}
                     >
                       <div className="flex items-center">
                         <span>Specialization</span>
-                        <span className="ml-1">{getSortDirectionIcon("opsyen")}</span>
+                        <span className="ml-1">
+                          {getSortDirectionIcon("opsyen")}
+                        </span>
                       </div>
                     </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {sortedTeachers.map((teacher) => (
-                    <tr 
+                    <tr
                       key={teacher.bil}
                       className="hover:bg-blue-50 cursor-pointer transition-colors duration-150"
                       onClick={() => setSelectedTeacher(teacher)}
@@ -852,14 +897,18 @@ const TeachersAndStaffs = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="text-sm font-medium text-gray-900">{teacher.nama}</div>
+                          <div className="text-sm font-medium text-gray-900">
+                            {teacher.nama}
+                          </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden md:table-cell">
                         {teacher.gred}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <div className="text-sm text-gray-700">{teacher.jawatan}</div>
+                        <div className="text-sm text-gray-700">
+                          {teacher.jawatan}
+                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden md:table-cell">
                         {teacher.opsyen}
@@ -872,8 +921,10 @@ const TeachersAndStaffs = () => {
           </div>
         ) : (
           <div className="text-center py-12">
-            <div className="text-gray-500">No teachers found matching your criteria.</div>
-            <button 
+            <div className="text-gray-500">
+              No teachers found matching your criteria.
+            </div>
+            <button
               onClick={() => {
                 setSearchTerm("");
                 setSelectedDepartment("All");
@@ -896,8 +947,10 @@ const TeachersAndStaffs = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md overflow-hidden">
             <div className="flex justify-between items-center border-b px-6 py-4">
-              <h3 className="text-lg font-medium text-gray-900">Teacher Details</h3>
-              <button 
+              <h3 className="text-lg font-medium text-gray-900">
+                Teacher Details
+              </h3>
+              <button
                 onClick={() => setSelectedTeacher(null)}
                 className="text-gray-400 hover:text-gray-500"
               >
@@ -908,32 +961,42 @@ const TeachersAndStaffs = () => {
             <div className="px-6 py-4">
               <div className="flex flex-col items-center mb-4">
                 <div className="h-24 w-24 rounded-full overflow-hidden mb-2">
-                  <img 
-                    src={selectedTeacher.image || "/api/placeholder/100/100"} 
+                  <img
+                    src={selectedTeacher.image || "/api/placeholder/100/100"}
                     alt={selectedTeacher.nama}
-                    className="h-full w-full object-cover" 
+                    className="h-full w-full object-cover"
                   />
                 </div>
-                <h4 className="text-xl font-bold text-gray-800">{selectedTeacher.nama}</h4>
+                <h4 className="text-xl font-bold text-gray-800">
+                  {selectedTeacher.nama}
+                </h4>
                 <p className="text-blue-600">{selectedTeacher.jawatan}</p>
               </div>
-              
+
               <div className="space-y-3">
                 <div className="flex justify-between border-b border-gray-200 pb-2">
                   <span className="text-gray-500">Department:</span>
-                  <span className="font-medium text-gray-800">{selectedTeacher.department}</span>
+                  <span className="font-medium text-gray-800">
+                    {selectedTeacher.department}
+                  </span>
                 </div>
                 <div className="flex justify-between border-b border-gray-200 pb-2">
                   <span className="text-gray-500">Grade:</span>
-                  <span className="font-medium text-gray-800">{selectedTeacher.gred}</span>
+                  <span className="font-medium text-gray-800">
+                    {selectedTeacher.gred}
+                  </span>
                 </div>
                 <div className="flex justify-between border-b border-gray-200 pb-2">
                   <span className="text-gray-500">Specialization:</span>
-                  <span className="font-medium text-gray-800">{selectedTeacher.opsyen}</span>
+                  <span className="font-medium text-gray-800">
+                    {selectedTeacher.opsyen}
+                  </span>
                 </div>
                 <div className="flex justify-between pb-2">
                   <span className="text-gray-500">Staff ID:</span>
-                  <span className="font-medium text-gray-800">{selectedTeacher.bil}</span>
+                  <span className="font-medium text-gray-800">
+                    {selectedTeacher.bil}
+                  </span>
                 </div>
               </div>
             </div>

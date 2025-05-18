@@ -17,7 +17,7 @@ import { SocialFeeds } from "./components/SocialFeeds/SocialFeeds";
 import { AcademicPrograms } from "./components/AcademicProgress/AcademicProgress";
 import { UpcomingEvents } from "./components/UpcomingEvents/UpcomingEvents";
 import { Testimonials } from "./components/Testimonials/Testimonials";
-import { CallToAction } from "./components/CallToAction/CallToAction";
+// import { CallToAction } from "./components/CallToAction/CallToAction";
 import { Footer } from "./components/Footer/Footer";
 import RoomBookingSystem from "./pages/RoomBooking/RoomBooking";
 import SignUp from "./pages/Auth/SignUp";
@@ -146,7 +146,6 @@ function App() {
                 <AcademicPrograms />
                 <UpcomingEvents />
                 <Testimonials />
-                <CallToAction />
               </main>
               <Footer />
             </div>

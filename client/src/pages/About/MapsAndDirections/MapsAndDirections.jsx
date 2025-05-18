@@ -53,7 +53,7 @@ const MapsAndDirections = () => {
                 <Phone className="text-blue-600 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold text-gray-800">Telephone</h3>
-                  <p className="text-gray-600 mt-1">+607-454 1866</p>
+                  <p className="text-gray-600 mt-1">07-4541866, Faks:  07-4541867 </p>
                 </div>
               </div>
               
@@ -61,7 +61,7 @@ const MapsAndDirections = () => {
                 <Mail className="text-blue-600 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold text-gray-800">Email</h3>
-                  <p className="text-gray-600 mt-1">smk@smk.edu.my</p>
+                  <p className="text-gray-600 mt-1"> jea0025@moe.edu.my</p>
                 </div>
               </div>
               

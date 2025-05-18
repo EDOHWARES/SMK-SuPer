@@ -376,6 +376,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiHomePageHomePage extends Struct.CollectionTypeSchema {
   collectionName: 'home_pages';
   info: {
+    description: '';
     displayName: 'HomePage';
     pluralName: 'home-pages';
     singularName: 'home-page';
@@ -394,7 +395,9 @@ export interface ApiHomePageHomePage extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    sections: Schema.Attribute.DynamicZone<['home-page.hero-section']>;
+    sections: Schema.Attribute.DynamicZone<
+      ['home-page.hero-section', 'home-page.activities-hightlight']
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

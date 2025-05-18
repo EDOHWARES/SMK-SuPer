@@ -42,7 +42,7 @@ export const Header = ({ navItems }) => {
                 
                 {/* Dropdown Menu */}
                 {item.subNavs && item.subNavs.length > 0 && hoveredItem === item.key && (
-                  <div className="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-1 z-50">
+                  <div className="absolute left-0 mt-0 bg-white w-64 rounded-md shadow-lg py-1 z-50">
                     {item.subNavs.map((subNav) => (
                       <a 
                         key={subNav.key} 
