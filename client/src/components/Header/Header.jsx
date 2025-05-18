@@ -15,11 +15,11 @@ export const Header = ({ navItems }) => {
     <header className="sticky top-0 bg-blue-900 text-white shadow-md z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          <div className="flex items-center space-x-4">
+          <a href='\' className="flex items-center space-x-4">
             <div className="flex items-center">
               <img src={logo} alt="smk logo" className='w-[60px] md:w-[80px]' />
             </div>
-          </div>
+          </a>
           
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6">
