@@ -55,37 +55,41 @@ import { fetchHomePageData } from "../../utils/api";
 import { useState, useEffect } from "react";
 
 const Hero = () => {
-  const [heroSection, setHeroSection] = useState(null);
+  // const [heroSection, setHeroSection] = useState(null);
 
-  useEffect(() => {
-    const loadData = async () => {
-      const data = await fetchHomePageData();
-      console.log(data.sections);
-      if (data) {
-        const hero = data.sections.find(
-          (section) => section.__component === "home-page.hero-section"
-        );
-        setHeroSection(hero);
-      }
-    };
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     const data = await fetchHomePageData();
+  //     console.log(data.sections);
+  //     if (data) {
+  //       const hero = data.sections.find(
+  //         (section) => section.__component === "home-page.hero-section"
+  //       );
+  //       setHeroSection(hero);
+  //     }
+  //   };
 
-    loadData();
-  }, []);
+  //   loadData();
+  // }, []);
 
-  if (!heroSection) return <div>Loading...</div>;
+  // if (!heroSection) return <div>Loading...</div>;
 
   return (
     <div className="relative">
       <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white">
         <div className="container mx-auto px-4 py-20 md:py-32 flex flex-col items-center text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            {heroSection.title}&nbsp;
+            {/* {heroSection.title}&nbsp; */}
+            Welcome to
             <span className="bg-gradient-to-r from-yellow-400 via-white to-blue-500 bg-clip-text text-transparent animate-pulse drop-shadow-lg tracking-widest">
               SMK SURIA PERDANA
             </span>
           </h1>
           <p className="text-base md:text-xl mb-10 max-w-3xl">
-            {heroSection.subText}
+            {/* {heroSection.subText} */}
+            Education does trains the mind to think and contribute, embrace
+            challenges. SMK Super; they build your potential to shape a brighter
+            future.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
