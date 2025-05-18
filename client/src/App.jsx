@@ -11,17 +11,18 @@ import TeachersAndStaffs from "./pages/Administration/TeachersAndStaffs/Teachers
 import VisionMission from "./pages/About/VissionMission/VissionMission";
 import PtaPayment from "./pages/PtaPayment/PtaPayment";
 import { MarqueeText } from "./components/MarqueeText/MarqueeText";
-import { ExtracurricularActivities} from "./components/ExtracurricularAct/ExtracurricularAct";
+import { ExtracurricularActivities } from "./components/ExtracurricularAct/ExtracurricularAct";
 import { SchoolStats } from "./components/SchoolStats/SchoolStats";
 import { SocialFeeds } from "./components/SocialFeeds/SocialFeeds";
 import { AcademicPrograms } from "./components/AcademicProgress/AcademicProgress";
-import { UpcomingEvents } from "./components/UpcomingEvents/UpcomingEvents";
 import { Testimonials } from "./components/Testimonials/Testimonials";
 // import { CallToAction } from "./components/CallToAction/CallToAction";
 import { Footer } from "./components/Footer/Footer";
 import RoomBookingSystem from "./pages/RoomBooking/RoomBooking";
 import SignUp from "./pages/Auth/SignUp";
 import SignIn from "./pages/Auth/SignIn";
+import { UpcomingEvents } from "./pages/Home/UpcommingEvent/UpcomingEvents";
+import AnnouncementSection from "./pages/Home/LatestAnnouncement/LatestAnnouncement";
 
 function App() {
   // Mock navigation items from the provided data
@@ -49,7 +50,6 @@ function App() {
         },
         { key: "School Identity", path: "/about-us/school-identity" },
         { key: "School Song", path: "/about-us/school-song" },
-        { key: "Maps & Directions", path: "/about-us/maps&directions" },
         { key: "Vision & Mission", path: "/about-us/vision&mission" },
       ],
     },
@@ -103,6 +103,10 @@ function App() {
         },
         { key: "Bonding & Networking", path: "/committee/bonding&networking" },
         { key: "PTA Payments", path: "/committee/pta-payments" },
+        {
+          key: "Login Guru",
+          path: "/committee/signupaguru",
+        },
       ],
     },
     { key: "Achievements", path: "/achievements" },
@@ -144,13 +148,14 @@ function App() {
                 <SchoolStats />
                 <SocialFeeds />
                 <AcademicPrograms />
-                <UpcomingEvents />
                 <Testimonials />
               </main>
               <Footer />
             </div>
           }
         />
+        <Route path="/latest-announcement" element={<AnnouncementSection />} />
+        <Route path="/upcoming-events" element={<UpcomingEvents />} />
         <Route path="/about-us" element={<About />} />
         <Route
           path="/achievements"
@@ -193,10 +198,6 @@ function App() {
         <Route
           path="/about-us/school-song"
           element={<div className="mt-30 ml-4">School Song Page</div>}
-        />
-        <Route
-          path="/about-us/maps&directions"
-          element={<MapsAndDirections />}
         />
         <Route path="/about-us/vision&mission" element={<VisionMission />} />
 
@@ -268,11 +269,14 @@ function App() {
           element={<div className="mt-30 ml-4">Bonding & Networking Page</div>}
         />
         <Route path="/committee/pta-payments" element={<PtaPayment />} />
+        <Route path="/committee/signupaguru" element={<SignIn />} />
+
+
 
         {/* Contact Us SubNavs */}
         <Route
           path="/contact-us/school-location"
-          element={<div className="mt-30 ml-4">School Location Page</div>}
+          element={<MapsAndDirections />}
         />
         <Route
           path="/contact-us/office-operating-hours"
@@ -291,7 +295,7 @@ function App() {
           element={<div className="mt-30 ml-4">Phone & Fax Number Page</div>}
         />
 
-          <Route path="/signin" element={<SignIn />} />
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
 
         {/* Fallback Route */}

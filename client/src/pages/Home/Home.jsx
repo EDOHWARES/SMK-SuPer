@@ -5,7 +5,6 @@ import { MarqueeText } from "../../components/MarqueeText/MarqueeText";
 import { ExtracurricularActivities } from "../../components/ExtracurricularAct/ExtracurricularAct";
 import { SchoolStats } from "../../components/SchoolStats/SchoolStats";
 import { SocialFeeds } from "../../components/SocialFeeds/SocialFeeds";
-import { UpcomingEvents } from "../../components/UpcomingEvents/UpcomingEvents";
 import { Testimonials } from "../../components/Testimonials/Testimonials";
 import { AcademicPrograms } from "../../components/AcademicProgress/AcademicProgress";
 import { CallToAction } from "../../components/CallToAction/CallToAction";
@@ -53,7 +52,6 @@ const Home = () => {
       <SchoolStats />
       <SocialFeeds />
       <AcademicPrograms />
-      <UpcomingEvents />
       <Testimonials />
       <CallToAction />
     </main>
