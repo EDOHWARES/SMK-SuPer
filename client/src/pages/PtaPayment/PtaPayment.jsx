@@ -3,6 +3,7 @@ import axios from "axios";
 
 const PtaPayment = () => {
   const [formData, setFormData] = useState({
+    parentName: "",
     childName: "",
     class: "",
     amount: "",
@@ -25,6 +26,7 @@ const PtaPayment = () => {
     e.preventDefault();
 
     if (
+      !formData.parentName ||
       !formData.childName ||
       !formData.class ||
       !formData.amount ||
@@ -47,6 +49,7 @@ const PtaPayment = () => {
       await axios.post(`${api_url}/pibg`, data);
       alert("✅ Payment submitted successfully");
       setFormData({
+        parentName: "",
         childName: "",
         class: "",
         amount: "",
@@ -71,6 +74,20 @@ const PtaPayment = () => {
         encType="multipart/form-data"
         className="space-y-4"
       >
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Parent's Name
+          </label>
+          <input
+            type="text"
+            name="parentName"
+            value={formData.parentName}
+            onChange={handleChange}
+            className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+            required
+          />
+        </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Child's Name

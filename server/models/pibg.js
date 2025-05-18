@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const pibgSchema = new mongoose.Schema({
+  parentName: String,
   childName: String,
   class: String,
   amount: Number,

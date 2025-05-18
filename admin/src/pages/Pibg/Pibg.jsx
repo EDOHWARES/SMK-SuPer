@@ -81,6 +81,7 @@ const Pibg = () => {
           <table className="min-w-full border text-sm">
             <thead className="bg-gray-100">
               <tr>
+                <th className="px-4 py-2 border">Parent Name</th>
                 <th className="px-4 py-2 border">Child Name</th>
                 <th className="px-4 py-2 border">Class</th>
                 <th className="px-4 py-2 border">Amount (MYR)</th>
@@ -93,6 +94,9 @@ const Pibg = () => {
             <tbody>
               {payments.map((p) => (
                 <tr key={p._id}>
+                  <td className="px-4 py-2 border text-center">
+                    {p.parentName}
+                  </td>
                   <td className="px-4 py-2 border text-center">
                     {p.childName}
                   </td>

@@ -20,16 +20,17 @@ const upload = multer({ storage });
  */
 pibgRoutes.post("/", upload.single("receipt"), async (req, res) => {
   try {
-    const { childName, class: studentClass, amount, date } = req.body;
+    const { parentName, childName, class: studentClass, amount, date } = req.body;
     const receipt = req.file?.path;
 
     // console.log(childName, studentClass, amount, date, receipt);
 
-    if (!childName || !studentClass || !amount || !date || !receipt) {
+    if (!parentName || !childName || !studentClass || !amount || !date || !receipt) {
       return res.status(400).json({ message: "All fields are required." });
     }
 
     const payment = await pibg.create({
+      parentName,
       childName,
       class: studentClass,
       amount,

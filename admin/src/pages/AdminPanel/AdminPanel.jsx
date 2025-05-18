@@ -6,6 +6,7 @@ import logo from "../../assets/images/logo.png";
 import Sidebar from "../../components/Sidebar";
 import { useNavigate } from "react-router-dom";
 import Pibg from "../Pibg/Pibg";
+import { MdConstruction } from "react-icons/md";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -295,6 +296,12 @@ const AdminPanel = () => {
           )}
 
           {!loading && activeTab === "pibg" && <Pibg />}
+          {!loading && activeTab === "schoolStore" && (
+            <div className="flex items-center">
+              <span className="mr-2">School Store under construction... </span>
+              <MdConstruction className="text-3xl text-red-600" />
+            </div>
+          )}
         </main>
       </div>
     </div>

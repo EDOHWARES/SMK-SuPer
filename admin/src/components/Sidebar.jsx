@@ -9,6 +9,11 @@ import { MdPayment } from "react-icons/md";
 import { FaStore } from "react-icons/fa6";
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
+
+  const logout = () => { 
+    localStorage.removeItem("adminToken");
+    window.location.href = "/signin";
+  }
   return (
     <div className="bg-gray-800 text-white w-fit md:w-60 h-screen space-y-6">
       <h2 className="text-xl md:text-2xl font-bold p-5">Admin</h2>
@@ -46,7 +51,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         >
           <FaStore /> <span className="hidden md:block">School Store</span>
         </button>
-        <button className="flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer">
+        <button onClick={logout} className="flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer">
           <FaSignOutAlt /> <span className="hidden md:block">Logout</span>
         </button>
       </div>

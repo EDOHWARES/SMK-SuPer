@@ -16,23 +16,31 @@ const generateToken = (user) => {
   });
 };
 
-// 🔐 Login Route (Shared for All)
-authRoutes.post("admin/login", async (req, res) => {
+// 🔐 Login Route for accessing the admin dahsboard 
+authRoutes.post("/admin/login", async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (!user)
-    return res.status(400).json({ error: "Invalid email or password" });
 
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch)
-    return res.status(400).json({ error: "Invalid email or password" });
+  try {
+    const user = await User.findOne({ email });
+    if (!user || user.role !== "principal") {
+      return res.status(400).json({ error: "Invalid email or password" });
+    }
 
-  const token = generateToken(user);
-  res.json({ token, user });
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: "Invalid email or password" });
+    }
+
+    const token = generateToken(user);
+    res.json({ token, user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
-// 🔐 Login Route for accessing the admin dahsboard 
-authRoutes.post("/login", auth, roleCheck("principal"), async (req, res) => {
+// 🔐 Login Route (Shared for All)
+authRoutes.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user)
