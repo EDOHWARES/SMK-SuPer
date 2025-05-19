@@ -18,7 +18,7 @@ export default function SignUp() {
     { value: "", label: "Select User Type" },
     { value: "class_teacher", label: "Class_Teacher" },
     { value: "regular_teacher", label: "Regular_Teacher" },
-    { value: "jpn", label: "JPN_PPD_Individual" },
+    { value: "jpn_ppd_individual", label: "JPN_PPD_Individual" },
   ];
 
   const handleChange = (e) => {
