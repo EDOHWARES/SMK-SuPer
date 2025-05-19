@@ -55,24 +55,24 @@ import { fetchHomePageData } from "../../utils/api";
 import { useState, useEffect } from "react";
 
 const Hero = () => {
-  const [heroSection, setHeroSection] = useState(null);
+  // const [heroSection, setHeroSection] = useState(null);
 
-  useEffect(() => {
-    const loadData = async () => {
-      const data = await fetchHomePageData();
-      console.log(data.sections);
-      if (data) {
-        const hero = data.sections.find(
-          (section) => section.__component === "home-page.hero-section"
-        );
-        setHeroSection(hero);
-      }
-    };
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     const data = await fetchHomePageData();
+  //     console.log(data.sections);
+  //     if (data) {
+  //       const hero = data.sections.find(
+  //         (section) => section.__component === "home-page.hero-section"
+  //       );
+  //       setHeroSection(hero);
+  //     }
+  //   };
 
-    loadData();
-  }, []);
+  //   loadData();
+  // }, []);
 
-  if (!heroSection) return <div>Loading...</div>;
+  // if (!heroSection) return <div>Loading...</div>;
 
   return (
     <div className="relative">
