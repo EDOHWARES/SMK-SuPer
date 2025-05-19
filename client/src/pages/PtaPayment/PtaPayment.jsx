@@ -67,8 +67,7 @@ const PtaPayment = () => {
   return (
     <div className="max-w-4xl mx-auto p-4">
       <div className="text-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">SMK SURIA PERDANA</h1>
-        <h2 className="text-xl font-semibold text-gray-700">PTA Payment Submission</h2>
+        <h2 className="text-xl md:text-2xl font-semibold text-gray-700 mt-5">PTA Payment Submission</h2>
       </div>
 
       <div className="flex flex-col md:flex-row gap-6">
