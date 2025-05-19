@@ -182,7 +182,7 @@ export default function SignUp() {
             </label>
             <select
               id="userType"
-              name="userType"
+              name="role"
               value={formData.userType}
               onChange={handleChange}
               className={`w-full px-3 py-2 border rounded-md focus:outline-none 
