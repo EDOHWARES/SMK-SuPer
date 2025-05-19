@@ -59,7 +59,7 @@ export default function SignIn() {
         toast.success("Login successful!");
         setLoading(false);
         // Redirect to the dashboard or home page
-        window.location.href = "/";
+        window.location.href = "/committee/room-booking-system";
       } catch (error) {
         // Handle errors
         if (error.response && error.response.data && error.response.data.error) {

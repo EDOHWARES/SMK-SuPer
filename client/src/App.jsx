@@ -25,6 +25,7 @@ import { UpcomingEvents } from "./pages/Home/UpcommingEvent/UpcomingEvents";
 import AnnouncementSection from "./pages/Home/LatestAnnouncement/LatestAnnouncement";
 
 function App() {
+
   // Mock navigation items from the provided data
   const navItems = [
     {
@@ -104,12 +105,8 @@ function App() {
         { key: "Bonding & Networking", path: "/committee/bonding&networking" },
         { key: "PTA Payments", path: "/committee/pta-payments" },
         {
-          key: "Room booking",
-          path: "/committee/room-booking",
-        },
-        {
           key: "Login Guru",
-          path: "/committee/signupaguru",
+          path: "/committee/room-booking-system",
         },
       ],
     },
@@ -138,7 +135,7 @@ function App() {
       <Header navItems={navItems} />
       <Routes>
         {/* TEST ROUTES */}
-        <Route path="/room-booking" element={<RoomBookingSystem />} />
+        <Route path="/committee/room-booking-system" element={<RoomBookingSystem />} />
 
         {/* Main Navigation Routes */}
         <Route
