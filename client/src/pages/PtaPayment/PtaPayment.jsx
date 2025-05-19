@@ -65,106 +65,153 @@ const PtaPayment = () => {
   };
 
   return (
-    <section className="max-w-xl  mx-auto mt-35 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-6 text-center">
-        PTA Payment Submission
-      </h2>
-      <form
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-        className="space-y-4"
-      >
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Parent's Name
-          </label>
-          <input
-            type="text"
-            name="parentName"
-            value={formData.parentName}
-            onChange={handleChange}
-            className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-            required
-          />
+    <div className="max-w-4xl mx-auto p-4">
+      <div className="text-center mb-6">
+        <h1 className="text-2xl font-bold text-gray-800">SMK SURIA PERDANA</h1>
+        <h2 className="text-xl font-semibold text-gray-700">PTA Payment Submission</h2>
+      </div>
+
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Payment Information Section */}
+        <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md">
+          <h3 className="text-lg font-bold mb-4 text-center">Bank Details</h3>
+          <div className="space-y-3 mb-6">
+            <div className="p-3 bg-gray-50 rounded-md ">
+              <p className="font-medium underline">Bank Name:</p>
+              <p className="">CIMB Islamic</p>
+              <p className="font-medium mt-2 underline">Account Name:</p>
+              <p>PIBG SMK SURIA PERDANA</p>
+              <p className="font-medium mt-2 underline">Account Number:</p>
+              <p>8601500374</p>
+            </div>
+            <div className="p-3 bg-gray-50 rounded-md">
+              <p className="font-medium underline">Bank Name:</p>
+              <p>Maybank</p>
+              <p className="font-medium mt-2 underline">Account Name:</p>
+              <p>Cooperation Store SMK Suria Perdana</p>
+              <p className="font-medium mt-2 underline">Account Number:</p>
+              <p>5515-8405-9750</p>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-bold mb-4 text-center">Contact Information</h3>
+          <div className="space-y-3">
+            <div className="p-3 bg-gray-50 rounded-md">
+              <p className="font-medium underline">Phone:</p>
+              <p>07-4541866</p>
+            </div>
+            <div className="p-3 bg-gray-50 rounded-md">
+              <p className="font-medium underline">Fax:</p>
+              <p>07-4541867</p>
+            </div>
+            <div className="p-3 bg-gray-50 rounded-md">
+              <p className="font-medium underline">Email:</p>
+              <p>jea0025@moe.edu.my</p>
+            </div>
+          </div>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Child's Name
-          </label>
-          <input
-            type="text"
-            name="childName"
-            value={formData.childName}
-            onChange={handleChange}
-            className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-            required
-          />
-        </div>
+        {/* Payment Form Section */}
+        <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md">
+          <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Parent's Name
+              </label>
+              <input
+                type="text"
+                name="parentName"
+                value={formData.parentName}
+                onChange={handleChange}
+                className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                required
+              />
+            </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Class
-          </label>
-          <input
-            type="text"
-            name="class"
-            value={formData.class}
-            onChange={handleChange}
-            className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-            required
-          />
-        </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Child's Name
+              </label>
+              <input
+                type="text"
+                name="childName"
+                value={formData.childName}
+                onChange={handleChange}
+                className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                required
+              />
+            </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Amount (MYR)
-          </label>
-          <input
-            type="number"
-            name="amount"
-            value={formData.amount}
-            onChange={handleChange}
-            className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-            required
-          />
-        </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Class
+              </label>
+              <input
+                type="text"
+                name="class"
+                value={formData.class}
+                onChange={handleChange}
+                className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                required
+              />
+            </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Payment Date
-          </label>
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-            required
-          />
-        </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Amount (MYR)
+              </label>
+              <input
+                type="number"
+                name="amount"
+                value={formData.amount}
+                onChange={handleChange}
+                className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                required
+              />
+            </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Upload Receipt
-          </label>
-          <input
-            type="file"
-            onChange={handleFileChange}
-            className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-            required
-          />
-        </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Payment Date
+              </label>
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                required
+              />
+            </div>
 
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700 transition duration-500"
-          disabled={loading}
-        >
-          {loading ? "Submitting..." : "Submit Payment"}
-        </button>
-      </form>
-    </section>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Upload Receipt
+              </label>
+              <input
+                type="file"
+                onChange={handleFileChange}
+                className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700 transition duration-500"
+              disabled={loading}
+            >
+              {loading ? "Submitting..." : "Submit Payment"}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div className="mt-6 p-4 bg-gray-50 rounded-md text-sm text-center">
+        <p className="font-medium">Payment Processing Information:</p>
+        <p>All payments made before 4pm (business day) will be processed on the next business day (T+1).</p>
+      </div>
+    </div>
   );
 };
 
