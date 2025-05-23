@@ -83,14 +83,14 @@ const PtaPayment = () => {
               <p className="font-medium mt-2 underline">Account Number:</p>
               <p>8601500374</p>
             </div>
-            <div className="p-3 bg-gray-50 rounded-md">
+            {/* <div className="p-3 bg-gray-50 rounded-md">
               <p className="font-medium underline">Bank Name:</p>
               <p>Maybank</p>
               <p className="font-medium mt-2 underline">Account Name:</p>
               <p>Cooperation Store SMK Suria Perdana</p>
               <p className="font-medium mt-2 underline">Account Number:</p>
               <p>5515-8405-9750</p>
-            </div>
+            </div> */}
           </div>
 
           <h3 className="text-lg font-bold mb-4 text-center">Contact Information</h3>
