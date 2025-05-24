@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Pibg = () => {
   const [payments, setPayments] = useState([]);
@@ -8,13 +9,12 @@ const Pibg = () => {
 
   const rawApiUrl = import.meta.env.VITE_API_URL;
   const baseUrl = rawApiUrl.replace(/\/api\/?$/, "");
-  
 
   const fetchPayments = async () => {
     const api_url = import.meta.env.VITE_API_URL;
     try {
       const res = await axios.get(`${api_url}/pibg`);
-      setPayments(res.data);
+      setPayments(res.data);      
     } catch (err) {
       console.error(err);
       alert("Failed to fetch payments");
@@ -33,9 +33,10 @@ const Pibg = () => {
     try {
       await axios.patch(`${api_url}/pibg/${id}`, { status });
       fetchPayments();
+      toast.success("Updated status sent to user!");
     } catch (err) {
       console.error(err);
-      alert("Failed to update status");
+      toast.error("Failed to update status");
     } finally {
       setUpdatingId(null);
     }
@@ -56,7 +57,7 @@ const Pibg = () => {
       link.remove();
     } catch (err) {
       console.error(err);
-      alert("Failed to download report");
+      toast.error("Failed to download report");
     }
   };
 
@@ -81,6 +82,7 @@ const Pibg = () => {
           <table className="min-w-full border text-sm">
             <thead className="bg-gray-100">
               <tr>
+                <th className="px-4 py-2 border">Email</th>
                 <th className="px-4 py-2 border">Parent Name</th>
                 <th className="px-4 py-2 border">Child Name</th>
                 <th className="px-4 py-2 border">Class</th>
@@ -95,13 +97,19 @@ const Pibg = () => {
               {payments.map((p) => (
                 <tr key={p._id}>
                   <td className="px-4 py-2 border text-center">
+                    {p.email}
+                  </td>
+                  <td className="px-4 py-2 border text-center">
                     {p.parentName}
                   </td>
                   <td className="px-4 py-2 border text-center">
                     {p.childName}
                   </td>
                   <td className="px-4 py-2 border text-center">{p.class}</td>
-                  <td className="px-4 py-2 border text-center">₦{p.amount}</td>
+                  <td className="px-4 py-2 border text-center">
+                    <span className="font-bold mr-1">RM</span>
+                    {p.amount}
+                  </td>
                   <td className="px-4 py-2 border text-center">
                     {new Date(p.date).toLocaleDateString()}
                   </td>

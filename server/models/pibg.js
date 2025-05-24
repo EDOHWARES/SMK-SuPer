@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const pibgSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+  },
   parentName: String,
   childName: String,
   class: String,
