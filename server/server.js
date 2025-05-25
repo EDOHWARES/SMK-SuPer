@@ -41,6 +41,9 @@ app.get("/", (req, res) => {
 // Serve uploads folder statically
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+// Serve the receipts directory statically
+app.use("/receipts", express.static(path.join(__dirname, "receipts")));
+
 app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/rooms", roomRoutes);

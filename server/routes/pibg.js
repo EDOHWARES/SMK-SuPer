@@ -95,7 +95,9 @@ pibgRoutes.patch("/:id", async (req, res) => {
           to: payment.email,
           parentName: payment.parentName,
           studentName: payment.childName,
+          amt: payment.amount,
           status: payment.status,
+          paymentRecordId: payment._id,
         });
       } catch (mailErr) {
         console.error("Error sending email:", mailErr);

@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 import path from "path";
 import { fileURLToPath } from "url";
+import generateReceiptPDF from "./genReceiptPDF.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,7 +18,9 @@ const sendPaymentStatusMail = async ({
   to,
   parentName,
   studentName,
+  amt,
   status,
+  paymentRecordId
 }) => {
   const schoolName = "SMK SURIA PERDANA";
   const schoolAddress =
@@ -28,6 +31,16 @@ const sendPaymentStatusMail = async ({
   if (status.toLowerCase() === "verified") statusColor = "green";
   else if (status.toLowerCase() === "rejected") statusColor = "red";
   else if (status.toLowerCase() === "pending") statusColor = "orange";
+
+  const pdfPath = generateReceiptPDF({
+    parentName,
+    studentName,
+    amount: amt,
+    status,
+    paymentRecordId
+  });
+
+  const serverUrl = process.env.SERVER_URL; 
 
   const mailOptions = {
     from: `"${schoolName}" <${process.env.EMAIL_USER}>`,
@@ -53,6 +66,17 @@ const sendPaymentStatusMail = async ({
             </p>
         
           <p>Thank you for your cooperation and prompt response.</p>
+
+            <p>
+            You can download the receipt for this payment by clicking the button below:
+            </p>
+
+            <div style="text-align: center; margin: 20px 0;">
+            <a href="${serverUrl}/receipts/${studentName}-receipt-SMK-RCP${paymentRecordId}.pdf" 
+                style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">
+                Download Receipt
+            </a>
+            </div>
   
           <br />
   
@@ -64,7 +88,11 @@ const sendPaymentStatusMail = async ({
       {
         filename: "logo.png",
         path: path.join(__dirname, "../assets/logo.png"),
-        cid: "schoollogo", // same cid as in the img src
+        cid: "schoollogo", 
+      },
+      {
+        filename: `${studentName}-receipt-SMK-RCP${paymentRecordId}.pdf`,
+        path: pdfPath,
       },
     ],
   };
