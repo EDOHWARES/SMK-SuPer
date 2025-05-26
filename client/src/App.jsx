@@ -23,6 +23,7 @@ import SignUp from "./pages/Auth/SignUp";
 import SignIn from "./pages/Auth/SignIn";
 import { UpcomingEvents } from "./pages/Home/UpcommingEvent/UpcomingEvents";
 import AnnouncementSection from "./pages/Home/LatestAnnouncement/LatestAnnouncement";
+import SchoolSlideshow from "./components/Home/ImageSlides/ImageSlides";
 
 function App() {
 
@@ -144,6 +145,7 @@ function App() {
             <div>
               <Hero />
               <MarqueeText />
+              <SchoolSlideshow />
               <main className="flex-grow">
                 <ExtracurricularActivities />
                 <SchoolStats />

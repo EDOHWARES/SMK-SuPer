@@ -78,7 +78,7 @@ const sendPaymentStatusMail = async ({
             </a>
             </div>
   
-          <br />
+          <br /> 
   
           <p style="margin-top: 40px;">Sincerely,</p>
           <p><strong></strong><br />School Administrator</p>
