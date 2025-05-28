@@ -26,6 +26,9 @@ import AnnouncementSection from "./pages/Home/LatestAnnouncement/LatestAnnouncem
 import SchoolSlideshow from "./components/Home/ImageSlides/ImageSlides";
 import SchoolHighlights from "./pages/News/SchoolHighlights/SchoolHighlights";
 import ProgramDocumentation from "./pages/News/ProgramDoc/ProgramDoc";
+import OrganizationalChart from "./pages/About/SchoolOrgChart/SchoolOrgChart";
+import NationalEducationPhilosophy from "./pages/About/NationalEduPhi/NationalEduPhi";
+import SchoolStore from "./pages/SchoolStore/SchoolStore";
 
 function App() {
 
@@ -139,6 +142,7 @@ function App() {
       <Routes>
         {/* TEST ROUTES */}
         <Route path="/committee/room-booking-system" element={<RoomBookingSystem />} />
+        <Route path="/school-store" element={<SchoolStore />} /> 
 
         {/* Main Navigation Routes */}
         <Route
@@ -187,13 +191,13 @@ function App() {
         <Route
           path="/about-us/school-organizational-chart"
           element={
-            <div className="mt-30 ml-4">School Organizational Chart Page</div>
+            <OrganizationalChart />
           }
         />
         <Route
           path="/about-us/national-education-philosophy"
           element={
-            <div className="mt-30 ml-4">National Education Philosophy Page</div>
+            <NationalEducationPhilosophy />
           }
         />
         <Route

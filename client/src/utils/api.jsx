@@ -1,15 +1,21 @@
 import axios from "axios";
 
-export const fetchHomePageData = async () => {
-  const API_URL = "http://localhost:1337/api/home-pages?populate=*";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5003/api";
 
-  try {
-    const response = await axios.get(API_URL);
-    const homepageData = response.data.data[0]; // Only one homepage entry
+const api = axios.create({
+  baseURL: API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-    return homepageData;
-  } catch (error) {
-    console.error("Failed to fetch homepage data:", error.message);
-    return null;
+// Add auth token to requests
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
-};
+  return config;
+});
+
+export default api;

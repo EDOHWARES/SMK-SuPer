@@ -51,7 +51,7 @@
 // export default Hero;
 
 import React from "react";
-import { fetchHomePageData } from "../../utils/api";
+// import { fetchHomePageData } from "../../utils/api";
 import { useState, useEffect } from "react";
 
 const Hero = () => {
