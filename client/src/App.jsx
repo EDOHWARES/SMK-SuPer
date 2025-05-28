@@ -25,6 +25,7 @@ import { UpcomingEvents } from "./pages/Home/UpcommingEvent/UpcomingEvents";
 import AnnouncementSection from "./pages/Home/LatestAnnouncement/LatestAnnouncement";
 import SchoolSlideshow from "./components/Home/ImageSlides/ImageSlides";
 import SchoolHighlights from "./pages/News/SchoolHighlights/SchoolHighlights";
+import ProgramDocumentation from "./pages/News/ProgramDoc/ProgramDoc";
 
 function App() {
 
@@ -212,7 +213,7 @@ function App() {
         />
         <Route
           path="/news/program-documentation"
-          element={<div className="mt-30 ml-4">Program Documentation Page</div>}
+          element={<ProgramDocumentation />}
         />
 
         {/* Administration SubNavs */}
