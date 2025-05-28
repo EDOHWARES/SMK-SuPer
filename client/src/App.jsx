@@ -24,6 +24,7 @@ import SignIn from "./pages/Auth/SignIn";
 import { UpcomingEvents } from "./pages/Home/UpcommingEvent/UpcomingEvents";
 import AnnouncementSection from "./pages/Home/LatestAnnouncement/LatestAnnouncement";
 import SchoolSlideshow from "./components/Home/ImageSlides/ImageSlides";
+import SchoolHighlights from "./pages/News/SchoolHighlights/SchoolHighlights";
 
 function App() {
 
@@ -207,7 +208,7 @@ function App() {
         {/* News SubNavs */}
         <Route
           path="/news/school-highlights"
-          element={<div className="mt-30 ml-4">School Highlights Page</div>}
+          element={<SchoolHighlights />}
         />
         <Route
           path="/news/program-documentation"
