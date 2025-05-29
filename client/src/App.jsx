@@ -29,6 +29,8 @@ import ProgramDocumentation from "./pages/News/ProgramDoc/ProgramDoc";
 import OrganizationalChart from "./pages/About/SchoolOrgChart/SchoolOrgChart";
 import NationalEducationPhilosophy from "./pages/About/NationalEduPhi/NationalEduPhi";
 import SchoolStore from "./pages/SchoolStore/SchoolStore";
+import PrincipalPage from "./pages/Administration/Principal/Principal";
+import SchoolManagementPage from "./pages/Administration/SchoolManagement/SchoolManagement";
 
 function App() {
 
@@ -223,11 +225,11 @@ function App() {
         {/* Administration SubNavs */}
         <Route
           path="/administration/principal"
-          element={<div className="mt-30 ml-4">Principal Page</div>}
+          element={<PrincipalPage />}
         />
         <Route
           path="/administration/school-management"
-          element={<div className="mt-30 ml-4">School Management Page</div>}
+          element={<SchoolManagementPage />}
         />
         <Route
           path="/administration/teachers&staff-directory"
