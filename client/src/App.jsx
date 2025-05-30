@@ -31,6 +31,10 @@ import NationalEducationPhilosophy from "./pages/About/NationalEduPhi/NationalEd
 import SchoolStore from "./pages/SchoolStore/SchoolStore";
 import PrincipalPage from "./pages/Administration/Principal/Principal";
 import SchoolManagementPage from "./pages/Administration/SchoolManagement/SchoolManagement";
+import StudentAffairsPage from "./pages/Administration/StudentAffairs/StudentAffairs";
+import CoCurriculumPage from "./pages/Administration/Co-CurriculumManagement/Co-CurriculumManagement";
+import CurriculumManagementPage from "./pages/CurriculumManagement/CurriculumManagement";
+import SEIPManagement from "./pages/SpecialEduIntegration/SpecialEduIntegration";
 
 function App() {
 
@@ -237,24 +241,22 @@ function App() {
         />
         <Route
           path="/administration/student-affairs-unit"
-          element={<div className="mt-30 ml-4">Student Affairs Unit Page</div>}
+          element={<StudentAffairsPage />}
         />
         <Route
           path="/administration/curriculum-management"
-          element={<div className="mt-30 ml-4">Curriculum Management Page</div>}
+          element={<CurriculumManagementPage />}
         />
         <Route
           path="/administration/co-curriculum-management"
           element={
-            <div className="mt-30 ml-4">Co-Curriculum Management Page</div>
+            <CoCurriculumPage />
           }
         />
         <Route
           path="/administration/special-education-integration-program-manaagement"
           element={
-            <div className="mt-30 ml-4">
-              Special Education Integration Program (SEIP) Management Page
-            </div>
+            <SEIPManagement />
           }
         />
 
