@@ -117,7 +117,7 @@ function App() {
         { key: "Bonding & Networking", path: "/committee/bonding&networking" },
         { key: "PTA Payments", path: "/committee/pta-payments" },
         {
-          key: "Login Guru",
+          key: "Room Booking",
           path: "/committee/room-booking-system",
         },
       ],
