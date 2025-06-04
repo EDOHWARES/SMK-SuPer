@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_homepage_extra_activities_highlights",
+  "info": {
+    "displayName": "ExtraActivitiesHighlight"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

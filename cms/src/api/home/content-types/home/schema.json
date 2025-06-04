@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "homes",
+  "info": {
+    "singularName": "home",
+    "pluralName": "homes",
+    "displayName": "Homepage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Sections": {
+      "type": "dynamiczone",
+      "components": [
+        "homepage.testimoials",
+        "homepage.latest-updates",
+        "homepage.hero-section",
+        "homepage.footer",
+        "homepage.extra-activities-highlight",
+        "homepage.excellence-in-numbers",
+        "homepage.academic-excellence",
+        "homepage.image-slider",
+        "homepage.marquee"
+      ]
+    }
+  }
+}
