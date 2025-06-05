@@ -4,6 +4,18 @@
     "displayName": "Testimoials"
   },
   "options": {},
-  "attributes": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "testimony": {
+      "type": "component",
+      "component": "others.testimony-c-ard",
+      "repeatable": true
+    }
+  },
   "config": {}
 }

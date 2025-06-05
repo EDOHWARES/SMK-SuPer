@@ -4,6 +4,18 @@
     "displayName": "AcademicExcellence"
   },
   "options": {},
-  "attributes": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "excellence": {
+      "type": "component",
+      "component": "others.acad-exc-card",
+      "repeatable": true
+    }
+  },
   "config": {}
 }

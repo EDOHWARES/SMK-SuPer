@@ -4,6 +4,18 @@
     "displayName": "ExcellenceInNumbers"
   },
   "options": {},
-  "attributes": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "component": "others.excel-in-num-card",
+      "repeatable": true
+    }
+  },
   "config": {}
 }

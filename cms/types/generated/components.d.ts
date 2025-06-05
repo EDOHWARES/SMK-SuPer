@@ -5,7 +5,11 @@ export interface HomepageAcademicExcellence extends Struct.ComponentSchema {
   info: {
     displayName: 'AcademicExcellence';
   };
-  attributes: {};
+  attributes: {
+    excellence: Schema.Attribute.Component<'others.acad-exc-card', true>;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
 }
 
 export interface HomepageExcellenceInNumbers extends Struct.ComponentSchema {
@@ -13,7 +17,11 @@ export interface HomepageExcellenceInNumbers extends Struct.ComponentSchema {
   info: {
     displayName: 'ExcellenceInNumbers';
   };
-  attributes: {};
+  attributes: {
+    cards: Schema.Attribute.Component<'others.excel-in-num-card', true>;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
 }
 
 export interface HomepageExtraActivitiesHighlight
@@ -23,6 +31,7 @@ export interface HomepageExtraActivitiesHighlight
     displayName: 'ExtraActivitiesHighlight';
   };
   attributes: {
+    activities: Schema.Attribute.Component<'others.activity-card', true>;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
@@ -34,7 +43,7 @@ export interface HomepageFooter extends Struct.ComponentSchema {
     displayName: 'Footer';
   };
   attributes: {
-    subtitle: Schema.Attribute.Text;
+    contact: Schema.Attribute.Component<'others.foot-details', false>;
   };
 }
 
@@ -62,7 +71,11 @@ export interface HomepageLatestUpdates extends Struct.ComponentSchema {
   info: {
     displayName: 'LatestUpdates';
   };
-  attributes: {};
+  attributes: {
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+    updates: Schema.Attribute.Component<'others.latest-update-card', true>;
+  };
 }
 
 export interface HomepageMarquee extends Struct.ComponentSchema {
@@ -80,7 +93,22 @@ export interface HomepageTestimoials extends Struct.ComponentSchema {
   info: {
     displayName: 'Testimoials';
   };
-  attributes: {};
+  attributes: {
+    subtitle: Schema.Attribute.Text;
+    testimony: Schema.Attribute.Component<'others.testimony-c-ard', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface OthersAcadExcCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_acad_exc_cards';
+  info: {
+    displayName: 'AcadExcCard';
+  };
+  attributes: {
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
 }
 
 export interface OthersActivityCard extends Struct.ComponentSchema {
@@ -92,6 +120,56 @@ export interface OthersActivityCard extends Struct.ComponentSchema {
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface OthersExcelInNumCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_excel_in_num_cards';
+  info: {
+    displayName: 'ExcelInNumCard';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    percentage: Schema.Attribute.String;
+  };
+}
+
+export interface OthersFootDetails extends Struct.ComponentSchema {
+  collectionName: 'components_others_foot_details';
+  info: {
+    displayName: 'FootDetails';
+  };
+  attributes: {
+    contact: Schema.Attribute.JSON;
+    motto: Schema.Attribute.Text;
+  };
+}
+
+export interface OthersLatestUpdateCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_latest_update_cards';
+  info: {
+    displayName: 'LatestUpdateCard';
+  };
+  attributes: {
+    comments: Schema.Attribute.Integer;
+    date: Schema.Attribute.DateTime;
+    details: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    imageLabel: Schema.Attribute.String;
+    likes: Schema.Attribute.Integer;
+  };
+}
+
+export interface OthersTestimonyCArd extends Struct.ComponentSchema {
+  collectionName: 'components_others_testimony_c_ards';
+  info: {
+    displayName: 'TestimonyCArd';
+  };
+  attributes: {
+    identity: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+    photo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    testimony: Schema.Attribute.Text;
   };
 }
 
@@ -169,7 +247,12 @@ declare module '@strapi/strapi' {
       'homepage.latest-updates': HomepageLatestUpdates;
       'homepage.marquee': HomepageMarquee;
       'homepage.testimoials': HomepageTestimoials;
+      'others.acad-exc-card': OthersAcadExcCard;
       'others.activity-card': OthersActivityCard;
+      'others.excel-in-num-card': OthersExcelInNumCard;
+      'others.foot-details': OthersFootDetails;
+      'others.latest-update-card': OthersLatestUpdateCard;
+      'others.testimony-c-ard': OthersTestimonyCArd;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;

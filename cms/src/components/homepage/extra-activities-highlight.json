@@ -10,6 +10,11 @@
     },
     "subtitle": {
       "type": "text"
+    },
+    "activities": {
+      "type": "component",
+      "component": "others.activity-card",
+      "repeatable": true
     }
   },
   "config": {}
