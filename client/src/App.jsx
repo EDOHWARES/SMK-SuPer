@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
@@ -35,10 +36,24 @@ import StudentAffairsPage from "./pages/Administration/StudentAffairs/StudentAff
 import CoCurriculumPage from "./pages/Administration/Co-CurriculumManagement/Co-CurriculumManagement";
 import CurriculumManagementPage from "./pages/CurriculumManagement/CurriculumManagement";
 import SEIPManagement from "./pages/SpecialEduIntegration/SpecialEduIntegration";
+import { fetchHomepage } from "./utils/api";
 
 function App() {
+  const [homeData, setHomeData] = useState(null);
 
-  // Mock navigation items from the provided data
+  useEffect(() => {
+    fetchHomepage().then(setHomeData);
+  }, []);
+
+  if (!homeData)
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-900 to-blue-800">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-yellow-400"></div>
+      </div>
+    );
+
+  console.log(homeData.Sections[8].contact.contact);
+
   const navItems = [
     {
       key: "Home",
@@ -147,25 +162,28 @@ function App() {
       <Header navItems={navItems} />
       <Routes>
         {/* TEST ROUTES */}
-        <Route path="/committee/room-booking-system" element={<RoomBookingSystem />} />
-        <Route path="/school-store" element={<SchoolStore />} /> 
+        <Route
+          path="/committee/room-booking-system"
+          element={<RoomBookingSystem />}
+        />
+        <Route path="/school-store" element={<SchoolStore />} />
 
         {/* Main Navigation Routes */}
         <Route
           path="/"
           element={
             <div>
-              <Hero />
-              <MarqueeText />
+              <Hero data={homeData.Sections[0]} />
+              <MarqueeText data={homeData.Sections[1].trending} />
               <SchoolSlideshow />
               <main className="flex-grow">
-                <ExtracurricularActivities />
-                <SchoolStats />
-                <SocialFeeds />
-                <AcademicPrograms />
-                <Testimonials />
+                <ExtracurricularActivities data={homeData.Sections[3]} />
+                <SchoolStats data={homeData.Sections[4]} />
+                <SocialFeeds data={homeData.Sections[5]}/>
+                <AcademicPrograms data={homeData.Sections[6]} />
+                <Testimonials data={homeData.Sections[7]}/>
               </main>
-              <Footer />
+              <Footer data={homeData.Sections[8]} />
             </div>
           }
         />
@@ -196,15 +214,11 @@ function App() {
         <Route path="/about-us/school-history" element={<SchoolHistory />} />
         <Route
           path="/about-us/school-organizational-chart"
-          element={
-            <OrganizationalChart />
-          }
+          element={<OrganizationalChart />}
         />
         <Route
           path="/about-us/national-education-philosophy"
-          element={
-            <NationalEducationPhilosophy />
-          }
+          element={<NationalEducationPhilosophy />}
         />
         <Route
           path="/about-us/school-identity"
@@ -217,20 +231,14 @@ function App() {
         <Route path="/about-us/vision&mission" element={<VisionMission />} />
 
         {/* News SubNavs */}
-        <Route
-          path="/news/school-highlights"
-          element={<SchoolHighlights />}
-        />
+        <Route path="/news/school-highlights" element={<SchoolHighlights />} />
         <Route
           path="/news/program-documentation"
           element={<ProgramDocumentation />}
         />
 
         {/* Administration SubNavs */}
-        <Route
-          path="/administration/principal"
-          element={<PrincipalPage />}
-        />
+        <Route path="/administration/principal" element={<PrincipalPage />} />
         <Route
           path="/administration/school-management"
           element={<SchoolManagementPage />}
@@ -249,15 +257,11 @@ function App() {
         />
         <Route
           path="/administration/co-curriculum-management"
-          element={
-            <CoCurriculumPage />
-          }
+          element={<CoCurriculumPage />}
         />
         <Route
           path="/administration/special-education-integration-program-manaagement"
-          element={
-            <SEIPManagement />
-          }
+          element={<SEIPManagement />}
         />
 
         {/* Committee SubNavs */}

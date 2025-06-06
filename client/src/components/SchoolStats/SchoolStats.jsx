@@ -1,34 +1,31 @@
-
-
-// School Stats Component
-export const SchoolStats = () => {
+export const SchoolStats = ({ data }) => {
+  if (!data)
     return (
-      <section className="py-16 bg-blue-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Excellence in Numbers</h2>
-            <p className="text-blue-100 mt-2">Our commitment to academic excellence reflects in our achievements</p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
-              <div className="text-yellow-400 text-4xl font-bold mb-2">98%</div>
-              <div className="text-lg font-medium">Graduation Rate</div>
-            </div>
-            <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
-              <div className="text-yellow-400 text-4xl font-bold mb-2">94%</div>
-              <div className="text-lg font-medium">College Acceptance</div>
-            </div>
-            <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
-              <div className="text-yellow-400 text-4xl font-bold mb-2">125+</div>
-              <div className="text-lg font-medium">Award-Winning Faculty</div>
-            </div>
-            <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
-              <div className="text-yellow-400 text-4xl font-bold mb-2">50+</div>
-              <div className="text-lg font-medium">Extracurricular Programs</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-900 to-blue-800">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-yellow-400"></div>
+      </div>
     );
-  };
+
+  return (
+    <section className="py-16 bg-blue-900 text-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold">{data.title}</h2>
+          <p className="text-blue-100 mt-2">{data.subtitle}</p>
+        </div>
+
+        {/* Dynamically Render Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {data.cards.map((card, index) => (
+            <div key={index} className="p-6 rounded-lg bg-blue-800 shadow-lg">
+              <div className="text-yellow-400 text-4xl font-bold mb-2">
+                {card.percentage}
+              </div>
+              <div className="text-lg font-medium">{card.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};

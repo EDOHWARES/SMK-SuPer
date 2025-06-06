@@ -1,7 +1,13 @@
-// Academic Programs Section
 import { BookOpen } from "lucide-react";
 
-export const AcademicPrograms = () => {
+export const AcademicPrograms = ({ data }) => {
+  if (!data)
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-900 to-blue-800">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-yellow-400"></div>
+      </div>
+    );
+
   const Palette = (props) => {
     return (
       <svg
@@ -73,30 +79,26 @@ export const AcademicPrograms = () => {
   const programs = [
     {
       id: 1,
-      title: "Advanced STEM Program",
-      description:
-        "Specialized courses in Science, Technology, Engineering, and Mathematics for students passionate about innovation.",
+      title: data.excellence[0].title,
+      description: data.excellence[0].subtitle,
       icon: <BookOpen className="w-8 h-8 text-yellow-500" />,
     },
     {
       id: 2,
-      title: "Arts and Humanities",
-      description:
-        "Comprehensive programs focusing on literature, history, philosophy, and creative arts to develop well-rounded individuals.",
+      title: data.excellence[1].title,
+      description: data.excellence[1].subtitle,
       icon: <Palette className="w-8 h-8 text-yellow-500" />,
     },
     {
       id: 3,
-      title: "Sports Excellence",
-      description:
-        "Professional coaching and training programs for athletes looking to excel in various sports at competitive levels.",
+      title: data.excellence[2].title,
+      description: data.excellence[2].subtitle,
       icon: <Trophy className="w-8 h-8 text-yellow-500" />,
     },
     {
       id: 4,
-      title: "Global Languages",
-      description:
-        "Multilingual education with certified instructors teaching Spanish, French, Mandarin, and German.",
+      title: data.excellence[3].title,
+      description: data.excellence[3].subtitle,
       icon: <Globe className="w-8 h-8 text-yellow-500" />,
     },
   ];
@@ -105,12 +107,8 @@ export const AcademicPrograms = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-blue-900">
-            Academic Excellence
-          </h2>
-          <p className="text-gray-600 mt-2">
-            Discover our comprehensive educational programs
-          </p>
+          <h2 className="text-3xl font-bold text-blue-900">{data.title}</h2>
+          <p className="text-gray-600 mt-2">{data.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

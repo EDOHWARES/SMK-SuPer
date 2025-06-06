@@ -6,8 +6,7 @@ import { FaTiktok } from "react-icons/fa";
 
 import logo from "../../assets/images/logo.png";
 
-// Footer Component
-export const Footer = () => {
+export const Footer = ({ data }) => {
   return (
     <footer className="bg-blue-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
@@ -16,11 +15,7 @@ export const Footer = () => {
             <div className="flex items-center mb-6">
               <img src={logo} alt="smk logo" width={50} />
             </div>
-            <p className="text-blue-100 mb-4">
-              Education trains the mind to think and contribute, embrace
-              challenges. SMK Super; they build your potential to shape a
-              brighter future.
-            </p>
+            <p className="text-blue-100 mb-4">{data.contact.motto}</p>
             <div className="flex space-x-4">
               <a
                 href="https://web.facebook.com/suriaperdana?mibextid=LQQJ4d&_rdc=1&_rdr"
@@ -94,10 +89,7 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 text-yellow-400 mr-3 mt-1 flex-shrink-0" />
-                <span className="text-blue-100">
-                  Jalan Parit Semarang, 86400 Parit Raja, Johor Darul Ta'zim,
-                  Malaysia{" "}
-                </span>
+                <span className="text-blue-100">{data.contact.contact[0]}</span>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 text-yellow-400 mr-3 flex-shrink-0" />
@@ -105,7 +97,7 @@ export const Footer = () => {
                   href="tel:+11234567890"
                   className="text-blue-100 hover:text-yellow-400 transition-colors"
                 >
-                  07-4541866, Faks: 07-4541867
+                  {data.contact.contact[1]}
                 </a>
               </li>
               <li className="flex items-center">
@@ -114,13 +106,13 @@ export const Footer = () => {
                   href="mailto:info@excellenceacademy.edu"
                   className="text-blue-100 hover:text-yellow-400 transition-colors"
                 >
-                  jea0025@moe.edu.my
+                  {data.contact.contact[2]}
                 </a>
               </li>
               <li className="flex items-center">
                 <Clock className="w-5 h-5 text-yellow-400 mr-3 flex-shrink-0" />
                 <span className="text-blue-100">
-                  Mon-Fri: 8:00 AM - 4:00 PM
+                  {data.contact.contact[3]}{" "}
                 </span>
               </li>
             </ul>

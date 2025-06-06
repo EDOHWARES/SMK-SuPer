@@ -3,7 +3,14 @@ import extracurricular1_img from "../../assets/images/Co-Curriculum activity.jpg
 import extracurricular2_img from "../../assets/images/Co-Curriculum Registration activity 1.jpg";
 import extracurricular3_img from "../../assets/images/PPKI activity 2.jpg";
 
-export const ExtracurricularActivities = () => {
+export const ExtracurricularActivities = ({ data }) => {
+  if (!data)
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-900 to-blue-800">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-yellow-400"></div>
+      </div>
+    );
+
   const Cpu = (props) => {
     return (
       <svg
@@ -80,26 +87,23 @@ export const ExtracurricularActivities = () => {
   const activities = [
     {
       id: 1,
-      title: "Sports Excellence Program",
+      title: data.activities[0].title,
       icon: <Trophy className="text-yellow-500 w-8 h-8" />,
-      details:
-        "Competitive training in basketball, soccer, swimming and track & field with professional coaches.",
+      details: data.activities[0].subtitle,
       image: extracurricular1_img,
     },
     {
       id: 2,
-      title: "Robotics & Technology Club",
+      title: data.activities[1].title,
       icon: <Cpu className="text-yellow-500 w-8 h-8" />,
-      details:
-        "Students build and program robots, participate in national competitions and learn cutting-edge tech skills.",
+      details: data.activities[1].subtitle,
       image: extracurricular2_img,
     },
     {
       id: 3,
-      title: "Arts & Performance",
+      title: data.activities[2].title,
       icon: <Music className="text-yellow-500 w-8 h-8" />,
-      details:
-        "Creative expression through drama, music, dance and visual arts with regular showcases and exhibitions.",
+      details: data.activities[2].subtitle,
       image: extracurricular3_img,
     },
   ];
@@ -108,13 +112,8 @@ export const ExtracurricularActivities = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-blue-900">
-            Extracurricular Activities Highlights
-          </h2>
-          <p className="text-gray-600 mt-2">
-            Explore our diverse range of activities that develop well-rounded
-            students
-          </p>
+          <h2 className="text-3xl font-bold text-blue-900">{data.title}</h2>
+          <p className="text-gray-600 mt-2">{data.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

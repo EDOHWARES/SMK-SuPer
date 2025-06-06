@@ -1,32 +1,35 @@
 import { useState, useEffect } from "react";
 import { ChevronRight } from "lucide-react";
 
-// Testimonials Section
-export const Testimonials = () => {
+export const Testimonials = ({ data }) => {
+  if (!data)
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-900 to-blue-800">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-yellow-400"></div>
+      </div>
+    );
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const testimonials = [
     {
       id: 1,
-      quote:
-        "Excellence Academy provided my child with not just academic knowledge, but also valuable life skills. The teachers are dedicated and truly care about each student's success.",
-      author: "Jane Cooper",
-      role: "Parent of 10th Grader",
+      quote: data.testimony[0].testimony,
+      author: data.testimony[0].name,
+      role: data.testimony[0].identity,
       image: "/api/placeholder/100/100",
     },
     {
       id: 2,
-      quote:
-        "The diverse curriculum and supportive environment at Excellence Academy helped me discover my passion for science and prepared me for university in ways I never expected.",
-      author: "Michael Robinson",
-      role: "Alumni, Class of 2023",
+      quote: data.testimony[1].testimony,
+      author: data.testimony[1].name,
+      role: data.testimony[1].identity,
       image: "/api/placeholder/100/100",
     },
     {
       id: 3,
-      quote:
-        "As both a parent and a community member, I've seen firsthand how the school's values positively impact not just students but the entire community.",
-      author: "Robert Johnson",
-      role: "Parent & Community Leader",
+      quote: data.testimony[2].testimony,
+      author: data.testimony[2].name,
+      role: data.testimony[2].identity,
       image: "/api/placeholder/100/100",
     },
   ];
@@ -42,10 +45,8 @@ export const Testimonials = () => {
     <section className="py-16 bg-blue-900 text-white border-y border-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold">What Our Community Says</h2>
-          <p className="text-blue-100 mt-2">
-            Hear from our parents, students, and alumni
-          </p>
+          <h2 className="text-3xl font-bold">{data.title}</h2>
+          <p className="text-blue-100 mt-2">{data.subtitle}</p>
         </div>
 
         <div className="max-w-4xl mx-auto">
