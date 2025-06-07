@@ -35,3 +35,16 @@ export const fetchHomepage = async () => {
     return null;
   }
 };
+
+// Fetch latest announcement page data
+export const fetchLatestAnnouncementPage = async () => {
+  try {
+    const res = await axios.get(
+      `${CMS_API_BASE}/latest-announcement?populate=*`
+    );
+    return res.data.data;
+  } catch (err) {
+    console.error("Error fetching latest announcement page:", err);
+    return null;
+  }
+};

@@ -36,13 +36,15 @@ import StudentAffairsPage from "./pages/Administration/StudentAffairs/StudentAff
 import CoCurriculumPage from "./pages/Administration/Co-CurriculumManagement/Co-CurriculumManagement";
 import CurriculumManagementPage from "./pages/CurriculumManagement/CurriculumManagement";
 import SEIPManagement from "./pages/SpecialEduIntegration/SpecialEduIntegration";
-import { fetchHomepage } from "./utils/api";
+import { fetchHomepage, fetchLatestAnnouncementPage } from "./utils/api";
 
 function App() {
   const [homeData, setHomeData] = useState(null);
+  const [latestAnnouncementData, setLatestAnnouncementData] = useState(null);
 
   useEffect(() => {
     fetchHomepage().then(setHomeData);
+    fetchLatestAnnouncementPage().then(setLatestAnnouncementData);
   }, []);
 
   if (!homeData)
@@ -52,7 +54,8 @@ function App() {
       </div>
     );
 
-  console.log(homeData.Sections[8].contact.contact);
+  // console.log(homeData.Sections[8].contact.contact);
+  console.log(latestAnnouncementData);
 
   const navItems = [
     {
@@ -187,7 +190,7 @@ function App() {
             </div>
           }
         />
-        <Route path="/latest-announcement" element={<AnnouncementSection />} />
+        <Route path="/latest-announcement" element={<AnnouncementSection data={latestAnnouncementData} />} />
         <Route path="/upcoming-events" element={<UpcomingEvents />} />
         <Route path="/about-us" element={<About />} />
         <Route

@@ -7,6 +7,12 @@ import { FaTiktok } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
 
 export const Footer = ({ data }) => {
+  if (!data)
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-900 to-blue-800">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-yellow-400"></div>
+      </div>
+    );
   return (
     <footer className="bg-blue-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4">

@@ -100,6 +100,22 @@ export interface HomepageTestimoials extends Struct.ComponentSchema {
   };
 }
 
+export interface LatestAnnouncementpageAnnounement
+  extends Struct.ComponentSchema {
+  collectionName: 'components_latest_announcementpage_announements';
+  info: {
+    displayName: 'announement';
+  };
+  attributes: {
+    date: Schema.Attribute.DateTime;
+    details: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<
+      ['Important', 'Events', 'Academic', 'Sports', 'General']
+    >;
+  };
+}
+
 export interface OthersAcadExcCard extends Struct.ComponentSchema {
   collectionName: 'components_others_acad_exc_cards';
   info: {
@@ -247,6 +263,7 @@ declare module '@strapi/strapi' {
       'homepage.latest-updates': HomepageLatestUpdates;
       'homepage.marquee': HomepageMarquee;
       'homepage.testimoials': HomepageTestimoials;
+      'latest-announcementpage.announement': LatestAnnouncementpageAnnounement;
       'others.acad-exc-card': OthersAcadExcCard;
       'others.activity-card': OthersActivityCard;
       'others.excel-in-num-card': OthersExcelInNumCard;
