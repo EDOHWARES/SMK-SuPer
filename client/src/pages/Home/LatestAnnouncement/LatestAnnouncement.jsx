@@ -27,7 +27,7 @@ export default function AnnouncementSection({ data }) {
   const filteredAnnouncements = data.announcements.filter((announcement) => {
     if (activeFilter === "All") return true;
     if (activeFilter === "Important") return announcement.important;
-    return announcement.category === activeFilter;
+    return announcement.type === activeFilter;
   });
 
   // Format date in a more readable way
@@ -109,7 +109,7 @@ export default function AnnouncementSection({ data }) {
                         {formatDate(announcement.date)}
                       </span>
                       <span className="flex items-center">
-                        {categories[announcement.type]}
+                        {categories[announcement.category]}
                         <span className="ml-1">{announcement.type}</span>
                       </span>
                     </div>
