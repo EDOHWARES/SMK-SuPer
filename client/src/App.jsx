@@ -37,6 +37,9 @@ import CoCurriculumPage from "./pages/Administration/Co-CurriculumManagement/Co-
 import CurriculumManagementPage from "./pages/CurriculumManagement/CurriculumManagement";
 import SEIPManagement from "./pages/SpecialEduIntegration/SpecialEduIntegration";
 import { fetchHomepage, fetchLatestAnnouncementPage } from "./utils/api";
+import Checkout from "./pages/SchoolStore/Checkout";
+import CartProvider from "./context/CartContext";
+import AuthProvider from "./context/AuthContext";
 
 function App() {
   const [homeData, setHomeData] = useState(null);
@@ -159,183 +162,209 @@ function App() {
     },
   ];
   return (
-    <section>
-      <Toaster position="top-right" reverseOrder={false} />
+    <AuthProvider>
+      <CartProvider>
+        <section>
+          <Toaster position="top-right" reverseOrder={false} />
 
-      <Header navItems={navItems} />
-      <Routes>
-        {/* TEST ROUTES */}
-        <Route
-          path="/committee/room-booking-system"
-          element={<RoomBookingSystem />}
-        />
-        <Route path="/school-store" element={<SchoolStore />} />
+          <Header navItems={navItems} />
+          <Routes>
+            {/* TEST ROUTES */}
+            <Route
+              path="/committee/room-booking-system"
+              element={<RoomBookingSystem />}
+            />
+            <Route path="/school-store" element={<SchoolStore />} />
+            <Route path="/checkout" element={<Checkout />} />
 
-        {/* Main Navigation Routes */}
-        <Route
-          path="/"
-          element={
-            <div>
-              <Hero data={homeData.Sections[0]} />
-              <MarqueeText data={homeData.Sections[1].trending} />
-              <SchoolSlideshow />
-              <main className="flex-grow">
-                <ExtracurricularActivities data={homeData.Sections[3]} />
-                <SchoolStats data={homeData.Sections[4]} />
-                <SocialFeeds data={homeData.Sections[5]}/>
-                <AcademicPrograms data={homeData.Sections[6]} />
-                <Testimonials data={homeData.Sections[7]}/>
-              </main>
-              <Footer data={homeData.Sections[8]} />
-            </div>
-          }
-        />
-        <Route path="/latest-announcement" element={<AnnouncementSection data={latestAnnouncementData} />} />
-        <Route path="/upcoming-events" element={<UpcomingEvents />} />
-        <Route path="/about-us" element={<About />} />
-        <Route
-          path="/achievements"
-          element={<div className="mt-30 ml-4">Achievements Page</div>}
-        />
-        <Route
-          path="/contact-us"
-          element={<div className="mt-30 ml-4">Contact Us Page</div>}
-        />
+            {/* Main Navigation Routes */}
+            <Route
+              path="/"
+              element={
+                <div>
+                  <Hero data={homeData.Sections[0]} />
+                  <MarqueeText data={homeData.Sections[1].trending} />
+                  <SchoolSlideshow />
+                  <main className="flex-grow">
+                    <ExtracurricularActivities data={homeData.Sections[3]} />
+                    <SchoolStats data={homeData.Sections[4]} />
+                    <SocialFeeds data={homeData.Sections[5]} />
+                    <AcademicPrograms data={homeData.Sections[6]} />
+                    <Testimonials data={homeData.Sections[7]} />
+                  </main>
+                  <Footer data={homeData.Sections[8]} />
+                </div>
+              }
+            />
+            <Route
+              path="/latest-announcement"
+              element={<AnnouncementSection data={latestAnnouncementData} />}
+            />
+            <Route path="/upcoming-events" element={<UpcomingEvents />} />
+            <Route path="/about-us" element={<About />} />
+            <Route
+              path="/achievements"
+              element={<div className="mt-30 ml-4">Achievements Page</div>}
+            />
+            <Route
+              path="/contact-us"
+              element={<div className="mt-30 ml-4">Contact Us Page</div>}
+            />
 
-        {/* Sub-navigation Routes */}
-        {/* Home SubNavs */}
-        <Route
-          path="/latest-announcement"
-          element={<div className="mt-30 ml-4">Latest Announcements Page</div>}
-        />
-        <Route
-          path="/upcoming-events"
-          element={<div className="mt-30 ml-4">Upcoming Events Page</div>}
-        />
+            {/* Sub-navigation Routes */}
+            {/* Home SubNavs */}
+            <Route
+              path="/latest-announcement"
+              element={
+                <div className="mt-30 ml-4">Latest Announcements Page</div>
+              }
+            />
+            <Route
+              path="/upcoming-events"
+              element={<div className="mt-30 ml-4">Upcoming Events Page</div>}
+            />
 
-        {/* About Us SubNavs */}
-        <Route path="/about-us/school-history" element={<SchoolHistory />} />
-        <Route
-          path="/about-us/school-organizational-chart"
-          element={<OrganizationalChart />}
-        />
-        <Route
-          path="/about-us/national-education-philosophy"
-          element={<NationalEducationPhilosophy />}
-        />
-        <Route
-          path="/about-us/school-identity"
-          element={<div className="mt-30 ml-4">School Identity Page</div>}
-        />
-        <Route
-          path="/about-us/school-song"
-          element={<div className="mt-30 ml-4">School Song Page</div>}
-        />
-        <Route path="/about-us/vision&mission" element={<VisionMission />} />
+            {/* About Us SubNavs */}
+            <Route
+              path="/about-us/school-history"
+              element={<SchoolHistory />}
+            />
+            <Route
+              path="/about-us/school-organizational-chart"
+              element={<OrganizationalChart />}
+            />
+            <Route
+              path="/about-us/national-education-philosophy"
+              element={<NationalEducationPhilosophy />}
+            />
+            <Route
+              path="/about-us/school-identity"
+              element={<div className="mt-30 ml-4">School Identity Page</div>}
+            />
+            <Route
+              path="/about-us/school-song"
+              element={<div className="mt-30 ml-4">School Song Page</div>}
+            />
+            <Route
+              path="/about-us/vision&mission"
+              element={<VisionMission />}
+            />
 
-        {/* News SubNavs */}
-        <Route path="/news/school-highlights" element={<SchoolHighlights />} />
-        <Route
-          path="/news/program-documentation"
-          element={<ProgramDocumentation />}
-        />
+            {/* News SubNavs */}
+            <Route
+              path="/news/school-highlights"
+              element={<SchoolHighlights />}
+            />
+            <Route
+              path="/news/program-documentation"
+              element={<ProgramDocumentation />}
+            />
 
-        {/* Administration SubNavs */}
-        <Route path="/administration/principal" element={<PrincipalPage />} />
-        <Route
-          path="/administration/school-management"
-          element={<SchoolManagementPage />}
-        />
-        <Route
-          path="/administration/teachers&staff-directory"
-          element={<TeachersAndStaffs />}
-        />
-        <Route
-          path="/administration/student-affairs-unit"
-          element={<StudentAffairsPage />}
-        />
-        <Route
-          path="/administration/curriculum-management"
-          element={<CurriculumManagementPage />}
-        />
-        <Route
-          path="/administration/co-curriculum-management"
-          element={<CoCurriculumPage />}
-        />
-        <Route
-          path="/administration/special-education-integration-program-manaagement"
-          element={<SEIPManagement />}
-        />
+            {/* Administration SubNavs */}
+            <Route
+              path="/administration/principal"
+              element={<PrincipalPage />}
+            />
+            <Route
+              path="/administration/school-management"
+              element={<SchoolManagementPage />}
+            />
+            <Route
+              path="/administration/teachers&staff-directory"
+              element={<TeachersAndStaffs />}
+            />
+            <Route
+              path="/administration/student-affairs-unit"
+              element={<StudentAffairsPage />}
+            />
+            <Route
+              path="/administration/curriculum-management"
+              element={<CurriculumManagementPage />}
+            />
+            <Route
+              path="/administration/co-curriculum-management"
+              element={<CoCurriculumPage />}
+            />
+            <Route
+              path="/administration/special-education-integration-program-manaagement"
+              element={<SEIPManagement />}
+            />
 
-        {/* Committee SubNavs */}
-        <Route
-          path="/committee/parent-teacher-association"
-          element={
-            <div className="mt-30 ml-4">
-              Parent-Teacher Association (PTA) Page
-            </div>
-          }
-        />
-        <Route
-          path="/committee/parent&community-involvement"
-          element={
-            <div className="mt-30 ml-4">
-              Parent and Community Involvement Page
-            </div>
-          }
-        />
-        <Route
-          path="/committee/bonding&networking"
-          element={<div className="mt-30 ml-4">Bonding & Networking Page</div>}
-        />
-        <Route path="/committee/pta-payments" element={<PtaPayment />} />
-        <Route path="/committee/signupaguru" element={<SignIn />} />
+            {/* Committee SubNavs */}
+            <Route
+              path="/committee/parent-teacher-association"
+              element={
+                <div className="mt-30 ml-4">
+                  Parent-Teacher Association (PTA) Page
+                </div>
+              }
+            />
+            <Route
+              path="/committee/parent&community-involvement"
+              element={
+                <div className="mt-30 ml-4">
+                  Parent and Community Involvement Page
+                </div>
+              }
+            />
+            <Route
+              path="/committee/bonding&networking"
+              element={
+                <div className="mt-30 ml-4">Bonding & Networking Page</div>
+              }
+            />
+            <Route path="/committee/pta-payments" element={<PtaPayment />} />
+            <Route path="/committee/signupaguru" element={<SignIn />} />
 
-        {/* Contact Us SubNavs */}
-        <Route
-          path="/contact-us/school-location"
-          element={<MapsAndDirections />}
-        />
-        <Route
-          path="/contact-us/office-operating-hours"
-          element={
-            <div className="mt-30 ml-4">Office Operating Hours Page</div>
-          }
-        />
-        <Route
-          path="/contact-us/official-email-address"
-          element={
-            <div className="mt-30 ml-4">Official Email Address Page</div>
-          }
-        />
-        <Route
-          path="/contact-us/phone&fax-number"
-          element={<div className="mt-30 ml-4">Phone & Fax Number Page</div>}
-        />
+            {/* Contact Us SubNavs */}
+            <Route
+              path="/contact-us/school-location"
+              element={<MapsAndDirections />}
+            />
+            <Route
+              path="/contact-us/office-operating-hours"
+              element={
+                <div className="mt-30 ml-4">Office Operating Hours Page</div>
+              }
+            />
+            <Route
+              path="/contact-us/official-email-address"
+              element={
+                <div className="mt-30 ml-4">Official Email Address Page</div>
+              }
+            />
+            <Route
+              path="/contact-us/phone&fax-number"
+              element={
+                <div className="mt-30 ml-4">Phone & Fax Number Page</div>
+              }
+            />
 
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
 
-        {/* Fallback Route */}
-        <Route
-          path="*"
-          element={
-            <div>
-              <Hero />
-              <MarqueeText />
-              <main className="flex-grow">
-                <ExtracurricularActivities />
-                <SchoolStats />
-                <SocialFeeds />
-                <AcademicPrograms />
-                <Testimonials />
-              </main>
-              <Footer />
-            </div>
-          }
-        />
-      </Routes>
-    </section>
+            {/* Fallback Route */}
+            <Route
+              path="*"
+              element={
+                <div>
+                  <Hero />
+                  <MarqueeText />
+                  <main className="flex-grow">
+                    <ExtracurricularActivities />
+                    <SchoolStats />
+                    <SocialFeeds />
+                    <AcademicPrograms />
+                    <Testimonials />
+                  </main>
+                  <Footer />
+                </div>
+              }
+            />
+          </Routes>
+        </section>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

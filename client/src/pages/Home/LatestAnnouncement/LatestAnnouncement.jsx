@@ -26,7 +26,7 @@ export default function AnnouncementSection({ data }) {
   // Filter announcements based on selected filter
   const filteredAnnouncements = data.announcements.filter((announcement) => {
     if (activeFilter === "All") return true;
-    if (activeFilter === "Important") return announcement.important;
+    if (activeFilter === "Important") return announcement.type === "Important";
     return announcement.type === activeFilter;
   });
 
