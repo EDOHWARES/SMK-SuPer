@@ -16,7 +16,22 @@ const generateToken = (user) => {
   });
 };
 
-// 🔐 Login Route for accessing the admin dahsboard 
+// Fetch Profile Route
+authRoutes.get("/profile", auth, async (req, res) => {
+  try {
+    // `req.user` is populated by the `auth` middleware
+    const user = await User.findById(req.user.id).select("-password"); // Exclude the password field
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.status(200).json({ user });
+  } catch (err) {
+    console.error("Error fetching profile:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// 🔐 Login Route for accessing the admin dahsboard
 authRoutes.post("/admin/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -59,7 +74,11 @@ authRoutes.post("/signup", async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
-    const allowedRoles = ["class_teacher", "regular_teacher", "jpn_ppd_individual"];
+    const allowedRoles = [
+      "class_teacher",
+      "regular_teacher",
+      "jpn_ppd_individual",
+    ];
     const userRole = role ? role.toLowerCase() : "student";
 
     if (!allowedRoles.includes(userRole)) {

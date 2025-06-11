@@ -39,8 +39,7 @@ import SEIPManagement from "./pages/SpecialEduIntegration/SpecialEduIntegration"
 import { fetchHomepage, fetchLatestAnnouncementPage } from "./utils/api";
 import Checkout from "./pages/SchoolStore/Checkout";
 import CartProvider from "./context/CartContext";
-import AuthProvider from "./context/AuthContext";
-
+import { AuthProvider } from "./context/AuthContext";
 function App() {
   const [homeData, setHomeData] = useState(null);
   const [latestAnnouncementData, setLatestAnnouncementData] = useState(null);

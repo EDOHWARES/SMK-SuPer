@@ -1,18 +1,58 @@
-"use client"
-
-import { useState } from "react"
-import { ShoppingCart, Heart } from "lucide-react"
+import { useState, useContext } from "react";
+import { ShoppingCart, Heart } from "lucide-react";
+import axios from "axios"; 
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product, addToCart }) => {
-  const [selectedSize, setSelectedSize] = useState(product.sizes ? product.sizes[0] : null)
-  const [isHovered, setIsHovered] = useState(false)
+  const [selectedSize, setSelectedSize] = useState(
+    product.sizes ? product.sizes[0] : null
+  );
+  const [isHovered, setIsHovered] = useState(false);
+  const [loading, setLoading] = useState(false); // State to handle loading
 
-  const handleAddToCart = () => {
-    addToCart({
-      ...product,
-      selectedSize,
-    })
-  }
+  const {user} = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const api_url = import.meta.env.VITE_API_URL;
+
+  const handleAddToCart = async () => {
+    if (!user) {
+      // Redirect to sign-in page if user is not authenticated
+      navigate("/signin");
+      return;
+    }
+
+    setLoading(true); // Set loading to true while making the API call
+    try {
+      const response = await axios.post(
+        `${api_url}/cart`,
+        {
+          productId: product._id,
+          quantity: 1,
+          size: selectedSize,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Include token in the request
+          },
+        }
+      );
+
+      // Call the addToCart function to update the local cart state
+      addToCart({
+        ...product,
+        selectedSize,
+        quantity: 1,
+      });
+
+      console.log("Product added to cart:", response.data);
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    } finally {
+      setLoading(false); // Set loading to false after the API call
+    }
+  };
 
   return (
     <div
@@ -32,7 +72,9 @@ const ProductCard = ({ product, addToCart }) => {
         {/* Out of Stock Overlay */}
         {product.stock <= 0 && (
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Out of Stock</span>
+            <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+              Out of Stock
+            </span>
           </div>
         )}
 
@@ -54,16 +96,24 @@ const ProductCard = ({ product, addToCart }) => {
 
       {/* Product Details */}
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">{product.name}</h3>
-        <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.description}</p>
+        <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+          {product.name}
+        </h3>
+        <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+          {product.description}
+        </p>
 
         {/* Price */}
-        <div className="text-xl font-bold text-blue-900 mb-3">Rp {product.price.toLocaleString("id-ID")}</div>
+        <div className="text-xl font-bold text-blue-900 mb-3">
+          Rp {product.price.toLocaleString("id-ID")}
+        </div>
 
         {/* Size Selector (if applicable) */}
         {product.sizes && product.sizes.length > 0 && (
           <div className="mb-3">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Size</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Size
+            </label>
             <div className="flex flex-wrap gap-2">
               {product.sizes.map((size) => (
                 <button
@@ -85,19 +135,23 @@ const ProductCard = ({ product, addToCart }) => {
         {/* Add to Cart Button */}
         <button
           onClick={handleAddToCart}
-          disabled={product.stock <= 0}
+          disabled={product.stock <= 0 || loading} // Disable button if out of stock or loading
           className={`w-full flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-colors ${
-            product.stock > 0
+            product.stock > 0 && !loading
               ? "bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-semibold"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >
           <ShoppingCart size={18} />
-          {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
+          {loading
+            ? "Adding..."
+            : product.stock > 0
+            ? "Add to Cart"
+            : "Out of Stock"}
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

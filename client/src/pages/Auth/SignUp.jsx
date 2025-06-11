@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function SignUp() {
+  const { signup } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -11,7 +14,6 @@ export default function SignUp() {
   });
 
   const [loading, setLoading] = useState(false);
-
   const [errors, setErrors] = useState({});
 
   const userTypes = [
@@ -31,12 +33,10 @@ export default function SignUp() {
 
   const validateForm = () => {
     const newErrors = {};
-
     // Name validation
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     }
-
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
@@ -44,59 +44,32 @@ export default function SignUp() {
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = "Invalid email format";
     }
-
     // Password validation
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (formData.password.length < 8) {
       newErrors.password = "Password must be at least 8 characters long";
     }
-
     // User type validation
     if (!formData.role) {
       newErrors.userType = "Please select a user type";
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
     setLoading(true);
-    if (validateForm()) {
-      try {
-        const api_url = import.meta.env.VITE_API_URL;
-        console.log(api_url)
-        console.log(formData)
-
-
-        // Send the form data to the signup API
-        const response = await axios.post(`${api_url}/auth/signup`, formData);
-        console.log(response);
-
-        // Handle successful signup
-        console.log("Signup successful:", response.data);
-        toast.success("Signup successful! Please log in.");
-        setLoading(false);
-        // Redirect to the login page
-        window.location.href = "/signin";
-      } catch (error) {
-        // Handle errors
-        if (
-          error.response &&
-          error.response.data &&
-          error.response.data.error
-        ) {
-          toast.error(`Signup failed: ${error.response.data.error}`);
-          setLoading(false);
-        } else {
-          toast.error("Signup failed. Please try again later.");
-          setLoading(false);
-        }
-      } finally {
-        setLoading(false);
+    try {
+      const success = await signup(formData);
+      if (success) {
+        navigate("/signin");
       }
+      // Error toast is already handled in the context
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -106,7 +79,7 @@ export default function SignUp() {
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Sign Up
         </h2>
-        <div>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               htmlFor="name"
@@ -183,13 +156,13 @@ export default function SignUp() {
             <select
               id="userType"
               name="role"
-              value={formData.userType}
+              value={formData.role}
               onChange={handleChange}
               className={`w-full px-3 py-2 border rounded-md focus:outline-none 
                 ${errors.userType ? "border-red-500" : "border-gray-300"}`}
             >
               {userTypes.map((type) => (
-                <option key={type.value} name="role" value={type.value}>
+                <option key={type.value} value={type.value}>
                   {type.label}
                 </option>
               ))}
@@ -200,13 +173,13 @@ export default function SignUp() {
           </div>
 
           <button
-            onClick={handleSubmit}
+            type="submit"
+            disabled={loading}
             className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
           >
             {loading ? "Loading..." : "Sign Up"}
           </button>
-        </div>
-
+        </form>
         <div className="text-center mt-4">
           <p className="text-gray-600">
             Already have an account?{" "}

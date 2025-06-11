@@ -1,41 +1,67 @@
 import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-// Create the AuthContext
 export const AuthContext = createContext();
 
-// AuthProvider component to wrap the app
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Simulate fetching user data (replace with actual API call if needed)
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        setLoading(true);
-        const token = localStorage.getItem("token");
-        if (token) {
-          // Simulate fetching user data from an API
-          const userData = {
-            name: "John Doe",
-            email: "john.doe@example.com",
-            phone: "1234567890",
-          };
-          setUser(userData);
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const api_url = import.meta.env.VITE_API_URL;
 
-    fetchUser();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetchProfile(token);
+    } else {
+      setLoading(false);
+    }
   }, []);
 
-  const login = (userData, token) => {
-    localStorage.setItem("token", token);
-    setUser(userData);
+  const fetchProfile = async (token) => {
+    try {
+      setLoading(true);
+      const res = await axios.get(`${api_url}/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUser(res.data.user);
+    } catch (err) {
+      console.error("Failed to fetch profile", err);
+      logout();
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signup = async (formData) => {
+    try {
+      const res = await axios.post(`${api_url}/auth/signup`, formData);
+      toast.success("Signup successful. Please log in.");
+      return true;
+    } catch (err) {
+      toast.error(err?.response?.data?.error || "Signup failed.");
+      return false;
+    }
+  };
+
+  const signin = async ({ email, password }) => {
+    try {
+      const res = await axios.post(`${api_url}/auth/login`, {
+        email,
+        password,
+      });
+      const { token, user } = res.data;
+      localStorage.setItem("token", token);
+      setUser(user);
+      toast.success("Login successful!");
+      return true;
+    } catch (err) {
+      toast.error(err?.response?.data?.error || "Login failed.");
+      return false;
+    }
   };
 
   const logout = () => {
@@ -44,10 +70,16 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        signin,
+        signup,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
-
-export default AuthProvider;
