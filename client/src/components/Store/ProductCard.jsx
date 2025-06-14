@@ -1,56 +1,28 @@
 import { useState, useContext } from "react";
 import { ShoppingCart, Heart } from "lucide-react";
-import axios from "axios"; 
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({ product, addToCart }) => {
+const ProductCard = ({ product, onAddToCart }) => {
   const [selectedSize, setSelectedSize] = useState(
     product.sizes ? product.sizes[0] : null
   );
   const [isHovered, setIsHovered] = useState(false);
-  const [loading, setLoading] = useState(false); // State to handle loading
+  const [loading, setLoading] = useState(false);
 
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const api_url = import.meta.env.VITE_API_URL;
 
   const handleAddToCart = async () => {
     if (!user) {
-      // Redirect to sign-in page if user is not authenticated
       navigate("/signin");
       return;
     }
-
-    setLoading(true); // Set loading to true while making the API call
+    setLoading(true);
     try {
-      const response = await axios.post(
-        `${api_url}/cart`,
-        {
-          productId: product._id,
-          quantity: 1,
-          size: selectedSize,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Include token in the request
-          },
-        }
-      );
-
-      // Call the addToCart function to update the local cart state
-      addToCart({
-        ...product,
-        selectedSize,
-        quantity: 1,
-      });
-
-      console.log("Product added to cart:", response.data);
-    } catch (error) {
-      console.error("Error adding product to cart:", error);
+      await onAddToCart({ product, selectedSize });
     } finally {
-      setLoading(false); // Set loading to false after the API call
+      setLoading(false);
     }
   };
 
@@ -60,7 +32,7 @@ const ProductCard = ({ product, addToCart }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Product Image */}
+      {/* ...rest of your UI code... */}
       <div className="relative h-48 overflow-hidden">
         <img
           src={product.image || "/images/placeholder-product.jpg"}
@@ -68,8 +40,6 @@ const ProductCard = ({ product, addToCart }) => {
           className="w-full h-full object-cover transition-transform duration-500 transform-gpu"
           style={{ transform: isHovered ? "scale(1.05)" : "scale(1)" }}
         />
-
-        {/* Out of Stock Overlay */}
         {product.stock <= 0 && (
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -77,24 +47,18 @@ const ProductCard = ({ product, addToCart }) => {
             </span>
           </div>
         )}
-
-        {/* Wishlist Button */}
         <button
           className="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow hover:bg-gray-100"
           aria-label="Add to wishlist"
         >
           <Heart size={18} className="text-gray-500 hover:text-red-500" />
         </button>
-
-        {/* Category Badge */}
         <div className="absolute bottom-2 left-2">
           <span className="bg-blue-900 text-yellow-400 text-xs font-semibold px-2.5 py-1 rounded">
             {product.category}
           </span>
         </div>
       </div>
-
-      {/* Product Details */}
       <div className="p-4">
         <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
           {product.name}
@@ -102,13 +66,9 @@ const ProductCard = ({ product, addToCart }) => {
         <p className="text-sm text-gray-600 mb-3 line-clamp-2">
           {product.description}
         </p>
-
-        {/* Price */}
         <div className="text-xl font-bold text-blue-900 mb-3">
           Rp {product.price.toLocaleString("id-ID")}
         </div>
-
-        {/* Size Selector (if applicable) */}
         {product.sizes && product.sizes.length > 0 && (
           <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -131,11 +91,9 @@ const ProductCard = ({ product, addToCart }) => {
             </div>
           </div>
         )}
-
-        {/* Add to Cart Button */}
         <button
           onClick={handleAddToCart}
-          disabled={product.stock <= 0 || loading} // Disable button if out of stock or loading
+          disabled={product.stock <= 0 || loading}
           className={`w-full flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-colors ${
             product.stock > 0 && !loading
               ? "bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-semibold"

@@ -1,32 +1,33 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 import ProductCard from "../../components/Store/ProductCard";
 import CategoryFilter from "../../components/Store/CategoryFilter";
 import CartSidebar from "../../components/Store/CartSidebar";
 import SearchBar from "../../components/Store/SearchBar";
+import { AuthContext } from "../../context/AuthContext";
 
 const SchoolStore = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  console.log(filteredProducts);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cart, setCart] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
+  const { user } = useContext(AuthContext);
+  const api_url = import.meta.env.VITE_API_URL;
 
   // Fetch products from API
   useEffect(() => {
-    const api_url = import.meta.env.VITE_API_URL;
     const fetchProducts = async () => {
       try {
         setIsLoading(true);
         const response = await axios.get(`${api_url}/products`);
-        console.log("API Response:", response.data); // Log the response
-        setProducts(response.data.products) || [];
-        setFilteredProducts(response.data.products) || [];
+        setProducts(response.data.products || []);
+        setFilteredProducts(response.data.products || []);
 
         // Extract unique categories
         const uniqueCategories = [
@@ -43,6 +44,31 @@ const SchoolStore = () => {
 
     fetchProducts();
   }, []);
+
+  // Fetch cart from API when user logs in or on mount
+  useEffect(() => {
+    const fetchCart = async () => {
+      if (!user) {
+        setCart([]);
+        return;
+      }
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`${api_url}/cart`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Cart response:", response.data);
+        setCart(response.data.items || []);
+      } catch (err) {
+        console.error("Error fetching cart:", err);
+        setCart([]);
+      }
+    };
+
+    fetchCart();
+  }, [user]);
 
   // Filter products based on category and search query
   useEffect(() => {
@@ -68,59 +94,83 @@ const SchoolStore = () => {
     setFilteredProducts(result);
   }, [selectedCategory, searchQuery, products]);
 
-  // Add to cart function
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-      // Check if product already exists in cart
-      const existingItem = prevCart.find(
-        (item) => item._id === product._id && item.size === product.selectedSize
-      );
-
-      if (existingItem) {
-        // Update quantity if product exists
-        return prevCart.map((item) =>
-          item._id === product._id && item.size === product.selectedSize
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        // Add new product to cart
-        return [
-          ...prevCart,
-          {
-            ...product,
-            quantity: 1,
-            size: product.selectedSize || null,
+  // Add to cart function (API integrated)
+  const onAddToCart = async ({ product, selectedSize }) => {
+    if (!user) {
+      setIsCartOpen(false);
+      return false; // Let ProductCard handle redirect
+    }
+    try {
+      const token = localStorage.getItem("token");
+      await axios.post(
+        `${api_url}/cart`,
+        {
+          productId: product._id,
+          quantity: 1,
+          size: selectedSize,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        ];
-      }
-    });
-
-    // Open cart sidebar
-    setIsCartOpen(true);
+        }
+      );
+      // Fetch updated cart
+      const response = await axios.get(`${api_url}/cart`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setCart(response.data.cart || []);
+      setIsCartOpen(true);
+      return true;
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+      return false;
+    }
   };
 
-  // Remove from cart function
-  const removeFromCart = (productId, size) => {
-    setCart((prevCart) =>
-      prevCart.filter((item) => !(item._id === productId && item.size === size))
-    );
+  // Remove from cart function (API integrated)
+  const removeFromCart = async (productId, size) => {
+    if (!user) return;
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`${api_url}/cart`, {
+        headers: { Authorization: `Bearer ${token}` },
+        data: { productId, size },
+      });
+      // Fetch updated cart
+      const response = await axios.get(`${api_url}/cart`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCart(response.data.cart || []);
+    } catch (error) {
+      console.error("Error removing from cart:", error);
+    }
   };
 
-  // Update cart item quantity
-  const updateQuantity = (productId, size, newQuantity) => {
+  // Update cart item quantity (API integrated)
+  const updateQuantity = async (productId, size, newQuantity) => {
+    if (!user) return;
     if (newQuantity < 1) {
       removeFromCart(productId, size);
       return;
     }
-
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item._id === productId && item.size === size
-          ? { ...item, quantity: newQuantity }
-          : item
-      )
-    );
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put(
+        `${api_url}/cart`,
+        { productId, size, quantity: newQuantity },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      // Fetch updated cart
+      const response = await axios.get(`${api_url}/cart`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCart(response.data.cart || []);
+    } catch (error) {
+      console.error("Error updating cart quantity:", error);
+    }
   };
 
   return (
@@ -240,7 +290,7 @@ const SchoolStore = () => {
                   <ProductCard
                     key={product._id}
                     product={product}
-                    addToCart={addToCart}
+                    addToCart={onAddToCart}
                   />
                 ))}
               </div>

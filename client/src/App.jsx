@@ -57,7 +57,7 @@ function App() {
     );
 
   // console.log(homeData.Sections[8].contact.contact);
-  console.log(latestAnnouncementData);
+  // console.log(latestAnnouncementData);
 
   const navItems = [
     {

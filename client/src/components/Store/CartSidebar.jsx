@@ -64,7 +64,7 @@ const CartSidebar = ({ isOpen, setIsOpen, cart, updateQuantity, removeFromCart }
                   <div className="ml-4 flex-1">
                     <h4 className="text-sm font-semibold text-gray-800">{item.name}</h4>
                     {item.size && <p className="text-xs text-gray-600">Size: {item.size}</p>}
-                    <p className="text-sm font-bold text-blue-900 mt-1">Rp {item.price.toLocaleString("id-ID")}</p>
+                    {/* <p className="text-sm font-bold text-blue-900 mt-1">Rp {item.price.toLocaleString("id-ID")}</p> */}
 
                     {/* Quantity Controls */}
                     <div className="flex items-center mt-2">

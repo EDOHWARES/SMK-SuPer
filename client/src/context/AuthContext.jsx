@@ -8,6 +8,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  console.log("User details: ", user)
+
   const api_url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
