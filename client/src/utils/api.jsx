@@ -22,7 +22,7 @@
 
 import axios from "axios";
 
-const CMS_API_BASE = "http://localhost:1337/api";
+const CMS_API_BASE = "https://smk-cms.onrender.com/api";
 
 export const fetchHomepage = async () => {
   try {
