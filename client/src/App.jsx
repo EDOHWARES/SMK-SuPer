@@ -41,6 +41,7 @@ import Checkout from "./pages/SchoolStore/Checkout";
 import CartProvider from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import SchoolSongComponent from "./pages/About/SchoolSong/SchoolSong";
+import AlumniPage from "./pages/About/Alumi/Alumi";
 
 function App() {
   const [homeData, setHomeData] = useState(null);
@@ -142,6 +143,10 @@ function App() {
           key: "Room Booking",
           path: "/committee/room-booking-system",
         },
+        {
+          key: "Alumni",
+          path: "/committee/alumni",
+        }
       ],
     },
     { key: "Achievements", path: "/achievements" },
@@ -316,6 +321,7 @@ function App() {
             />
             <Route path="/committee/pta-payments" element={<PtaPayment />} />
             <Route path="/committee/signupaguru" element={<SignIn />} />
+            <Route path="/committee/alumni" element={<AlumniPage />} />
 
             {/* Contact Us SubNavs */}
             <Route
