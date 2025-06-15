@@ -40,6 +40,8 @@ import { fetchHomepage, fetchLatestAnnouncementPage } from "./utils/api";
 import Checkout from "./pages/SchoolStore/Checkout";
 import CartProvider from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
+import SchoolSongComponent from "./pages/About/SchoolSong/SchoolSong";
+
 function App() {
   const [homeData, setHomeData] = useState(null);
   const [latestAnnouncementData, setLatestAnnouncementData] = useState(null);
@@ -242,7 +244,7 @@ function App() {
             />
             <Route
               path="/about-us/school-song"
-              element={<div className="mt-30 ml-4">School Song Page</div>}
+              element={<SchoolSongComponent />}
             />
             <Route
               path="/about-us/vision&mission"
