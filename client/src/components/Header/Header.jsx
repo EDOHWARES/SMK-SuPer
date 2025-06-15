@@ -70,7 +70,7 @@ export const Header = ({ navItems }) => {
       {/* Mobile Navigation Menu */}
       {isOpen && (
         <div className="lg:hidden bg-blue-800">
-          <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="px-2 pt-2 pb-3 space-y-1 max-h-screen overflow-y-scroll">
             {navItems.map((item) => (
               <div key={item.key}>
                 <a 

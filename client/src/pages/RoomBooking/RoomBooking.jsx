@@ -27,7 +27,7 @@ export default function RoomBookingSystem() {
 
   // Check for token and redirect if missing
   useEffect(() => {
-    const token = localStorage.getItem("userToken");
+    const token = localStorage.getItem("token");
     if (!token) {
       navigate("/signup"); // Redirect to signup page if no token is found
     } else {
@@ -39,7 +39,7 @@ export default function RoomBookingSystem() {
     try {
       setLoadingFetchRooms(true);
       const api_url = import.meta.env.VITE_API_URL;
-      const token = localStorage.getItem("userToken");
+      const token = localStorage.getItem("token");
 
       const response = await axios.get(`${api_url}/rooms`, {
         headers: {
@@ -61,7 +61,7 @@ export default function RoomBookingSystem() {
     try {
       setLoadingBookings(true); // Start loading
       const api_url = import.meta.env.VITE_API_URL;
-      const token = localStorage.getItem("userToken");
+      const token = localStorage.getItem("token");
 
       const response = await axios.get(`${api_url}/bookings/my-bookings`, {
         headers: {
@@ -134,7 +134,7 @@ export default function RoomBookingSystem() {
 
     try {
       const api_url = import.meta.env.VITE_API_URL;
-      const token = localStorage.getItem("userToken");
+      const token = localStorage.getItem("token");
       setLoading(true);
 
       // Send the booking data to the backend
