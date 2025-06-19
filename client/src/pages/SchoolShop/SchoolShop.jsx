@@ -7,7 +7,7 @@ import CartSidebar from "../../components/Store/CartSidebar";
 import SearchBar from "../../components/Store/SearchBar";
 import { AuthContext } from "../../context/AuthContext";
 
-const SchoolStore = () => {
+const SchoolShop = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -311,4 +311,4 @@ const SchoolStore = () => {
   );
 };
 
-export default SchoolStore;
+export default SchoolShop;

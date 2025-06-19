@@ -29,7 +29,7 @@ import SchoolHighlights from "./pages/News/SchoolHighlights/SchoolHighlights";
 import ProgramDocumentation from "./pages/News/ProgramDoc/ProgramDoc";
 import OrganizationalChart from "./pages/About/SchoolOrgChart/SchoolOrgChart";
 import NationalEducationPhilosophy from "./pages/About/NationalEduPhi/NationalEduPhi";
-import SchoolStore from "./pages/SchoolStore/SchoolStore";
+import SchoolShop from "./pages/SchoolShop/SchoolShop";
 import PrincipalPage from "./pages/Administration/Principal/Principal";
 import SchoolManagementPage from "./pages/Administration/SchoolManagement/SchoolManagement";
 import StudentAffairsPage from "./pages/Administration/StudentAffairs/StudentAffairs";
@@ -37,7 +37,7 @@ import CoCurriculumPage from "./pages/Administration/Co-CurriculumManagement/Co-
 import CurriculumManagementPage from "./pages/CurriculumManagement/CurriculumManagement";
 import SEIPManagement from "./pages/SpecialEduIntegration/SpecialEduIntegration";
 import { fetchHomepage, fetchLatestAnnouncementPage } from "./utils/api";
-import Checkout from "./pages/SchoolStore/Checkout";
+import Checkout from "./pages/SchoolShop/Checkout";
 import CartProvider from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import SchoolSongComponent from "./pages/About/SchoolSong/SchoolSong";
@@ -146,25 +146,13 @@ function App() {
         {
           key: "Alumni",
           path: "/committee/alumni",
-        }
+        },
       ],
     },
     { key: "Achievements", path: "/achievements" },
     {
       key: "Contact Us",
       path: "/contact-us/school-location",
-      subNavs: [
-        { key: "School Location", path: "/contact-us/school-location" },
-        {
-          key: "Office Operating Hours",
-          path: "/contact-us/office-operating-hours",
-        },
-        {
-          key: "Official Email Address",
-          path: "/contact-us/official-email-address",
-        },
-        { key: "Phone & Fax Number", path: "/contact-us/phone&fax-number" },
-      ],
     },
   ];
   return (
@@ -180,7 +168,7 @@ function App() {
               path="/committee/room-booking-system"
               element={<RoomBookingSystem />}
             />
-            <Route path="/school-store" element={<SchoolStore />} />
+            <Route path="/school-shop" element={<SchoolShop />} />
             <Route path="/checkout" element={<Checkout />} />
 
             {/* Main Navigation Routes */}
@@ -327,24 +315,6 @@ function App() {
             <Route
               path="/contact-us/school-location"
               element={<MapsAndDirections />}
-            />
-            <Route
-              path="/contact-us/office-operating-hours"
-              element={
-                <div className="mt-30 ml-4">Office Operating Hours Page</div>
-              }
-            />
-            <Route
-              path="/contact-us/official-email-address"
-              element={
-                <div className="mt-30 ml-4">Official Email Address Page</div>
-              }
-            />
-            <Route
-              path="/contact-us/phone&fax-number"
-              element={
-                <div className="mt-30 ml-4">Phone & Fax Number Page</div>
-              }
             />
 
             <Route path="/signin" element={<SignIn />} />
