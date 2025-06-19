@@ -436,16 +436,8 @@ function Sidebar({ currentView, onViewChange }) {
 
   return (
     <div className="bg-slate-800 text-white w-64 min-h-screen flex flex-col">
-      <div className="p-6">
-        <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <ShoppingBag size={20} />
-          </div>
-          <span className="text-lg font-semibold">Admin</span>
-        </div>
-      </div>
 
-      <nav className="flex-1 px-4">
+      <nav className="flex-1 px-4 mt-4">
         {menuItems.map((item) => {
           const Icon = item.icon;
           return (
@@ -565,10 +557,7 @@ function SchoolShopAdmin() {
               </h1>
               <p className="text-gray-600 mt-1">Welcome, Admin</p>
             </div>
-            <div className="flex items-center space-x-3">
-              <span className="text-sm text-gray-600">Account</span>
-              <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-            </div>
+            
           </div>
         </header>
 

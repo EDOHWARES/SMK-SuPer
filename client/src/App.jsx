@@ -42,6 +42,7 @@ import CartProvider from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import SchoolSongComponent from "./pages/About/SchoolSong/SchoolSong";
 import AlumniPage from "./pages/About/Alumi/Alumi";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   const [homeData, setHomeData] = useState(null);
@@ -321,23 +322,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
 
             {/* Fallback Route */}
-            <Route
-              path="*"
-              element={
-                <div>
-                  <Hero />
-                  <MarqueeText />
-                  <main className="flex-grow">
-                    <ExtracurricularActivities />
-                    <SchoolStats />
-                    <SocialFeeds />
-                    <AcademicPrograms />
-                    <Testimonials />
-                  </main>
-                  <Footer />
-                </div>
-              }
-            />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </section>
       </CartProvider>
