@@ -483,7 +483,7 @@ function TopTabNavigation({ currentView, onViewChange }) {
             onClick={() => onViewChange(item.id)}
             className={`text-lg font-medium px-4 py-2 rounded-md transition-colors ${
               currentView === item.id
-                ? "bg-blue-600 text-white"
+                ? "bg-gray-600 text-white"
                 : "text-gray-600 hover:bg-gray-100 hover:text-gray-800"
             }`}
           >
@@ -584,7 +584,6 @@ function SchoolShopAdmin() {
               <h1 className="text-2xl font-semibold text-gray-900">
                 {currentView === "products" ? "All Products" : "Orders"}
               </h1>
-              <p className="text-gray-600 mt-1">Welcome, Admin</p>
             </div>
           </div>
         </header>

@@ -13,7 +13,7 @@ const SchoolShop = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(true);
   const [cart, setCart] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -181,7 +181,7 @@ const SchoolShop = () => {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-8 md:mb-0 md:w-1/2">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                School Store{" "}
+                School Shop{" "}
                 <span className="text-yellow-400">(Koperasi Sekolah)</span>
               </h1>
               <p className="text-lg md:text-xl mb-6 text-blue-100">
@@ -290,7 +290,7 @@ const SchoolShop = () => {
                   <ProductCard
                     key={product._id}
                     product={product}
-                    addToCart={onAddToCart}
+                    onAddToCart={onAddToCart}
                   />
                 ))}
               </div>
