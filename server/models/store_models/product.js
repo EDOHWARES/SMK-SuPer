@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema(
     category: {
       type: String,
       required: [true, "Category is required"],
-      enum: ["Uniforms", "Books", "Supplies", "Accessories"],
+      enum: ["Uniforms", "Books", "Supplies", "Accessories", "Others"],
     },
     price: {
       type: Number,
@@ -68,33 +68,33 @@ const productSchema = new mongoose.Schema(
       default: 0,
       min: 0,
     },
+
+    // ✅ Added sku field
+    sku: {
+      type: String,
+      unique: true,
+      sparse: true, // prevents error on multiple nulls
+    },
   },
   {
     timestamps: true,
-  },
-)
-
-// Generate SKU before saving
-productSchema.pre("save", function (next) {
-  if (!this.sku) {
-    const categoryPrefix = this.category.substring(0, 3).toUpperCase()
-    const timestamp = Date.now().toString().slice(-6)
-    this.sku = `${categoryPrefix}-${timestamp}`
   }
-  next()
-})
+);
 
-// Index for search functionality
-productSchema.index({
-  name: "text",
-  description: "text",
-  category: "text",
-})
+// ✅ Generate SKU before saving
+productSchema.pre("save", function (next) {
+  if (!this.sku && this.category) {
+    const categoryPrefix = this.category.substring(0, 3).toUpperCase();
+    const timestamp = Date.now().toString().slice(-6);
+    this.sku = `${categoryPrefix}-${timestamp}`;
+  }
+  next();
+});
 
-// Index for filtering
-productSchema.index({ category: 1, isActive: 1 })
-productSchema.index({ featured: 1, isActive: 1 })
-productSchema.index({ stock: 1 })
+// Indexes for search and filters
+productSchema.index({ name: "text", description: "text", category: "text" });
+productSchema.index({ category: 1, isActive: 1 });
+productSchema.index({ featured: 1, isActive: 1 });
+productSchema.index({ stock: 1 });
 
-export default mongoose.model("Product", productSchema)
-
+export default mongoose.model("Product", productSchema);
