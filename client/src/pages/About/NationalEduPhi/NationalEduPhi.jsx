@@ -1,81 +1,50 @@
-import React from 'react';
-import { BookOpen, Users, Lightbulb, Target, Award, Globe } from 'lucide-react';
+import React from "react";
+import { BookOpen, Users, Lightbulb, Target, Award, Globe } from "lucide-react";
 
 const NationalEducationPhilosophy = () => {
-  // Demo data - easily replaceable with database fetch
   const philosophyData = {
     title: "National Education Philosophy",
     subtitle: "Shaping Tomorrow's Leaders Through Excellence in Education",
     mainPhilosophy: {
-      text: "Education in Malaysia is an on-going effort towards further developing the potential of individuals in a holistic and integrated manner, so as to produce individuals who are intellectually, spiritually, emotionally and physically balanced and harmonious, based on a firm belief in and devotion to God.",
-      vision: "To develop Malaysia as an excellent centre for educational excellence and a regional hub of educational excellence.",
-      mission: "To ensure equitable access to quality education that meets the highest standards of relevance and quality."
+      text: "Education in Malaysia is a continuous effort towards further developing the potential of individuals comprehensively and integratively to create balanced and harmonious individuals intellectually, spiritually, emotionally, and physically based on belief and obedience to God. This effort aims to produce knowledgeable, skilled, virtuous, responsible Malaysians who are capable of achieving personal well-being and contributing to the harmony and prosperity of society and the nation.",
+      vision: "Quality Education Well-Groomed Individuals A Prosperous Nation",
+      mission:
+        "To develop a world-class quality education system that unlocks the full potential of individuals and fulfills the aspirations of Malaysia.",
+      goals: [
+        "To cultivate a united and loyal Malaysian nation.",
+        "To nurture individuals who are faithful, morally upright, knowledgeable, competent, and well-balanced.",
+        "To develop human capital for the nation’s advancement.",
+        "To provide educational opportunities for all Malaysian citizens.",
+      ],
+      publicServiceCore: [
+        "Committed to Enhancing Service Excellence",
+        "Performing Duties with Full Accountability",
+        "Striving to Eliminate Self-Centered Attitudes",
+        "Delivering Service with Goodwill and Compassion",
+        "Working to Advance Public Mindset and National Progress",
+        "Collaborating to Eradicate National Vulnerabilities and Threats",
+        "Upholding religious principles with convictions",
+      ],
     },
-    coreValues: [
-      {
-        icon: BookOpen,
-        title: "Academic Excellence",
-        description: "Pursuing the highest standards of learning and intellectual development across all disciplines."
-      },
-      {
-        icon: Users,
-        title: "Character Development",
-        description: "Building strong moral values, ethics, and leadership qualities in every student."
-      },
-      {
-        icon: Globe,
-        title: "Global Citizenship",
-        description: "Preparing students to be responsible global citizens who contribute to society."
-      },
-      {
-        icon: Lightbulb,
-        title: "Innovation & Creativity",
-        description: "Fostering creative thinking and innovative problem-solving capabilities."
-      },
-      {
-        icon: Target,
-        title: "Goal-Oriented Learning",
-        description: "Setting clear objectives and measurable outcomes for educational success."
-      },
-      {
-        icon: Award,
-        title: "Excellence Recognition",
-        description: "Celebrating achievements and recognizing outstanding contributions to education."
-      }
-    ],
-    keyPrinciples: [
-      {
-        title: "Holistic Development",
-        content: "We believe in nurturing the complete individual - mind, body, and spirit - to create well-rounded citizens capable of contributing meaningfully to society."
-      },
-      {
-        title: "Inclusive Education",
-        content: "Our philosophy embraces diversity and ensures that quality education is accessible to all, regardless of background, ability, or circumstances."
-      },
-      {
-        title: "Lifelong Learning",
-        content: "We instill a passion for continuous learning that extends beyond formal education into all aspects of life and career development."
-      },
-      {
-        title: "Cultural Heritage",
-        content: "While embracing global perspectives, we remain rooted in our cultural values and traditions, preserving our identity for future generations."
-      }
-    ]
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              {philosophyData.title}
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-              {philosophyData.subtitle}
-            </p>
+      {/* Header Section */}
+      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-8 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center space-x-4 mb-4">
+            <div className="h-1 w-12 bg-yellow-400 rounded"></div>
+            <span className="text-yellow-400 font-medium tracking-wide">
+              ABOUT-US
+            </span>
           </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">
+            National Education Philosophy
+          </h1>
+          <p className="text-blue-100 text-lg">
+            Shaping Tomorrow's Leaders Through Excellence in Education
+          </p>
         </div>
       </div>
 
@@ -84,7 +53,7 @@ const NationalEducationPhilosophy = () => {
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Our Educational Foundation
+              National Education Philosophy
             </h2>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-5xl mx-auto">
               {philosophyData.mainPhilosophy.text}
@@ -93,13 +62,17 @@ const NationalEducationPhilosophy = () => {
 
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             <div className="bg-blue-50 rounded-xl p-6">
-              <h3 className="text-2xl font-semibold text-blue-900 mb-4">Our Vision</h3>
+              <h3 className="text-2xl font-semibold text-blue-900 mb-4">
+                Our Vision
+              </h3>
               <p className="text-gray-700 leading-relaxed">
                 {philosophyData.mainPhilosophy.vision}
               </p>
             </div>
             <div className="bg-indigo-50 rounded-xl p-6">
-              <h3 className="text-2xl font-semibold text-indigo-900 mb-4">Our Mission</h3>
+              <h3 className="text-2xl font-semibold text-indigo-900 mb-4">
+                Our Mission
+              </h3>
               <p className="text-gray-700 leading-relaxed">
                 {philosophyData.mainPhilosophy.mission}
               </p>
@@ -107,59 +80,52 @@ const NationalEducationPhilosophy = () => {
           </div>
         </div>
 
-        {/* Core Values Section */}
+        {/* Goals Section */}
         <div className="mb-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Core Values
+              Goals
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              The fundamental principles that guide our educational approach and shape our learning environment.
+              The objectives that guide our educational philosophy and national
+              aspirations.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {philosophyData.coreValues.map((value, index) => {
-              const IconComponent = value.icon;
-              return (
-                <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6">
-                  <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
-                    <IconComponent className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
-              );
-            })}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+            {philosophyData.mainPhilosophy.goals.map((goal, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6"
+              >
+                <p className="text-gray-700 leading-relaxed">{goal}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Key Principles Section */}
+        {/* Core of Public Service Section */}
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Key Principles
+              Core of Public Service
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              The guiding principles that form the backbone of our educational philosophy and institutional values.
+              The fundamental principles that guide public service in Malaysia.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {philosophyData.keyPrinciples.map((principle, index) => (
-              <div key={index} className="border-l-4 border-blue-500 pl-6 py-4">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {principle.title}
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  {principle.content}
-                </p>
-              </div>
-            ))}
+            {philosophyData.mainPhilosophy.publicServiceCore.map(
+              (core, index) => (
+                <div
+                  key={index}
+                  className="border-l-4 border-blue-500 pl-6 py-4"
+                >
+                  <p className="text-gray-700 leading-relaxed">{core}</p>
+                </div>
+              )
+            )}
           </div>
         </div>
 
@@ -169,7 +135,8 @@ const NationalEducationPhilosophy = () => {
             Join Our Educational Journey
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Discover how our national education philosophy shapes the learning experience and prepares students for success in the 21st century.
+            Discover how our national education philosophy shapes the learning
+            experience and prepares students for success in the 21st century.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg transition-colors duration-200">

@@ -1,5 +1,27 @@
-import React from 'react';
-import { Users, Mail, Phone, MapPin, Award, Calendar, ChevronDown, ChevronRight, Search, Filter, Grid, List, User, BookOpen, Briefcase, GraduationCap, Heart, Shield, Building } from 'lucide-react';
+import React from "react";
+import {
+  Users,
+  Mail,
+  Phone,
+  MapPin,
+  Award,
+  Calendar,
+  ChevronDown,
+  ChevronRight,
+  Search,
+  Filter,
+  Grid,
+  List,
+  User,
+  BookOpen,
+  Briefcase,
+  GraduationCap,
+  Heart,
+  Shield,
+  Building,
+} from "lucide-react";
+
+import organizational_chart_img from "../../../assets/images/about/org-chart.jpeg";
 
 const OrganizationalChart = () => {
   // Demo data - easily replaceable with API/database calls
@@ -17,11 +39,20 @@ const OrganizationalChart = () => {
           email: "s.johnson@school.edu",
           phone: "(555) 123-4567",
           office: "Main Office 101",
-          image: "https://images.unsplash.com/photo-1494790108755-2616c6106ae1?w=150&h=150&fit=crop&crop=face",
+          image:
+            "https://images.unsplash.com/photo-1494790108755-2616c6106ae1?w=150&h=150&fit=crop&crop=face",
           bio: "Experienced educator with 15+ years in school leadership, focusing on innovative teaching methods and student success.",
-          qualifications: ["Ed.D. Educational Leadership", "M.Ed. Curriculum & Instruction", "B.A. Elementary Education"],
+          qualifications: [
+            "Ed.D. Educational Leadership",
+            "M.Ed. Curriculum & Instruction",
+            "B.A. Elementary Education",
+          ],
           yearsAtSchool: 5,
-          specialties: ["Educational Leadership", "Curriculum Development", "Staff Development"]
+          specialties: [
+            "Educational Leadership",
+            "Curriculum Development",
+            "Staff Development",
+          ],
         },
         {
           id: 2,
@@ -31,11 +62,19 @@ const OrganizationalChart = () => {
           email: "d.chen@school.edu",
           phone: "(555) 123-4568",
           office: "Main Office 102",
-          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+          image:
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
           bio: "Former mathematics teacher turned administrator, passionate about student discipline and academic excellence.",
-          qualifications: ["M.Ed. Educational Administration", "B.S. Mathematics Education"],
+          qualifications: [
+            "M.Ed. Educational Administration",
+            "B.S. Mathematics Education",
+          ],
           yearsAtSchool: 3,
-          specialties: ["Student Affairs", "Academic Standards", "Mathematics Education"]
+          specialties: [
+            "Student Affairs",
+            "Academic Standards",
+            "Mathematics Education",
+          ],
         },
         {
           id: 3,
@@ -45,13 +84,21 @@ const OrganizationalChart = () => {
           email: "l.rodriguez@school.edu",
           phone: "(555) 123-4569",
           office: "Main Office 103",
-          image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+          image:
+            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
           bio: "Dedicated to creating inclusive learning environments and supporting teacher professional development.",
-          qualifications: ["M.A. Educational Leadership", "B.A. English Literature"],
+          qualifications: [
+            "M.A. Educational Leadership",
+            "B.A. English Literature",
+          ],
           yearsAtSchool: 2,
-          specialties: ["Inclusive Education", "Teacher Development", "Community Relations"]
-        }
-      ]
+          specialties: [
+            "Inclusive Education",
+            "Teacher Development",
+            "Community Relations",
+          ],
+        },
+      ],
     },
     academics: {
       title: "Academic Departments",
@@ -66,11 +113,20 @@ const OrganizationalChart = () => {
           email: "m.thompson@school.edu",
           phone: "(555) 123-4570",
           office: "Academic Wing 201",
-          image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+          image:
+            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
           bio: "Curriculum specialist with expertise in STEM education and innovative teaching methodologies.",
-          qualifications: ["Ph.D. Curriculum & Instruction", "M.S. Biology", "B.S. Chemistry"],
+          qualifications: [
+            "Ph.D. Curriculum & Instruction",
+            "M.S. Biology",
+            "B.S. Chemistry",
+          ],
           yearsAtSchool: 8,
-          specialties: ["STEM Education", "Curriculum Design", "Assessment Strategies"]
+          specialties: [
+            "STEM Education",
+            "Curriculum Design",
+            "Assessment Strategies",
+          ],
         },
         {
           id: 5,
@@ -80,11 +136,15 @@ const OrganizationalChart = () => {
           email: "j.park@school.edu",
           phone: "(555) 123-4571",
           office: "Math Wing 301",
-          image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+          image:
+            "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
           bio: "Mathematics educator passionate about making complex concepts accessible to all students.",
-          qualifications: ["M.Ed. Mathematics Education", "B.S. Applied Mathematics"],
+          qualifications: [
+            "M.Ed. Mathematics Education",
+            "B.S. Applied Mathematics",
+          ],
           yearsAtSchool: 6,
-          specialties: ["Advanced Mathematics", "AP Calculus", "Math Olympiad"]
+          specialties: ["Advanced Mathematics", "AP Calculus", "Math Olympiad"],
         },
         {
           id: 6,
@@ -94,13 +154,18 @@ const OrganizationalChart = () => {
           email: "r.williams@school.edu",
           phone: "(555) 123-4572",
           office: "Science Wing 401",
-          image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face",
+          image:
+            "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face",
           bio: "Former research scientist bringing real-world laboratory experience to the classroom.",
           qualifications: ["Ph.D. Chemistry", "M.S. Environmental Science"],
           yearsAtSchool: 4,
-          specialties: ["Chemistry", "Environmental Science", "Research Methods"]
-        }
-      ]
+          specialties: [
+            "Chemistry",
+            "Environmental Science",
+            "Research Methods",
+          ],
+        },
+      ],
     },
     studentServices: {
       title: "Student Services",
@@ -115,11 +180,20 @@ const OrganizationalChart = () => {
           email: "a.foster@school.edu",
           phone: "(555) 123-4573",
           office: "Student Center 501",
-          image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=150&h=150&fit=crop&crop=face",
+          image:
+            "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=150&h=150&fit=crop&crop=face",
           bio: "Licensed counselor dedicated to supporting student mental health and academic success.",
-          qualifications: ["Ph.D. School Psychology", "M.A. Counseling Psychology", "B.A. Psychology"],
+          qualifications: [
+            "Ph.D. School Psychology",
+            "M.A. Counseling Psychology",
+            "B.A. Psychology",
+          ],
           yearsAtSchool: 7,
-          specialties: ["Student Counseling", "Crisis Intervention", "College Preparation"]
+          specialties: [
+            "Student Counseling",
+            "Crisis Intervention",
+            "College Preparation",
+          ],
         },
         {
           id: 8,
@@ -129,13 +203,18 @@ const OrganizationalChart = () => {
           email: "r.green@school.edu",
           phone: "(555) 123-4574",
           office: "Student Center 502",
-          image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
+          image:
+            "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
           bio: "Passionate about helping students navigate academic and personal challenges.",
           qualifications: ["M.Ed. School Counseling", "B.A. Social Work"],
           yearsAtSchool: 3,
-          specialties: ["Academic Planning", "Career Guidance", "Social-Emotional Learning"]
-        }
-      ]
+          specialties: [
+            "Academic Planning",
+            "Career Guidance",
+            "Social-Emotional Learning",
+          ],
+        },
+      ],
     },
     operations: {
       title: "Operations & Support",
@@ -150,11 +229,19 @@ const OrganizationalChart = () => {
           email: "j.miller@school.edu",
           phone: "(555) 123-4575",
           office: "Administrative Building 601",
-          image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
+          image:
+            "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
           bio: "Facilities management expert ensuring safe and efficient school operations.",
-          qualifications: ["M.B.A. Operations Management", "B.S. Facilities Management"],
+          qualifications: [
+            "M.B.A. Operations Management",
+            "B.S. Facilities Management",
+          ],
           yearsAtSchool: 5,
-          specialties: ["Facility Management", "Safety Protocols", "Resource Planning"]
+          specialties: [
+            "Facility Management",
+            "Safety Protocols",
+            "Resource Planning",
+          ],
         },
         {
           id: 10,
@@ -164,30 +251,45 @@ const OrganizationalChart = () => {
           email: "p.davis@school.edu",
           phone: "(555) 123-4576",
           office: "Technology Center 701",
-          image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+          image:
+            "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
           bio: "Technology leader implementing innovative solutions for modern education.",
-          qualifications: ["M.S. Information Technology", "B.S. Computer Science"],
+          qualifications: [
+            "M.S. Information Technology",
+            "B.S. Computer Science",
+          ],
           yearsAtSchool: 4,
-          specialties: ["Educational Technology", "Network Security", "Digital Learning"]
-        }
-      ]
-    }
+          specialties: [
+            "Educational Technology",
+            "Network Security",
+            "Digital Learning",
+          ],
+        },
+      ],
+    },
   };
 
   const [selectedDepartment, setSelectedDepartment] = React.useState("all");
   const [searchTerm, setSearchTerm] = React.useState("");
   const [viewMode, setViewMode] = React.useState("grid");
   const [selectedMember, setSelectedMember] = React.useState(null);
-  const [expandedDepartments, setExpandedDepartments] = React.useState(new Set(['administration']));
+  const [expandedDepartments, setExpandedDepartments] = React.useState(
+    new Set(["administration"])
+  );
 
   // Flatten all members for filtering
-  const allMembers = Object.values(organizationData).flatMap(dept => dept.members);
+  const allMembers = Object.values(organizationData).flatMap(
+    (dept) => dept.members
+  );
 
-  const filteredMembers = allMembers.filter(member => {
-    const matchesDepartment = selectedDepartment === "all" || member.department.toLowerCase() === selectedDepartment.toLowerCase();
-    const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         member.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         member.department.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredMembers = allMembers.filter((member) => {
+    const matchesDepartment =
+      selectedDepartment === "all" ||
+      member.department.toLowerCase() === selectedDepartment.toLowerCase();
+    const matchesSearch =
+      member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      member.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      member.department.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesDepartment && matchesSearch;
   });
 
@@ -202,34 +304,48 @@ const OrganizationalChart = () => {
   };
 
   const MemberCard = ({ member, isCompact = false }) => (
-    <div 
+    <div
       className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer ${
-        isCompact ? 'p-4' : 'p-6'
+        isCompact ? "p-4" : "p-6"
       }`}
       onClick={() => setSelectedMember(member)}
     >
       <div className="flex items-center space-x-4">
         <div className="relative">
-          <img 
-            src={member.image} 
+          <img
+            src={member.image}
             alt={member.name}
-            className={`rounded-full object-cover ${isCompact ? 'w-12 h-12' : 'w-16 h-16'}`}
+            className={`rounded-full object-cover ${
+              isCompact ? "w-12 h-12" : "w-16 h-16"
+            }`}
           />
           <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white"></div>
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className={`font-bold text-gray-900 truncate ${isCompact ? 'text-sm' : 'text-lg'}`}>
+          <h3
+            className={`font-bold text-gray-900 truncate ${
+              isCompact ? "text-sm" : "text-lg"
+            }`}
+          >
             {member.name}
           </h3>
-          <p className={`text-gray-600 truncate ${isCompact ? 'text-xs' : 'text-sm'}`}>
+          <p
+            className={`text-gray-600 truncate ${
+              isCompact ? "text-xs" : "text-sm"
+            }`}
+          >
             {member.position}
           </p>
-          <p className={`text-gray-500 truncate ${isCompact ? 'text-xs' : 'text-sm'}`}>
+          <p
+            className={`text-gray-500 truncate ${
+              isCompact ? "text-xs" : "text-sm"
+            }`}
+          >
             {member.department}
           </p>
         </div>
       </div>
-      
+
       {!isCompact && (
         <div className="mt-4 space-y-2">
           <div className="flex items-center text-gray-600 text-sm">
@@ -255,18 +371,20 @@ const OrganizationalChart = () => {
         <div className="p-8">
           <div className="flex justify-between items-start mb-6">
             <div className="flex items-center space-x-4">
-              <img 
-                src={member.image} 
+              <img
+                src={member.image}
                 alt={member.name}
                 className="w-20 h-20 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">{member.name}</h2>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  {member.name}
+                </h2>
                 <p className="text-xl text-gray-600">{member.position}</p>
                 <p className="text-lg text-gray-500">{member.department}</p>
               </div>
             </div>
-            <button 
+            <button
               onClick={onClose}
               className="text-gray-400 hover:text-gray-600 text-2xl"
             >
@@ -276,7 +394,9 @@ const OrganizationalChart = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Contact Information</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-4">
+                Contact Information
+              </h3>
               <div className="space-y-3">
                 <div className="flex items-center text-gray-600">
                   <Mail className="w-5 h-5 mr-3" />
@@ -298,7 +418,9 @@ const OrganizationalChart = () => {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Qualifications</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-4">
+                Qualifications
+              </h3>
               <ul className="space-y-2">
                 {member.qualifications.map((qual, index) => (
                   <li key={index} className="flex items-start">
@@ -316,10 +438,15 @@ const OrganizationalChart = () => {
           </div>
 
           <div className="mt-8">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Specialties</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-4">
+              Specialties
+            </h3>
             <div className="flex flex-wrap gap-2">
               {member.specialties.map((specialty, index) => (
-                <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                <span
+                  key={index}
+                  className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium"
+                >
                   {specialty}
                 </span>
               ))}
@@ -333,18 +460,49 @@ const OrganizationalChart = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       {/* Header Section */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center">
-            <div className="flex justify-center mb-4">
-              <div className="bg-blue-100 p-3 rounded-full">
-                <Users className="w-8 h-8 text-blue-600" />
+      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-8 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center space-x-4 mb-4">
+            <div className="h-1 w-12 bg-yellow-400 rounded"></div>
+            <span className="text-yellow-400 font-medium tracking-wide">
+              ABOUT-US
+            </span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">
+            School Organizational Chart
+          </h1>
+          <p className="text-blue-100 text-lg">
+            Meet our dedicated team of educators, administrators, and support
+            staff committed to student success
+          </p>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-2xl shadow-xl mt-10 max-w-7xl mx-auto overflow-hidden hover:shadow-2xl transition-all duration-300">
+        {/* Chart Header */}
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
+          <h3 className="text-2xl font-bold text-center">
+            CARTA ORGANISASI SMK SURIA PERDANA, BATU PAHAT
+          </h3>
+        </div>
+
+        {/* Chart Image */}
+        <div className="p-8">
+          <div className="relative bg-gray-50 rounded-xl overflow-hidden">
+            <img
+              src={organizational_chart_img}
+              alt="SMK Suria Perdana Organizational Chart"
+              className="w-full h-auto object-contain max-h-screen"
+            />
+
+            {/* Interactive Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
+              <div className="bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2">
+                <span className="text-gray-800 font-medium">
+                  Click to view full organizational structure
+                </span>
               </div>
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">School Organizational Chart</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Meet our dedicated team of educators, administrators, and support staff committed to student success
-            </p>
           </div>
         </div>
       </div>
@@ -387,18 +545,22 @@ const OrganizationalChart = () => {
             {/* View Mode Toggle */}
             <div className="flex bg-gray-100 rounded-xl p-1">
               <button
-                onClick={() => setViewMode('grid')}
+                onClick={() => setViewMode("grid")}
                 className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
-                  viewMode === 'grid' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600'
+                  viewMode === "grid"
+                    ? "bg-white text-blue-600 shadow-sm"
+                    : "text-gray-600"
                 }`}
               >
                 <Grid className="w-4 h-4 mr-2" />
                 Grid
               </button>
               <button
-                onClick={() => setViewMode('list')}
+                onClick={() => setViewMode("list")}
                 className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
-                  viewMode === 'list' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600'
+                  viewMode === "list"
+                    ? "bg-white text-blue-600 shadow-sm"
+                    : "text-gray-600"
                 }`}
               >
                 <List className="w-4 h-4 mr-2" />
@@ -413,17 +575,29 @@ const OrganizationalChart = () => {
           {Object.entries(organizationData).map(([deptKey, department]) => {
             const IconComponent = department.icon;
             const isExpanded = expandedDepartments.has(deptKey);
-            const deptMembers = department.members.filter(member => {
-              const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                   member.position.toLowerCase().includes(searchTerm.toLowerCase());
-              return selectedDepartment === "all" || member.department.toLowerCase() === selectedDepartment.toLowerCase() || matchesSearch;
+            const deptMembers = department.members.filter((member) => {
+              const matchesSearch =
+                member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                member.position
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase());
+              return (
+                selectedDepartment === "all" ||
+                member.department.toLowerCase() ===
+                  selectedDepartment.toLowerCase() ||
+                matchesSearch
+              );
             });
 
-            if (selectedDepartment !== "all" && !deptMembers.length) return null;
+            if (selectedDepartment !== "all" && !deptMembers.length)
+              return null;
 
             return (
-              <div key={deptKey} className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div 
+              <div
+                key={deptKey}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden"
+              >
+                <div
                   className={`${department.color} p-6 cursor-pointer`}
                   onClick={() => toggleDepartment(deptKey)}
                 >
@@ -431,8 +605,12 @@ const OrganizationalChart = () => {
                     <div className="flex items-center">
                       <IconComponent className="w-8 h-8 mr-4" />
                       <div>
-                        <h2 className="text-2xl font-bold">{department.title}</h2>
-                        <p className="text-blue-100">{deptMembers.length} members</p>
+                        <h2 className="text-2xl font-bold">
+                          {department.title}
+                        </h2>
+                        <p className="text-blue-100">
+                          {deptMembers.length} members
+                        </p>
                       </div>
                     </div>
                     {isExpanded ? (
@@ -445,16 +623,20 @@ const OrganizationalChart = () => {
 
                 {isExpanded && (
                   <div className="p-6">
-                    {viewMode === 'grid' ? (
+                    {viewMode === "grid" ? (
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {deptMembers.map(member => (
+                        {deptMembers.map((member) => (
                           <MemberCard key={member.id} member={member} />
                         ))}
                       </div>
                     ) : (
                       <div className="space-y-4">
-                        {deptMembers.map(member => (
-                          <MemberCard key={member.id} member={member} isCompact={true} />
+                        {deptMembers.map((member) => (
+                          <MemberCard
+                            key={member.id}
+                            member={member}
+                            isCompact={true}
+                          />
                         ))}
                       </div>
                     )}
@@ -471,7 +653,9 @@ const OrganizationalChart = () => {
             <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
               <Users className="w-6 h-6 text-blue-600" />
             </div>
-            <div className="text-2xl font-bold text-gray-900">{allMembers.length}</div>
+            <div className="text-2xl font-bold text-gray-900">
+              {allMembers.length}
+            </div>
             <div className="text-gray-600">Total Staff</div>
           </div>
           <div className="bg-white rounded-xl p-6 text-center shadow-lg">
@@ -500,9 +684,9 @@ const OrganizationalChart = () => {
 
       {/* Member Detail Modal */}
       {selectedMember && (
-        <MemberModal 
-          member={selectedMember} 
-          onClose={() => setSelectedMember(null)} 
+        <MemberModal
+          member={selectedMember}
+          onClose={() => setSelectedMember(null)}
         />
       )}
     </div>

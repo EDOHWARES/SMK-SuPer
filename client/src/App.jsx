@@ -43,6 +43,8 @@ import { AuthProvider } from "./context/AuthContext";
 import SchoolSongComponent from "./pages/About/SchoolSong/SchoolSong";
 import AlumniPage from "./pages/About/Alumi/Alumi";
 import NotFound from "./pages/NotFound/NotFound";
+import SchoolMomentsGallery from "./pages/News/Galeri-Moments/GaleriMoments";
+import SchoolIdentityPage from "./pages/About/SchoolIdentity/SchoolIdentity";
 
 function App() {
   const [homeData, setHomeData] = useState(null);
@@ -94,6 +96,7 @@ function App() {
       key: "News",
       path: "/news/school-highlights",
       subNavs: [
+        { key: "Galeri/Moment", path: "/news/galeri-moment" },
         { key: "School Highlights", path: "/news/school-highlights" },
         { key: "Program Documentation", path: "/news/program-documentation" },
       ],
@@ -234,7 +237,7 @@ function App() {
             />
             <Route
               path="/about-us/school-identity"
-              element={<div className="mt-30 ml-4">School Identity Page</div>}
+              element={<SchoolIdentityPage />}
             />
             <Route
               path="/about-us/school-song"
@@ -246,6 +249,10 @@ function App() {
             />
 
             {/* News SubNavs */}
+            <Route
+              path="/news/galeri-moment"
+              element={<SchoolMomentsGallery />}
+            />
             <Route
               path="/news/school-highlights"
               element={<SchoolHighlights />}
