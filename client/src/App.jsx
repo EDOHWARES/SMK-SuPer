@@ -45,6 +45,7 @@ import AlumniPage from "./pages/About/Alumi/Alumi";
 import NotFound from "./pages/NotFound/NotFound";
 import SchoolMomentsGallery from "./pages/News/Galeri-Moments/GaleriMoments";
 import SchoolIdentityPage from "./pages/About/SchoolIdentity/SchoolIdentity";
+import PTAPage from "./pages/Committee/ParentTeacherAss";
 
 function App() {
   const [homeData, setHomeData] = useState(null);
@@ -94,7 +95,7 @@ function App() {
     },
     {
       key: "News",
-      path: "/news/school-highlights",
+      path: "/news/galeri-moment",
       subNavs: [
         { key: "Galeri/Moment", path: "/news/galeri-moment" },
         { key: "School Highlights", path: "/news/school-highlights" },
@@ -129,6 +130,7 @@ function App() {
         },
       ],
     },
+    { key: "School Shop", path: "/school-shop" },
     {
       key: "Committee",
       path: "/committee/parent-teacher-association",
@@ -137,11 +139,6 @@ function App() {
           key: "Parent-Teacher Association (PTA)",
           path: "/committee/parent-teacher-association",
         },
-        {
-          key: "Parent and Community Involvement",
-          path: "/committee/parent&community-involvement",
-        },
-        { key: "Bonding & Networking", path: "/committee/bonding&networking" },
         { key: "PTA Payments", path: "/committee/pta-payments" },
         {
           key: "Room Booking",
@@ -295,25 +292,7 @@ function App() {
             {/* Committee SubNavs */}
             <Route
               path="/committee/parent-teacher-association"
-              element={
-                <div className="mt-30 ml-4">
-                  Parent-Teacher Association (PTA) Page
-                </div>
-              }
-            />
-            <Route
-              path="/committee/parent&community-involvement"
-              element={
-                <div className="mt-30 ml-4">
-                  Parent and Community Involvement Page
-                </div>
-              }
-            />
-            <Route
-              path="/committee/bonding&networking"
-              element={
-                <div className="mt-30 ml-4">Bonding & Networking Page</div>
-              }
+              element={<PTAPage />}
             />
             <Route path="/committee/pta-payments" element={<PtaPayment />} />
             <Route path="/committee/signupaguru" element={<SignIn />} />
