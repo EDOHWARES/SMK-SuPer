@@ -39,7 +39,7 @@ const generateReceiptPDF = ({
   doc.image(path.join(__dirname, "../assets/logo.png"), 50, 50, { width: 50 });
 
   // School name and details
-  doc.fontSize(18).font("Helvetica-Bold").text("SMK SURIA PERDANA", 110, 55);
+  doc.fontSize(18).font("Helvetica-Bold").text("PIBG SMK SURIA PERDANA", 110, 55);
 
   doc
     .fontSize(10)

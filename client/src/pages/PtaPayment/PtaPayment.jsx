@@ -6,6 +6,7 @@ const PtaPayment = () => {
     email: "",
     parentName: "",
     childName: "",
+    form: "",
     class: "",
     amount: "",
     date: "",
@@ -14,9 +15,43 @@ const PtaPayment = () => {
 
   const [loading, setLoading] = useState(false);
 
+  // Available classes based on form selection
+  const [availableClasses, setAvailableClasses] = useState([
+    "ELIT",
+    "MUSYTARI",
+    "UTARID",
+    "URANUS",
+    "ZUHRAH",
+    "ZUHAL",
+  ]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Update formData
     setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // Dynamically update available classes based on form selection
+    if (name === "form") {
+      if (["4", "5"].includes(value)) {
+        setAvailableClasses([
+          "MUSYTARI",
+          "UTARID",
+          "URANUS",
+          "ZUHRAH",
+          "ZUHAL",
+        ]); // Remove ELIT for Form 4–5
+      } else {
+        setAvailableClasses([
+          "ELIT",
+          "MUSYTARI",
+          "UTARID",
+          "URANUS",
+          "ZUHRAH",
+          "ZUHAL",
+        ]); // Allow ELIT for Form 1–3
+      }
+    }
   };
 
   const handleFileChange = (e) => {
@@ -30,6 +65,7 @@ const PtaPayment = () => {
       !formData.email ||
       !formData.parentName ||
       !formData.childName ||
+      !formData.form ||
       !formData.class ||
       !formData.amount ||
       !formData.date ||
@@ -63,6 +99,7 @@ const PtaPayment = () => {
         email: "",
         parentName: "",
         childName: "",
+        form: "",
         class: "",
         amount: "",
         date: "",
@@ -97,14 +134,6 @@ const PtaPayment = () => {
               <p className="font-medium mt-2 underline">Account Number:</p>
               <p>8601500374</p>
             </div>
-            {/* <div className="p-3 bg-gray-50 rounded-md">
-              <p className="font-medium underline">Bank Name:</p>
-              <p>Maybank</p>
-              <p className="font-medium mt-2 underline">Account Name:</p>
-              <p>Cooperation Store SMK Suria Perdana</p>
-              <p className="font-medium mt-2 underline">Account Number:</p>
-              <p>5515-8405-9750</p>
-            </div> */}
           </div>
 
           <h3 className="text-lg font-bold mb-4 text-center">
@@ -135,7 +164,7 @@ const PtaPayment = () => {
           >
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Email (to recieve notification)
+                Email (to receive notification)
               </label>
               <input
                 type="text"
@@ -176,16 +205,42 @@ const PtaPayment = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700">
+                Form
+              </label>
+              <select
+                name="form"
+                value={formData.form}
+                onChange={handleChange}
+                className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                required
+              >
+                <option value="">Select Form</option>
+                <option value="1">Form 1</option>
+                <option value="2">Form 2</option>
+                <option value="3">Form 3</option>
+                <option value="4">Form 4</option>
+                <option value="5">Form 5</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
                 Class
               </label>
-              <input
-                type="text"
+              <select
                 name="class"
                 value={formData.class}
                 onChange={handleChange}
                 className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
                 required
-              />
+              >
+                <option value="">Select Class</option>
+                {availableClasses.map((classOption) => (
+                  <option key={classOption} value={classOption}>
+                    {classOption}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
@@ -251,74 +306,3 @@ const PtaPayment = () => {
 };
 
 export default PtaPayment;
-
-// // BACKEND - paymentController.js
-// const Payment = require('../models/paymentModel');
-// const nodemailer = require('nodemailer');
-
-// const transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: process.env.EMAIL_USER,
-//     pass: process.env.EMAIL_PASS,
-//   },
-// });
-
-// exports.submitPayment = async (req, res) => {
-//   try {
-//     const { childName, class: childClass, amount, date } = req.body;
-//     const receipt = req.file?.path;
-
-//     const payment = await Payment.create({
-//       parentId: req.user.id,
-//       childName,
-//       class: childClass,
-//       amount,
-//       date,
-//       receiptUrl: receipt,
-//     });
-
-//     await transporter.sendMail({
-//       to: req.user.email,
-//       subject: 'Payment Confirmation',
-//       text: `Hi, your payment for ${childName} has been received and is under review.`,
-//     });
-
-//     res.status(201).json(payment);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
-// exports.updateStatus = async (req, res) => {
-//   try {
-//     const payment = await Payment.findByIdAndUpdate(req.params.id, { status: req.body.status }, { new: true });
-//     res.json(payment);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
-// exports.getReport = async (req, res) => {
-//   try {
-//     const payments = await Payment.find();
-//     const csv = payments.map(p => `${p.childName},${p.class},${p.amount},${p.status}`).join('\n');
-//     res.attachment('report.csv').send(csv);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
-// // BACKEND - paymentRoutes.js
-// const express = require('express');
-// const router = express.Router();
-// const paymentController = require('../controllers/paymentController');
-// const multer = require('multer');
-// const upload = multer({ dest: 'uploads/' });
-// const auth = require('../middleware/auth');
-
-// router.post('/', auth, upload.single('receipt'), paymentController.submitPayment);
-// router.patch('/:id', auth, paymentController.updateStatus);
-// router.get('/report', auth, paymentController.getReport);
-
-// module.exports = router;

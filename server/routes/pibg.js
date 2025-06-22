@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import pibg from "../models/pibg.js";
+import Pibg from "../models/pibg.js";
 import dotenv from "dotenv";
 import sendPaymentStatusMail from "../utils/mailer.js";
 
@@ -24,18 +24,19 @@ pibgRoutes.post("/", upload.single("receipt"), async (req, res) => {
       email,
       parentName,
       childName,
+      form,
       class: studentClass,
       amount,
       date,
     } = req.body;
     const receipt = req.file?.path;
 
-    // console.log(childName, studentClass, amount, date, receipt);
-
+    // Validate required fields
     if (
       !email ||
       !parentName ||
       !childName ||
+      !form ||
       !studentClass ||
       !amount ||
       !date ||
@@ -44,17 +45,28 @@ pibgRoutes.post("/", upload.single("receipt"), async (req, res) => {
       return res.status(400).json({ message: "All fields are required." });
     }
 
-    const payment = await pibg.create({
+    // Validate `form` and `class` values
+    const validForms = ["1", "2", "3", "4", "5"];
+    const validClasses = ["ELIT", "MUSYTARI", "UTARID", "URANUS", "ZUHRAH", "ZUHAL"];
+    if (!validForms.includes(form)) {
+      return res.status(400).json({ message: "Invalid form value." });
+    }
+    if (!validClasses.includes(studentClass)) {
+      return res.status(400).json({ message: "Invalid class value." });
+    }
+
+    const payment = await Pibg.create({
       email,
       parentName,
       childName,
+      form,
       class: studentClass,
       amount,
       date,
       receipt,
     });
 
-    res.json({ message: "Payment submitted", payment });
+    res.status(201).json({ message: "Payment submitted successfully", payment });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error submitting payment" });
@@ -67,9 +79,10 @@ pibgRoutes.post("/", upload.single("receipt"), async (req, res) => {
  */
 pibgRoutes.get("/", async (req, res) => {
   try {
-    const payments = await pibg.find().sort({ date: -1 });
-    res.json(payments);
+    const payments = await Pibg.find().sort({ date: -1 });
+    res.status(200).json(payments);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Error fetching payments" });
   }
 });
@@ -80,15 +93,15 @@ pibgRoutes.get("/", async (req, res) => {
  */
 pibgRoutes.patch("/:id", async (req, res) => {
   try {
-    const payment = await pibg.findById(req.params.id);
-    if (!payment) return res.status(404).json({ message: "Payment not found" });
+    const payment = await Pibg.findById(req.params.id);
+    if (!payment) {
+      return res.status(404).json({ message: "Payment not found" });
+    }
 
     payment.status = req.body.status || payment.status;
     await payment.save();
 
-    console.log(payment.email);
-
-    // Send email
+    // Send email notification
     if (payment.email) {
       try {
         await sendPaymentStatusMail({
@@ -104,8 +117,9 @@ pibgRoutes.patch("/:id", async (req, res) => {
       }
     }
 
-    res.json({ message: "Payment status updated", payment });
+    res.status(200).json({ message: "Payment status updated successfully", payment });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Error updating payment" });
   }
 });
@@ -116,11 +130,13 @@ pibgRoutes.patch("/:id", async (req, res) => {
  */
 pibgRoutes.get("/report", async (req, res) => {
   try {
-    const payments = await pibg.find();
+    const payments = await Pibg.find();
     const csv = [
-      ["Child Name", "Class", "Amount", "Date", "Status"],
+      ["Parent Name", "Child Name", "Form", "Class", "Amount", "Date", "Status"],
       ...payments.map((p) => [
+        p.parentName,
         p.childName,
+        p.form,
         p.class,
         p.amount,
         p.date.toISOString().split("T")[0],
@@ -130,13 +146,11 @@ pibgRoutes.get("/report", async (req, res) => {
       .map((row) => row.join(","))
       .join("\n");
 
-    res.setHeader(
-      "Content-Disposition",
-      "attachment; filename=payment_report.csv"
-    );
+    res.setHeader("Content-Disposition", "attachment; filename=payment_report.csv");
     res.setHeader("Content-Type", "text/csv");
     res.send(csv);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Failed to generate report" });
   }
 });

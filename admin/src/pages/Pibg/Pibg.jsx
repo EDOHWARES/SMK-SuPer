@@ -86,6 +86,7 @@ const Pibg = () => {
                 <th className="px-4 py-2 border">Parent Name</th>
                 <th className="px-4 py-2 border">Child Name</th>
                 <th className="px-4 py-2 border">Class</th>
+                <th className="px-4 py-2 border">Form</th>
                 <th className="px-4 py-2 border">Amount (MYR)</th>
                 <th className="px-4 py-2 border">Date</th>
                 <th className="px-4 py-2 border">Status</th>
@@ -106,6 +107,7 @@ const Pibg = () => {
                     {p.childName}
                   </td>
                   <td className="px-4 py-2 border text-center">{p.class}</td>
+                  <td className="px-4 py-2 border text-center">{p.form ? `Form ${p.form}` : "-"}</td>
                   <td className="px-4 py-2 border text-center">
                     <span className="font-bold mr-1">RM</span>
                     {p.amount}
