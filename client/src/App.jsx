@@ -46,6 +46,8 @@ import NotFound from "./pages/NotFound/NotFound";
 import SchoolMomentsGallery from "./pages/News/Galeri-Moments/GaleriMoments";
 import SchoolIdentityPage from "./pages/About/SchoolIdentity/SchoolIdentity";
 import PTAPage from "./pages/Committee/ParentTeacherAss";
+import ForgotPassword from "./pages/Auth/ForgotPassword";
+import ResetPassword from "./pages/Auth/ResetPassword";
 
 function App() {
   const [homeData, setHomeData] = useState(null);
@@ -306,6 +308,8 @@ function App() {
 
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
 
             {/* Fallback Route */}
             <Route path="*" element={<NotFound />} />
