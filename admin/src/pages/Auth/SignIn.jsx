@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { GraduationCap, Lock, Mail } from "lucide-react";
 import toast from "react-hot-toast";
+import axios from "axios";
+
+import logo from "../../assets/images/logo.png";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,28 +16,27 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     const { email, password } = formData;
-    console.log(formData);
 
     try {
-      // Use the API URL from environment vairables
+      // Use the API URL from environment variables
       const api_url = `${import.meta.env.VITE_API_URL}/auth/admin/login`;
 
-      // Make the API req to log in
-      const resp = await axios.post(api_url, { email, password });
+      // Make the API request to log in
+      const response = await axios.post(api_url, { email, password });
 
       // Handle successful login
-      const { token } = resp.data;
-      localStorage.setItem("adminToken", token); // save token
+      const { token } = response.data;
+      localStorage.setItem("adminToken", token); // Save token
       toast.success("Login successful");
-      setError(""); // clear previous errors
-      window.location.href = "/";
+      window.location.href = "/"; // Redirect to the dashboard
     } catch (error) {
       // Handle errors
       if (error.response && error.response.data && error.response.data.error) {
-        setError(error.response.data.error); // Display server error message
+        toast.error(error.response.data.error); // Display server error message
       } else {
-        setError("An unexpected error occurred. Please try again.");
+        toast.error("An unexpected error occurred. Please try again.");
       }
     } finally {
       setLoading(false);
@@ -43,57 +44,85 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-md">
-        <h2 className="text-2xl font-bold text-center mb-6">Admin Login</h2>
-
-        {error && (
-          <div className="bg-red-100 text-red-600 p-2 rounded mb-4 text-sm text-center">
-            {error}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100 px-4">
+      <div className="max-w-md w-full bg-white p-8 rounded-3xl shadow-xl border border-blue-100">
+        {/* School Logo and Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mb-4 shadow-lg">
+            <img src={logo} alt="logo" />
           </div>
-        )}
+          <h1 className="text-2xl font-bold text-blue-900 mb-1">Admin Portal</h1>
+          <p className="text-blue-600 text-sm">School Management System</p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
+            <label className="block text-sm font-semibold text-blue-900 mb-2">
+              Email Address
+            </label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-400" />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full pl-11 pr-4 py-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-3 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-blue-50/30"
+                placeholder="Enter your email"
+              />
+            </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
+            <label className="block text-sm font-semibold text-blue-900 mb-2">
+              Password
+            </label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-400" />
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="w-full pl-11 pr-4 py-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-3 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-blue-50/30"
+                placeholder="Enter your password"
+              />
+            </div>
           </div>
 
           <div className="flex items-center justify-between">
-            <label className="flex items-center text-sm">
-              <input type="checkbox" className="mr-2" /> Remember me
+            <label className="flex items-center text-sm text-blue-700">
+              <input
+                type="checkbox"
+                className="mr-2 w-4 h-4 text-blue-600 bg-blue-50 border-blue-300 rounded focus:ring-blue-500 focus:ring-2"
+              />
+              Remember me
             </label>
-            <a href="#" className="text-sm text-purple-600 hover:underline">
-              Forgot Password?
-            </a>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg transition-all"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-blue-400 disabled:to-indigo-400 text-white font-semibold py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none disabled:shadow-md"
           >
-            {loading ? "Loading..." : "Login"}
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                Signing In...
+              </div>
+            ) : (
+              "Sign In"
+            )}
           </button>
         </form>
+
+        <div className="mt-8 text-center">
+          <p className="text-xs text-blue-500">
+            Secure Admin Access • School Management Portal
+          </p>
+        </div>
       </div>
     </div>
   );
