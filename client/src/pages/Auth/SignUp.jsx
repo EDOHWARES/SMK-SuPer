@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
+
 
 export default function SignUp() {
   const { signup } = useContext(AuthContext);
@@ -183,9 +185,9 @@ export default function SignUp() {
         <div className="text-center mt-4">
           <p className="text-gray-600">
             Already have an account?{" "}
-            <a href="/signin" className="text-blue-500 hover:underline">
+            <Link to="/signin" className="text-blue-500 hover:underline">
               Sign In
-            </a>
+            </Link>
           </p>
         </div>
       </div>

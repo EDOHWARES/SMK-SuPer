@@ -48,6 +48,7 @@ import SchoolIdentityPage from "./pages/About/SchoolIdentity/SchoolIdentity";
 import PTAPage from "./pages/Committee/ParentTeacherAss";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
 import ResetPassword from "./pages/Auth/ResetPassword";
+import SchoolAchievements from "./pages/Achievements/Achievements";
 
 function App() {
   const [homeData, setHomeData] = useState(null);
@@ -199,10 +200,7 @@ function App() {
             />
             <Route path="/upcoming-events" element={<UpcomingEvents />} />
             <Route path="/about-us" element={<About />} />
-            <Route
-              path="/achievements"
-              element={<div className="mt-30 ml-4">Achievements Page</div>}
-            />
+
             <Route
               path="/contact-us"
               element={<div className="mt-30 ml-4">Contact Us Page</div>}
@@ -299,6 +297,10 @@ function App() {
             <Route path="/committee/pta-payments" element={<PtaPayment />} />
             <Route path="/committee/signupaguru" element={<SignIn />} />
             <Route path="/committee/alumni" element={<AlumniPage />} />
+
+            {/* Achievements */}
+            <Route path="/achievements" element={<SchoolAchievements />} />
+
 
             {/* Contact Us SubNavs */}
             <Route
