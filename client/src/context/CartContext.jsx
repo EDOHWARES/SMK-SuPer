@@ -1,4 +1,5 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect, useState } from "react";
+import axios from "axios";
 
 // Initial state for the cart
 const initialState = {
@@ -8,6 +9,10 @@ const initialState = {
 // Reducer function to manage cart actions
 const cartReducer = (state, action) => {
   switch (action.type) {
+    case "SET_CART":
+      // Set the cart items fetched from the API
+      return { ...state, cart: action.payload };
+
     case "ADD_TO_CART":
       // Check if the item already exists in the cart
       const existingItemIndex = state.cart.findIndex(
@@ -48,6 +53,27 @@ export const CartContext = createContext();
 // CartProvider component to wrap the app
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
+  const [loading, setLoading] = useState(false);
+
+  const api_url = import.meta.env.VITE_API_URL;
+
+  // Fetch cart items from the API
+  const fetchCart = async () => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+      const response = await axios.get(`${api_url}/cart`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch({ type: "SET_CART", payload: response.data.items || [] });
+    } catch (error) {
+      console.error("Error fetching cart:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Cart actions
   const addToCart = (item) => {
@@ -62,13 +88,20 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: "CLEAR_CART" });
   };
 
+  // Fetch cart items when the component mounts
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
   return (
     <CartContext.Provider
       value={{
         cart: state.cart,
+        loading,
         addToCart,
         removeFromCart,
         clearCart,
+        fetchCart, // Expose fetchCart for manual refresh if needed
       }}
     >
       {children}

@@ -9,6 +9,7 @@ import roomRoutes from "./routes/rooms.js";
 import pibgRoutes from "./routes/pibg.js";
 import productRoutes from "./routes/store_routes/products.js";
 import cartRoutes from "./routes/store_routes/cart.js";
+import orderRoutes from "./routes/store_routes/order.js";
 import { fileURLToPath } from "url";
 import path from "path";
 
@@ -52,6 +53,7 @@ app.use("/api/rooms", roomRoutes);
 app.use("/api/pibg", pibgRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/order", orderRoutes);
 
 // Connect to MongoDB
 connectDB();

@@ -182,11 +182,22 @@ export default function RoomBookingSystem() {
 
   // Time slot options
   const timeSlots = [
-    "08:00 AM - 10:00 AM",
-    "10:00 AM - 12:00 PM",
-    "12:00 PM - 02:00 PM",
-    "02:00 PM - 04:00 PM",
-    "04:00 PM - 06:00 PM",
+    "From 07:30 To 08:00",
+    "From 08:00 To 08:30",
+    "From 08:30 To 09:00",
+    "From 09:00 To 09:30",
+    "From 09:30 To 10:00",
+    "From 10:00 To 10:30",
+    "From 10:30 To 11:00",
+    "From 11:00 To 11:30",
+    "From 11:30 To 12:00",
+    "From 12:00 To 12:30",
+    "From 12:30 To 13:00",
+    "From 13:00 To 13:30",
+    "From 13:30 To 14:00",
+    "From 14:00 To 14:30",
+    "From 14:30 To 15:00",
+    "From 15:00 To 15:30",
   ];
 
   // Get status icon based on booking status

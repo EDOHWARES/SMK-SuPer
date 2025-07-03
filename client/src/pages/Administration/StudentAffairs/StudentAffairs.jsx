@@ -1,6 +1,8 @@
 import React from "react";
 
 import student_affairs_img from "../../../assets/images/administration/student-affair.jpeg";
+import kokurikulum_img from "../../../assets/images/administration/kokurikulum.png";
+import pengurusan_img from "../../../assets/images/administration/pengurusan.png";
 
 const StudentAffairsPage = () => {
   return (
@@ -18,14 +20,13 @@ const StudentAffairsPage = () => {
             Student Affairs
           </h1>
           <p className="text-blue-100 text-lg">
-            Enhancing students learning, developement
-             and success
+            Enhancing students learning, developement and success
           </p>
         </div>
       </div>
 
-      {/* Main Content - Organizational Chart */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Main Content - Organizational Chart and Others*/}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Chart Header */}
           <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-8 py-6">
@@ -40,6 +41,38 @@ const StudentAffairsPage = () => {
               <div className="min-w-full flex justify-center">
                 <img
                   src={student_affairs_img}
+                  alt="Carta Organisasi Hal Ehwal Murid 2025 - Student Affairs Organizational Chart"
+                  className="max-w-full h-auto rounded-lg shadow-lg"
+                  style={{ maxHeight: "80vh" }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          {/* Chart Container */}
+          <div className="p-8">
+            <div className="w-full overflow-x-auto">
+              <div className="min-w-full flex justify-center">
+                <img
+                  src={pengurusan_img}
+                  alt="Carta Organisasi Hal Ehwal Murid 2025 - Student Affairs Organizational Chart"
+                  className="max-w-full h-auto rounded-lg shadow-lg"
+                  style={{ maxHeight: "80vh" }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          {/* Chart Container */}
+          <div className="p-8">
+            <div className="w-full overflow-x-auto">
+              <div className="min-w-full flex justify-center">
+                <img
+                  src={kokurikulum_img}
                   alt="Carta Organisasi Hal Ehwal Murid 2025 - Student Affairs Organizational Chart"
                   className="max-w-full h-auto rounded-lg shadow-lg"
                   style={{ maxHeight: "80vh" }}
