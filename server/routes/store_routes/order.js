@@ -1,13 +1,13 @@
 import express from 'express';
 import Order from '../../models/store_models/order.js';
-import { isAuth, isAdmin } from '../middleware/authMiddleware.js';
+import { auth } from '../../middleware/auth.js';
 
 const orderRoutes = express.Router();
 
 // ========== CONTROLLERS ==========
 
 // @desc Create a new order
-orderRoutes.post('/', isAuth, async (req, res) => {
+orderRoutes.post('/', auth, async (req, res) => {
   try {
     const { cartItems, totalAmount, receiptImage, paymentNarration, userNote, phoneNumber } = req.body;
 
@@ -33,7 +33,7 @@ orderRoutes.post('/', isAuth, async (req, res) => {
 });
 
 // @desc Get logged-in user's orders
-orderRoutes.get('/my-orders', isAuth, async (req, res) => {
+orderRoutes.get('/my-orders', auth, async (req, res) => {
   try {
     const orders = await Order.find({ user: req.user._id }).sort({ createdAt: -1 });
     res.json(orders);
@@ -43,7 +43,7 @@ orderRoutes.get('/my-orders', isAuth, async (req, res) => {
 });
 
 // @desc Delete a user’s own order (only if pending)
-orderRoutes.delete('/:id', isAuth, async (req, res) => {
+orderRoutes.delete('/:id', auth, async (req, res) => {
   try {
     const order = await Order.findOne({ _id: req.params.id, user: req.user._id });
 
@@ -61,7 +61,7 @@ orderRoutes.delete('/:id', isAuth, async (req, res) => {
 });
 
 // @desc Admin: Get all orders
-orderRoutes.get('/', isAuth, isAdmin, async (req, res) => {
+orderRoutes.get('/', auth, async (req, res) => {
   try {
     const orders = await Order.find({})
       .populate('user', 'fullName email')
@@ -74,7 +74,7 @@ orderRoutes.get('/', isAuth, isAdmin, async (req, res) => {
 });
 
 // @desc Admin: Approve order
-orderRoutes.patch('/:id/approve', isAuth, isAdmin, async (req, res) => {
+orderRoutes.patch('/:id/approve', auth, async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
 
@@ -94,7 +94,7 @@ orderRoutes.patch('/:id/approve', isAuth, isAdmin, async (req, res) => {
 });
 
 // @desc Admin: Reject order
-orderRoutes.patch('/:id/reject', isAuth, isAdmin, async (req, res) => {
+orderRoutes.patch('/:id/reject', auth, async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
 

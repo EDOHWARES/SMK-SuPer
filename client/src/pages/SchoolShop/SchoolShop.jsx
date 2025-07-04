@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import ProductCard from "../../components/Store/ProductCard";
 import CategoryFilter from "../../components/Store/CategoryFilter";
@@ -13,12 +14,13 @@ const SchoolShop = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isCartOpen, setIsCartOpen] = useState(true);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [cart, setCart] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
   const { user } = useContext(AuthContext);
   const api_url = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate();
 
   // Fetch products from API
   useEffect(() => {
@@ -200,7 +202,14 @@ const SchoolShop = () => {
                   Browse Products
                 </button>
                 <button
-                  onClick={() => setIsCartOpen(true)}
+                  onClick={() => {
+                    const token = localStorage.getItem("smk-user-token");
+                    if (!token) {
+                      navigate("/signin");
+                      return;
+                    }
+                    setIsCartOpen(true);
+                  }}
                   className="bg-transparent hover:bg-blue-700 text-white border border-white font-bold py-3 px-6 rounded-lg transition duration-300"
                 >
                   View Cart

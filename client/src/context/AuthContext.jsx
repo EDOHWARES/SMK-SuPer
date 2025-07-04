@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
   const api_url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("smk-user-token");
     if (token) {
       fetchProfile(token);
     } else {
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       const { token, user } = res.data;
-      localStorage.setItem("token", token);
+      localStorage.setItem("smk-user-token", token);
       setUser(user);
       toast.success("Login successful!");
       return true;
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("smk-user-token");
     setUser(null);
   };
 

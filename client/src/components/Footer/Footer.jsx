@@ -16,7 +16,7 @@ export const Footer = ({ data }) => {
   return (
     <footer className="bg-blue-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           <div>
             <div className="flex items-center mb-6">
               <img src={logo} alt="smk logo" width={50} />
@@ -122,28 +122,6 @@ export const Footer = ({ data }) => {
                 </span>
               </li>
             </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Newsletter</h3>
-            <p className="text-blue-100 mb-4">
-              Subscribe to our newsletter to receive updates and news.
-            </p>
-            <form className="space-y-3">
-              <div>
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="w-full px-4 py-2 rounded-lg bg-blue-800 border border-blue-700 text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-medium py-2 px-4 rounded-lg transition-colors"
-              >
-                Subscribe
-              </button>
-            </form>
           </div>
         </div>
 
