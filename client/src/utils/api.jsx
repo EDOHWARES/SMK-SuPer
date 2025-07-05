@@ -22,10 +22,10 @@
 
 import axios from "axios";
 
-const CMS_API_BASE = "https://smk-cms.onrender.com/api";
-// const CMS_API_BASE = "http://localhost:5003/api";
+// const CMS_API_BASE = "https://smk-cms.onrender.com/api";
+const CMS_API_BASE = import.meta.env.VITE_API_CMS_URL;
 
-
+// Fetch home page data
 export const fetchHomepage = async () => {
   try {
     const res = await axios.get(
@@ -50,3 +50,4 @@ export const fetchLatestAnnouncementPage = async () => {
     return null;
   }
 };
+

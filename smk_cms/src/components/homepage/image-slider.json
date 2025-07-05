@@ -4,6 +4,17 @@
     "displayName": "ImageSlider"
   },
   "options": {},
-  "attributes": {},
+  "attributes": {
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
   "config": {}
 }

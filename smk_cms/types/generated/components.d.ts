@@ -63,7 +63,12 @@ export interface HomepageImageSlider extends Struct.ComponentSchema {
   info: {
     displayName: 'ImageSlider';
   };
-  attributes: {};
+  attributes: {
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+  };
 }
 
 export interface HomepageLatestUpdates extends Struct.ComponentSchema {

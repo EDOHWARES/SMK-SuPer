@@ -182,7 +182,7 @@ function App() {
                 <div>
                   <Hero data={homeData.Sections[0]} />
                   <MarqueeText data={homeData.Sections[1].trending} />
-                  <SchoolSlideshow />
+                  <SchoolSlideshow data={homeData.Sections[2]} />
                   <main className="flex-grow">
                     <ExtracurricularActivities data={homeData.Sections[3]} />
                     <SchoolStats data={homeData.Sections[4]} />

@@ -6,7 +6,9 @@ import imgslide2 from "../../../assets/images/home-imgs-slide/slideimg2.png"
 import imgslide3 from "../../../assets/images/home-imgs-slide/slideimg3.png"
 import imgslide4 from "../../../assets/images/home-imgs-slide/imgslide4.png"
 
-const SchoolSlideshow = () => {
+const SchoolSlideshow = ({data}) => {
+
+  console.log("Slideshow Data: ", data);
   const slides = [
     {
       id: 1,
