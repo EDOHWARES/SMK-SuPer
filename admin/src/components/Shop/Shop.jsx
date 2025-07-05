@@ -18,6 +18,7 @@ import {
   Upload,
   Star,
 } from "lucide-react";
+import AdminOrderManagement from "./Orders";
 
 // API Base URL
 const API_BASE_URL = import.meta.env.VITE_API_URL;
@@ -689,10 +690,12 @@ function SchoolShopAdmin() {
           )}
 
           {currentView === "orders" && (
-            <div className="text-center py-12">
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Orders Section</h3>
-              <p className="text-gray-500">This section is coming soon.</p>
-            </div>
+            // <div className="text-center py-12">
+            //   <h3 className="text-lg font-medium text-gray-900 mb-2">Orders Section</h3>
+            //   <p className="text-gray-500">This section is coming soon.</p>
+            // </div>
+
+            <AdminOrderManagement />
           )}
         </main>
       </div>

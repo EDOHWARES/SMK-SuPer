@@ -13,6 +13,7 @@ const Checkout = () => {
   const { user } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [paymentProof, setPaymentProof] = useState(null);
   const [optionalMessage, setOptionalMessage] = useState("");
 
@@ -55,7 +56,6 @@ const Checkout = () => {
     customerInfo: {
       name: user?.name || "",
       email: user?.email || "",
-      phone: user?.phone || "",
     },
     deliveryMethod: "pickup",
     deliveryAddress: {
@@ -92,34 +92,41 @@ const Checkout = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     try {
-      // Prepare order data
-      const orderData = {
-        items: cart.map((item) => ({
-          productId: item._id,
-          name: item.name,
-          price: item.price,
-          quantity: item.quantity,
-          size: item.size || null,
-        })),
-        customer: formData.customerInfo,
-        deliveryMethod: formData.deliveryMethod,
-        deliveryAddress:
-          formData.deliveryMethod === "delivery"
-            ? formData.deliveryAddress
-            : null,
-        paymentMethod: formData.paymentMethod,
-        subtotal,
-        deliveryFee,
-        total,
-        paymentProof,
-        optionalMessage,
-      };
+      const api_url = import.meta.env.VITE_API_URL;
+      const token = localStorage.getItem("smk-user-token");
+      if (!token) {
+        alert("You must be logged in to place an order.");
+        setLoading(false);
+        return;
+      }
+      if (!paymentProof) {
+        alert("Please upload your payment proof.");
+        setLoading(false);
+        return;
+      }
+      // Prepare form data for multipart/form-data
+      const formDataToSend = new FormData();
+      formDataToSend.append("phoneNumber", phoneNumber);
+      formDataToSend.append("paymentNarration", optionalMessage); // You can adjust this if you have a separate field
+      formDataToSend.append("userNote", ""); // Add user note if you have it
+      formDataToSend.append("receiptImage", paymentProof);
+      // The server expects cart info from the DB, so just send the required fields
 
-      // Simulate order creation
-      clearCart();
-      alert("Order placed successfully!");
+      // Send request
+      const response = await axios.post(`${api_url}/order`, formDataToSend, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (response.data && response.data.order) {
+        alert("Order placed successfully!");
+        setCart([]); // Optionally clear local cart state
+        navigate("/school-shop");
+      } else {
+        alert("Order placement failed. Please try again.");
+      }
     } catch (error) {
       console.error("Order creation error:", error);
       alert("Failed to place order. Please try again.");
@@ -218,13 +225,7 @@ const Checkout = () => {
                       type="tel"
                       required
                       value={formData.customerInfo.phone}
-                      onChange={(e) =>
-                        handleInputChange(
-                          "customerInfo",
-                          "phone",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => setPhoneNumber(e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-900"
                       placeholder="Enter your phone number"
                     />

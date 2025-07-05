@@ -125,9 +125,9 @@ orderRoutes.delete("/:id", auth, async (req, res) => {
 // ======================
 orderRoutes.get("/", auth, async (req, res) => {
   try {
-    // Optional: restrict to admins only using req.user.role === 'admin'
+    // // Optional: restrict to admins only using req.user.role === 'admin'
     const orders = await Order.find({})
-      .populate("user", "fullName email")
+      .populate("user", "name email")
       .sort({ createdAt: -1 });
 
     res.json(orders);
