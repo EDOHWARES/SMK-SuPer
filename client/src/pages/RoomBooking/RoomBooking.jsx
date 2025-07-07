@@ -91,6 +91,8 @@ export default function RoomBookingSystem() {
     date: "",
     timeSlot: "",
     attendees: "",
+    pic: "",
+    title: "",
   });
 
   // State for form submission feedback
@@ -126,7 +128,9 @@ export default function RoomBookingSystem() {
       !formData.roomId ||
       !formData.date ||
       !formData.timeSlot ||
-      !formData.attendees
+      !formData.attendees ||
+      !formData.pic ||
+      !formData.title
     ) {
       toast.error("Please fill in all the fields.");
       return;
@@ -145,6 +149,8 @@ export default function RoomBookingSystem() {
           date: formData.date,
           timeSlot: formData.timeSlot,
           attendees: formData.attendees,
+          pic: formData.pic,
+          title: formData.title,
         },
         {
           headers: {
@@ -313,7 +319,7 @@ export default function RoomBookingSystem() {
                   <div className="space-y-2">
                     <label
                       htmlFor="date"
-                      className="block text-sm font-medium text-gray-700 flex items-center"
+                      className=" text-sm font-medium text-gray-700 flex items-center"
                     >
                       <Calendar size={16} className="mr-1 text-blue-600" />
                       Date
@@ -332,7 +338,7 @@ export default function RoomBookingSystem() {
                   <div className="space-y-2">
                     <label
                       htmlFor="timeSlot"
-                      className="block text-sm font-medium text-gray-700 flex items-center"
+                      className="text-sm font-medium text-gray-700 flex items-center"
                     >
                       <Clock size={16} className="mr-1 text-blue-600" />
                       Time Slot
@@ -357,7 +363,7 @@ export default function RoomBookingSystem() {
                   <div className="space-y-2">
                     <label
                       htmlFor="attendees"
-                      className="block text-sm font-medium text-gray-700 flex items-center"
+                      className=" text-sm font-medium text-gray-700 flex items-center"
                     >
                       <Users size={16} className="mr-1 text-blue-600" />
                       Number of Attendees
@@ -377,6 +383,37 @@ export default function RoomBookingSystem() {
                       }
                       className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                       disabled={!formData.roomId}
+                    />
+                  </div>
+
+                  {/* Title Field */}
+                  <div className="space-y-2">
+                    <label htmlFor="title" className="text-sm font-medium text-gray-700 flex items-center">
+                      Booking Title
+                    </label>
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      value={formData.title}
+                      onChange={handleInputChange}
+                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="e.g. Science Club Meeting"
+                    />
+                  </div>
+                  {/* PIC Field */}
+                  <div className="space-y-2">
+                    <label htmlFor="pic" className="text-sm font-medium text-gray-700 flex items-center">
+                      Person In Charge (PIC)
+                    </label>
+                    <input
+                      type="text"
+                      id="pic"
+                      name="pic"
+                      value={formData.pic}
+                      onChange={handleInputChange}
+                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="e.g. Mr. Ahmad"
                     />
                   </div>
                 </div>

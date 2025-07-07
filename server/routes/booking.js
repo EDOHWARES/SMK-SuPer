@@ -12,7 +12,7 @@ bookingRoutes.post(
   roleCheck('student', 'class_teacher', 'regular_teacher'),
   async (req, res) => {
     try {
-      const { roomId, date, timeSlot, attendees, isSpecial } = req.body;
+      const { roomId, date, timeSlot, attendees, isSpecial, pic, title } = req.body;
 
       const room = await Room.findById(roomId);
       if (!room) return res.status(404).json({ error: 'Room not found' });
@@ -34,6 +34,8 @@ bookingRoutes.post(
         attendees,
         isSpecial: isSpecial || false,
         status: 'pending',
+        pic,
+        title,
       });
 
       await booking.save();

@@ -5,7 +5,7 @@ export default [
   {
     name: 'strapi::cors',
     config: {
-      origin: ['https://smk-super-client.onrender.com'],
+      origin: ['https://smk-super-client.onrender.com', 'http://localhost:5173'],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
       headers: '*',
       keepHeaderOnError: true,

@@ -186,6 +186,8 @@ const AdminPanel = () => {
                     <tr>
                       <th>User</th>
                       <th>Room</th>
+                      <th>Title</th>
+                      <th>PIC</th>
                       <th>Date</th>
                       <th>Slot</th>
                       <th>Status</th>
@@ -197,6 +199,8 @@ const AdminPanel = () => {
                       <tr key={b._id} className="border-t text-center">
                         <td className="p-2">{b.userId?.name}</td>
                         <td>{b.roomId?.name}</td>
+                        <td>{b.title}</td>
+                        <td>{b.pic}</td>
                         <td>{new Date(b.date).toLocaleDateString()}</td>
                         <td>{b.timeSlot}</td>
                         <td

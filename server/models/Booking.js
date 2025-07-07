@@ -13,6 +13,8 @@ const BookingSchema = new mongoose.Schema(
       enum: ['pending', 'approved', 'rejected'], 
       default: 'pending' // Default status is 'pending'
     },
+    pic: { type: String, required: true }, // Person in charge
+    title: { type: String, required: true }, // Booking title
   },
   { timestamps: true } // Automatically adds createdAt and updatedAt fields
 );
