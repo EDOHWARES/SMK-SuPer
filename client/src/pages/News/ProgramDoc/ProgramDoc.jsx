@@ -494,22 +494,6 @@ const ProgramDocumentation = () => {
             ))}
           </div>
         </section>
-
-        {/* Contact Section */}
-        <div className="mt-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white text-center">
-          <h3 className="text-2xl font-bold mb-4">Need More Information?</h3>
-          <p className="mb-6 text-indigo-100">
-            Contact our Academic Programs office for detailed guidance and enrollment assistance
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-indigo-600 px-6 py-3 rounded-xl font-semibold hover:bg-indigo-50 transition-colors">
-              Schedule Consultation
-            </button>
-            <button className="border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
-              Download Catalog
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

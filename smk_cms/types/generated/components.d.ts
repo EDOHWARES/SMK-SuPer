@@ -47,6 +47,37 @@ export interface ContactUsHowToReachUs extends Struct.ComponentSchema {
   };
 }
 
+export interface CurriculumManagementCurriculum extends Struct.ComponentSchema {
+  collectionName: 'components_curriculum_management_curricula';
+  info: {
+    displayName: 'Curriculum';
+  };
+  attributes: {
+    lists: Schema.Attribute.JSON;
+  };
+}
+
+export interface CurriculumManagementFooter extends Struct.ComponentSchema {
+  collectionName: 'components_curriculum_management_footers';
+  info: {
+    displayName: 'Footer';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface CurriculumManagementHero extends Struct.ComponentSchema {
+  collectionName: 'components_curriculum_management_heroes';
+  info: {
+    displayName: 'Hero';
+  };
+  attributes: {
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 export interface GalleriMomentMoment extends Struct.ComponentSchema {
   collectionName: 'components_galleri_moment_moments';
   info: {
@@ -178,6 +209,63 @@ export interface LatestAnnouncementpageAnnounement
   };
 }
 
+export interface NationalEduPhilCoreOfPublicService
+  extends Struct.ComponentSchema {
+  collectionName: 'components_national_edu_phil_core_of_public_services';
+  info: {
+    displayName: 'CoreOfPublicService';
+  };
+  attributes: {
+    services: Schema.Attribute.JSON;
+  };
+}
+
+export interface NationalEduPhilGoals extends Struct.ComponentSchema {
+  collectionName: 'components_national_edu_phil_goals';
+  info: {
+    displayName: 'Goals';
+  };
+  attributes: {
+    goals: Schema.Attribute.JSON;
+  };
+}
+
+export interface NationalEduPhilNationalEduPhilosophy
+  extends Struct.ComponentSchema {
+  collectionName: 'components_national_edu_phil_national_edu_philosophies';
+  info: {
+    displayName: 'NationalEduPhilosophy';
+  };
+  attributes: {
+    Card: Schema.Attribute.Component<'others.card', true>;
+    details: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface OrgChartChart extends Struct.ComponentSchema {
+  collectionName: 'components_org_chart_charts';
+  info: {
+    displayName: 'Chart';
+  };
+  attributes: {
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
+export interface OrgChartStats extends Struct.ComponentSchema {
+  collectionName: 'components_org_chart_stats';
+  info: {
+    displayName: 'Stats';
+  };
+  attributes: {
+    advancedDegrees: Schema.Attribute.String;
+    avgYears: Schema.Attribute.String;
+    departments: Schema.Attribute.String;
+    totalStaffs: Schema.Attribute.String;
+  };
+}
+
 export interface OthersAcadExcCard extends Struct.ComponentSchema {
   collectionName: 'components_others_acad_exc_cards';
   info: {
@@ -197,6 +285,17 @@ export interface OthersActivityCard extends Struct.ComponentSchema {
   attributes: {
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface OthersCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_cards';
+  info: {
+    displayName: 'Card';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
 }
@@ -261,6 +360,17 @@ export interface OthersLatestUpdateCard extends Struct.ComponentSchema {
   };
 }
 
+export interface OthersMissionCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_mission_cards';
+  info: {
+    displayName: 'MissionCard';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface OthersMomentCard extends Struct.ComponentSchema {
   collectionName: 'components_others_moment_cards';
   info: {
@@ -275,6 +385,54 @@ export interface OthersMomentCard extends Struct.ComponentSchema {
   };
 }
 
+export interface OthersPrincipalCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_principal_cards';
+  info: {
+    displayName: 'PrincipalCard';
+  };
+  attributes: {
+    motto: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    vmv: Schema.Attribute.JSON;
+  };
+}
+
+export interface OthersSchoolIdentityVisionCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_school_identity_vision_cards';
+  info: {
+    displayName: 'SchoolIdentityVisionCard';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+    translation: Schema.Attribute.Text;
+  };
+}
+
+export interface OthersStudentIdentityCoreValuesCard
+  extends Struct.ComponentSchema {
+  collectionName: 'components_others_student_identity_core_values_cards';
+  info: {
+    displayName: 'StudentIdentityCoreValuesCard';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface OthersStudentIdentityObjectiveCard
+  extends Struct.ComponentSchema {
+  collectionName: 'components_others_student_identity_objective_cards';
+  info: {
+    displayName: 'StudentIdentityObjectiveCard';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    translation: Schema.Attribute.Text;
+  };
+}
+
 export interface OthersTestimonyCArd extends Struct.ComponentSchema {
   collectionName: 'components_others_testimony_c_ards';
   info: {
@@ -285,6 +443,38 @@ export interface OthersTestimonyCArd extends Struct.ComponentSchema {
     name: Schema.Attribute.String;
     photo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     testimony: Schema.Attribute.Text;
+  };
+}
+
+export interface OthersVisionCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_vision_cards';
+  info: {
+    displayName: 'VisionCard';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface PrincipalHero extends Struct.ComponentSchema {
+  collectionName: 'components_principal_heroes';
+  info: {
+    displayName: 'Hero';
+  };
+  attributes: {
+    details: Schema.Attribute.Component<'others.principal-card', false>;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
+export interface PrincipalSpeech extends Struct.ComponentSchema {
+  collectionName: 'components_principal_speeches';
+  info: {
+    displayName: 'Speech';
+  };
+  attributes: {
+    details: Schema.Attribute.Blocks;
   };
 }
 
@@ -359,6 +549,59 @@ export interface SchoolHistoryPengenalan extends Struct.ComponentSchema {
   };
 }
 
+export interface SchoolIdentityCoreValues extends Struct.ComponentSchema {
+  collectionName: 'components_school_identity_core_values';
+  info: {
+    displayName: 'CoreValues';
+  };
+  attributes: {
+    Cards: Schema.Attribute.Component<
+      'others.student-identity-core-values-card',
+      true
+    >;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SchoolIdentityObjectives extends Struct.ComponentSchema {
+  collectionName: 'components_school_identity_objectives';
+  info: {
+    displayName: 'Objectives';
+  };
+  attributes: {
+    Cards: Schema.Attribute.Component<
+      'others.student-identity-objective-card',
+      true
+    >;
+  };
+}
+
+export interface SchoolIdentityPhilosophy extends Struct.ComponentSchema {
+  collectionName: 'components_school_identity_philosophies';
+  info: {
+    displayName: 'Philosophy';
+  };
+  attributes: {
+    philosophy: Schema.Attribute.Blocks;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SchoolIdentityVisionAndMission extends Struct.ComponentSchema {
+  collectionName: 'components_school_identity_vision_and_missions';
+  info: {
+    displayName: 'VisionAndMission';
+  };
+  attributes: {
+    Cards: Schema.Attribute.Component<
+      'others.school-identity-vision-card',
+      true
+    >;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -419,6 +662,76 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface TeachersAndStaffsCoverImg extends Struct.ComponentSchema {
+  collectionName: 'components_teachers_and_staffs_cover_imgs';
+  info: {
+    displayName: 'CoverImg';
+  };
+  attributes: {
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    properties: Schema.Attribute.JSON;
+  };
+}
+
+export interface TeachersAndStaffsDedicatedTeam extends Struct.ComponentSchema {
+  collectionName: 'components_teachers_and_staffs_dedicated_teams';
+  info: {
+    displayName: 'DedicatedTeam';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    motto: Schema.Attribute.JSON;
+  };
+}
+
+export interface TeachersAndStaffsMissionsAndValues
+  extends Struct.ComponentSchema {
+  collectionName: 'components_teachers_and_staffs_missions_and_values';
+  info: {
+    displayName: 'MissionsAndValues';
+  };
+  attributes: {
+    Cards: Schema.Attribute.Component<'others.card', true>;
+  };
+}
+
+export interface VisionAndMissionCommitment extends Struct.ComponentSchema {
+  collectionName: 'components_vision_and_mission_commitments';
+  info: {
+    displayName: 'Commitment';
+  };
+  attributes: {
+    imgs: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+  };
+}
+
+export interface VisionAndMissionMission extends Struct.ComponentSchema {
+  collectionName: 'components_vision_and_mission_missions';
+  info: {
+    displayName: 'Mission';
+  };
+  attributes: {
+    Cards: Schema.Attribute.Component<'others.mission-card', true>;
+    hd1: Schema.Attribute.Text;
+    hd2: Schema.Attribute.Text;
+  };
+}
+
+export interface VisionAndMissionVision extends Struct.ComponentSchema {
+  collectionName: 'components_vision_and_mission_visions';
+  info: {
+    displayName: 'Vision';
+  };
+  attributes: {
+    Cards: Schema.Attribute.Component<'others.vision-card', true>;
+    hd1: Schema.Attribute.Text;
+    hd2: Schema.Attribute.Text;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -426,6 +739,9 @@ declare module '@strapi/strapi' {
       'contact-us.contact-info': ContactUsContactInfo;
       'contact-us.faqs': ContactUsFaqs;
       'contact-us.how-to-reach-us': ContactUsHowToReachUs;
+      'curriculum-management.curriculum': CurriculumManagementCurriculum;
+      'curriculum-management.footer': CurriculumManagementFooter;
+      'curriculum-management.hero': CurriculumManagementHero;
       'galleri-moment.moment': GalleriMomentMoment;
       'homepage.academic-excellence': HomepageAcademicExcellence;
       'homepage.excellence-in-numbers': HomepageExcellenceInNumbers;
@@ -437,26 +753,50 @@ declare module '@strapi/strapi' {
       'homepage.marquee': HomepageMarquee;
       'homepage.testimoials': HomepageTestimoials;
       'latest-announcementpage.announement': LatestAnnouncementpageAnnounement;
+      'national-edu-phil.core-of-public-service': NationalEduPhilCoreOfPublicService;
+      'national-edu-phil.goals': NationalEduPhilGoals;
+      'national-edu-phil.national-edu-philosophy': NationalEduPhilNationalEduPhilosophy;
+      'org-chart.chart': OrgChartChart;
+      'org-chart.stats': OrgChartStats;
       'others.acad-exc-card': OthersAcadExcCard;
       'others.activity-card': OthersActivityCard;
+      'others.card': OthersCard;
       'others.excel-in-num-card': OthersExcelInNumCard;
       'others.faq': OthersFaq;
       'others.foot-details': OthersFootDetails;
       'others.garis-masa-sejarah-card': OthersGarisMasaSejarahCard;
       'others.latest-update-card': OthersLatestUpdateCard;
+      'others.mission-card': OthersMissionCard;
       'others.moment-card': OthersMomentCard;
+      'others.principal-card': OthersPrincipalCard;
+      'others.school-identity-vision-card': OthersSchoolIdentityVisionCard;
+      'others.student-identity-core-values-card': OthersStudentIdentityCoreValuesCard;
+      'others.student-identity-objective-card': OthersStudentIdentityObjectiveCard;
       'others.testimony-c-ard': OthersTestimonyCArd;
+      'others.vision-card': OthersVisionCard;
+      'principal.hero': PrincipalHero;
+      'principal.speech': PrincipalSpeech;
       'school-history.garis-masa-sejarah': SchoolHistoryGarisMasaSejarah;
       'school-history.kemudahan-dan-pembinaan': SchoolHistoryKemudahanDanPembinaan;
       'school-history.kepimpinan-sekolah': SchoolHistoryKepimpinanSekolah;
       'school-history.misi-dan-matlamat': SchoolHistoryMisiDanMatlamat;
       'school-history.pencapaian': SchoolHistoryPencapaian;
       'school-history.pengenalan': SchoolHistoryPengenalan;
+      'school-identity.core-values': SchoolIdentityCoreValues;
+      'school-identity.objectives': SchoolIdentityObjectives;
+      'school-identity.philosophy': SchoolIdentityPhilosophy;
+      'school-identity.vision-and-mission': SchoolIdentityVisionAndMission;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
+      'teachers-and-staffs.cover-img': TeachersAndStaffsCoverImg;
+      'teachers-and-staffs.dedicated-team': TeachersAndStaffsDedicatedTeam;
+      'teachers-and-staffs.missions-and-values': TeachersAndStaffsMissionsAndValues;
+      'vision-and-mission.commitment': VisionAndMissionCommitment;
+      'vision-and-mission.mission': VisionAndMissionMission;
+      'vision-and-mission.vision': VisionAndMissionVision;
     }
   }
 }

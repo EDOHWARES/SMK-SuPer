@@ -260,39 +260,7 @@ const VisionMission = () => {
             })}
           </div>
         </div>
-      </div>
-
-      {/* Call to Action */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div
-            className={`transform transition-all duration-1000 delay-900 ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Join Our Educational Vision
-            </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-              Be part of a community dedicated to quality education, holistic
-              development, and national prosperity
-            </p>
-            <div className="flex justify-center space-x-4">
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-                <Eye className="w-8 h-8 text-white" />
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-                <Target className="w-8 h-8 text-white" />
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-                <Award className="w-8 h-8 text-white" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div>      
     </div>
   );
 };

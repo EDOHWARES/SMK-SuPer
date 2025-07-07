@@ -1,6 +1,13 @@
-import React from 'react';
-import { Calendar, Users, Trophy, BookOpen, Star, ArrowRight } from 'lucide-react';
-import curi_registra_img from "../../../assets/images/Co-Curriculum Registration activity 1.jpg"
+import React from "react";
+import {
+  Calendar,
+  Users,
+  Trophy,
+  BookOpen,
+  Star,
+  ArrowRight,
+} from "lucide-react";
+import curi_registra_img from "../../../assets/images/Co-Curriculum Registration activity 1.jpg";
 
 const SchoolHighlights = () => {
   // Demo data - easily replaceable with API/database calls
@@ -11,9 +18,10 @@ const SchoolHighlights = () => {
       category: "Achievement",
       date: "2024-05-15",
       image: curi_registra_img,
-      excerpt: "Our talented students secured first place in the National Science Fair with their innovative renewable energy project.",
+      excerpt:
+        "Our talented students secured first place in the National Science Fair with their innovative renewable energy project.",
       featured: true,
-      tags: ["Science", "Competition", "STEM"]
+      tags: ["Science", "Competition", "STEM"],
     },
     {
       id: 2,
@@ -21,9 +29,10 @@ const SchoolHighlights = () => {
       category: "Facilities",
       date: "2024-05-10",
       image: curi_registra_img,
-      excerpt: "State-of-the-art technology center equipped with latest computers, VR headsets, and interactive whiteboards.",
+      excerpt:
+        "State-of-the-art technology center equipped with latest computers, VR headsets, and interactive whiteboards.",
       featured: false,
-      tags: ["Technology", "Innovation", "Learning"]
+      tags: ["Technology", "Innovation", "Learning"],
     },
     {
       id: 3,
@@ -31,9 +40,10 @@ const SchoolHighlights = () => {
       category: "Arts",
       date: "2024-05-08",
       image: curi_registra_img,
-      excerpt: "Our school orchestra delivered a stunning performance at the Mayor's Cultural Arts Festival.",
+      excerpt:
+        "Our school orchestra delivered a stunning performance at the Mayor's Cultural Arts Festival.",
       featured: true,
-      tags: ["Music", "Performance", "Arts"]
+      tags: ["Music", "Performance", "Arts"],
     },
     {
       id: 4,
@@ -41,9 +51,10 @@ const SchoolHighlights = () => {
       category: "Environment",
       date: "2024-05-05",
       image: curi_registra_img,
-      excerpt: "New campus-wide recycling program and solar panel installation reduce our environmental footprint.",
+      excerpt:
+        "New campus-wide recycling program and solar panel installation reduce our environmental footprint.",
       featured: false,
-      tags: ["Environment", "Sustainability", "Community"]
+      tags: ["Environment", "Sustainability", "Community"],
     },
     {
       id: 5,
@@ -51,9 +62,10 @@ const SchoolHighlights = () => {
       category: "Sports",
       date: "2024-05-01",
       image: curi_registra_img,
-      excerpt: "Multiple teams showcase excellence in regional championships across various sports disciplines.",
+      excerpt:
+        "Multiple teams showcase excellence in regional championships across various sports disciplines.",
       featured: false,
-      tags: ["Sports", "Athletics", "Championship"]
+      tags: ["Sports", "Athletics", "Championship"],
     },
     {
       id: 6,
@@ -61,30 +73,42 @@ const SchoolHighlights = () => {
       category: "Community",
       date: "2024-04-28",
       image: curi_registra_img,
-      excerpt: "Students volunteer 500+ hours in local community projects, earning citywide recognition.",
+      excerpt:
+        "Students volunteer 500+ hours in local community projects, earning citywide recognition.",
       featured: false,
-      tags: ["Community", "Service", "Volunteer"]
-    }
+      tags: ["Community", "Service", "Volunteer"],
+    },
   ];
 
-  const categories = ["All", "Achievement", "Facilities", "Arts", "Environment", "Sports", "Community"];
+  const categories = [
+    "All",
+    "Achievement",
+    "Facilities",
+    "Arts",
+    "Environment",
+    "Sports",
+    "Community",
+  ];
 
   const [selectedCategory, setSelectedCategory] = React.useState("All");
-  const [filteredHighlights, setFilteredHighlights] = React.useState(highlights);
+  const [filteredHighlights, setFilteredHighlights] =
+    React.useState(highlights);
 
   React.useEffect(() => {
     if (selectedCategory === "All") {
       setFilteredHighlights(highlights);
     } else {
-      setFilteredHighlights(highlights.filter(item => item.category === selectedCategory));
+      setFilteredHighlights(
+        highlights.filter((item) => item.category === selectedCategory)
+      );
     }
   }, [selectedCategory]);
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -95,25 +119,32 @@ const SchoolHighlights = () => {
       Arts: Star,
       Environment: Users,
       Sports: Trophy,
-      Community: Users
+      Community: Users,
     };
     return icons[category] || BookOpen;
   };
 
-  const featuredHighlights = highlights.filter(item => item.featured);
-  const regularHighlights = filteredHighlights.filter(item => !item.featured);
+  const featuredHighlights = highlights.filter((item) => item.featured);
+  const regularHighlights = filteredHighlights.filter((item) => !item.featured);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header Section */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">School Highlights</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Celebrating our achievements, milestones, and the exceptional moments that make our school community shine
-            </p>
+      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-8 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center space-x-4 mb-4">
+            <div className="h-1 w-12 bg-yellow-400 rounded"></div>
+            <span className="text-yellow-400 font-medium tracking-wide">
+              NEWS
+            </span>
           </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">
+            School Highlights{" "}
+          </h1>
+          <p className="text-blue-100 text-lg">
+            Celebrating our achievements, milestones, and the exceptional
+            moments that make our school community shine
+          </p>
         </div>
       </div>
 
@@ -121,15 +152,20 @@ const SchoolHighlights = () => {
         {/* Featured Highlights */}
         {featuredHighlights.length > 0 && (
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Featured Highlights</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              Featured Highlights
+            </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredHighlights.map((highlight) => {
                 const IconComponent = getCategoryIcon(highlight.category);
                 return (
-                  <div key={highlight.id} className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-1">
+                  <div
+                    key={highlight.id}
+                    className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-1"
+                  >
                     <div className="relative h-64 overflow-hidden">
-                      <img 
-                        src={highlight.image} 
+                      <img
+                        src={highlight.image}
                         alt={highlight.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
@@ -152,13 +188,16 @@ const SchoolHighlights = () => {
                       </p>
                       <div className="flex flex-wrap gap-2 mb-6">
                         {highlight.tags.map((tag, index) => (
-                          <span key={index} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                          <span
+                            key={index}
+                            className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                          >
                             {tag}
                           </span>
                         ))}
                       </div>
                       <button className="flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors group">
-                        Read More 
+                        Read More
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </button>
                     </div>
@@ -178,8 +217,8 @@ const SchoolHighlights = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
                   selectedCategory === category
-                    ? 'bg-blue-600 text-white shadow-lg transform scale-105'
-                    : 'bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 shadow-md hover:shadow-lg'
+                    ? "bg-blue-600 text-white shadow-lg transform scale-105"
+                    : "bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 shadow-md hover:shadow-lg"
                 }`}
               >
                 {category}
@@ -191,16 +230,21 @@ const SchoolHighlights = () => {
         {/* Regular Highlights Grid */}
         <section>
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            {selectedCategory === "All" ? "All Highlights" : `${selectedCategory} Highlights`}
+            {selectedCategory === "All"
+              ? "All Highlights"
+              : `${selectedCategory} Highlights`}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularHighlights.map((highlight) => {
               const IconComponent = getCategoryIcon(highlight.category);
               return (
-                <div key={highlight.id} className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-1">
+                <div
+                  key={highlight.id}
+                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-1"
+                >
                   <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={highlight.image} 
+                    <img
+                      src={highlight.image}
                       alt={highlight.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
@@ -228,7 +272,10 @@ const SchoolHighlights = () => {
                     </p>
                     <div className="flex flex-wrap gap-1 mb-4">
                       {highlight.tags.slice(0, 2).map((tag, index) => (
-                        <span key={index} className="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs">
+                        <span
+                          key={index}
+                          className="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs"
+                        >
                           {tag}
                         </span>
                       ))}
@@ -239,7 +286,7 @@ const SchoolHighlights = () => {
                       )}
                     </div>
                     <button className="flex items-center text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors group">
-                      Learn More 
+                      Learn More
                       <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
@@ -248,13 +295,6 @@ const SchoolHighlights = () => {
             })}
           </div>
         </section>
-
-        {/* Load More Button */}
-        <div className="text-center mt-12">
-          <button className="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105">
-            Load More Highlights
-          </button>
-        </div>
       </div>
     </div>
   );

@@ -382,7 +382,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     singularName: 'about';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -402,34 +402,6 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
         'school-history.garis-masa-sejarah',
       ]
     >;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiAdministrationpageAdministrationpage
-  extends Struct.SingleTypeSchema {
-  collectionName: 'administrationpages';
-  info: {
-    displayName: 'Administrationpage';
-    pluralName: 'administrationpages';
-    singularName: 'administrationpage';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::administrationpage.administrationpage'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -540,6 +512,36 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCoCurriculumManagementCoCurriculumManagement
+  extends Struct.SingleTypeSchema {
+  collectionName: 'co_curriculum_managements';
+  info: {
+    displayName: 'CoCurriculumManagement';
+    pluralName: 'co-curriculum-managements';
+    singularName: 'co-curriculum-management';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    coverImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::co-curriculum-management.co-curriculum-management'
+    > &
+      Schema.Attribute.Private;
+    properties: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiContactUsContactUs extends Struct.SingleTypeSchema {
   collectionName: 'contact_uses';
   info: {
@@ -569,6 +571,36 @@ export interface ApiContactUsContactUs extends Struct.SingleTypeSchema {
         'contact-us.campus-gallery',
       ]
     >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCurriculumManagementCurriculumManagement
+  extends Struct.SingleTypeSchema {
+  collectionName: 'curriculum_managements';
+  info: {
+    displayName: 'CurriculumManagement';
+    pluralName: 'curriculum-managements';
+    singularName: 'curriculum-management';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    coverImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::curriculum-management.curriculum-management'
+    > &
+      Schema.Attribute.Private;
+    properties: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -709,6 +741,329 @@ export interface ApiLatestAnnouncementLatestAnnouncement
     publishedAt: Schema.Attribute.DateTime;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNationalEduPhilosophyNationalEduPhilosophy
+  extends Struct.SingleTypeSchema {
+  collectionName: 'national_edu_philosophies';
+  info: {
+    displayName: 'NationalEduPhilosophy';
+    pluralName: 'national-edu-philosophies';
+    singularName: 'national-edu-philosophy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::national-edu-philosophy.national-edu-philosophy'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.DynamicZone<
+      [
+        'national-edu-phil.national-edu-philosophy',
+        'national-edu-phil.goals',
+        'national-edu-phil.core-of-public-service',
+      ]
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiOrgChartOrgChart extends Struct.SingleTypeSchema {
+  collectionName: 'org_charts';
+  info: {
+    displayName: 'OrgChart';
+    pluralName: 'org-charts';
+    singularName: 'org-chart';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::org-chart.org-chart'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.DynamicZone<
+      ['org-chart.chart', 'org-chart.stats']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPrincipalPrincipal extends Struct.SingleTypeSchema {
+  collectionName: 'principals';
+  info: {
+    displayName: 'Principal';
+    pluralName: 'principals';
+    singularName: 'principal';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::principal.principal'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.DynamicZone<
+      ['principal.hero', 'principal.speech']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSchoolIdentitySchoolIdentity
+  extends Struct.SingleTypeSchema {
+  collectionName: 'school_identities';
+  info: {
+    displayName: 'SchoolIdentity';
+    pluralName: 'school-identities';
+    singularName: 'school-identity';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::school-identity.school-identity'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.DynamicZone<
+      [
+        'school-identity.vision-and-mission',
+        'school-identity.philosophy',
+        'school-identity.objectives',
+        'school-identity.core-values',
+      ]
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSchoolManagementSchoolManagement
+  extends Struct.SingleTypeSchema {
+  collectionName: 'school_managements';
+  info: {
+    displayName: 'SchoolManagement';
+    pluralName: 'school-managements';
+    singularName: 'school-management';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    imgs: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::school-management.school-management'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSchoolSongSchoolSong extends Struct.SingleTypeSchema {
+  collectionName: 'school_songs';
+  info: {
+    displayName: 'SchoolSong';
+    pluralName: 'school-songs';
+    singularName: 'school-song';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::school-song.school-song'
+    > &
+      Schema.Attribute.Private;
+    pledge: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    song: Schema.Attribute.Blocks;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSeipManagementSeipManagement
+  extends Struct.SingleTypeSchema {
+  collectionName: 'seip_managements';
+  info: {
+    displayName: 'SEIPManagement';
+    pluralName: 'seip-managements';
+    singularName: 'seip-management';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    coverImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::seip-management.seip-management'
+    > &
+      Schema.Attribute.Private;
+    properties: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStudentAffairStudentAffair extends Struct.SingleTypeSchema {
+  collectionName: 'student_affairs';
+  info: {
+    displayName: 'StudentAffair';
+    pluralName: 'student-affairs';
+    singularName: 'student-affair';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    imgs: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::student-affair.student-affair'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTeachersAndStaffTeachersAndStaff
+  extends Struct.SingleTypeSchema {
+  collectionName: 'teachers_and_staffs';
+  info: {
+    displayName: 'TeachersAndStaff';
+    pluralName: 'teachers-and-staffs';
+    singularName: 'teachers-and-staff';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::teachers-and-staff.teachers-and-staff'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.DynamicZone<
+      [
+        'teachers-and-staffs.dedicated-team',
+        'teachers-and-staffs.cover-img',
+        'teachers-and-staffs.missions-and-values',
+      ]
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVisionAndMissionVisionAndMission
+  extends Struct.SingleTypeSchema {
+  collectionName: 'vision_and_missions';
+  info: {
+    displayName: 'VisionAndMission';
+    pluralName: 'vision-and-missions';
+    singularName: 'vision-and-mission';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vision-and-mission.vision-and-mission'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.DynamicZone<
+      [
+        'vision-and-mission.vision',
+        'vision-and-mission.mission',
+        'vision-and-mission.commitment',
+      ]
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1225,15 +1580,26 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
-      'api::administrationpage.administrationpage': ApiAdministrationpageAdministrationpage;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::co-curriculum-management.co-curriculum-management': ApiCoCurriculumManagementCoCurriculumManagement;
       'api::contact-us.contact-us': ApiContactUsContactUs;
+      'api::curriculum-management.curriculum-management': ApiCurriculumManagementCurriculumManagement;
       'api::galleri-moment.galleri-moment': ApiGalleriMomentGalleriMoment;
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
       'api::latest-announcement.latest-announcement': ApiLatestAnnouncementLatestAnnouncement;
+      'api::national-edu-philosophy.national-edu-philosophy': ApiNationalEduPhilosophyNationalEduPhilosophy;
+      'api::org-chart.org-chart': ApiOrgChartOrgChart;
+      'api::principal.principal': ApiPrincipalPrincipal;
+      'api::school-identity.school-identity': ApiSchoolIdentitySchoolIdentity;
+      'api::school-management.school-management': ApiSchoolManagementSchoolManagement;
+      'api::school-song.school-song': ApiSchoolSongSchoolSong;
+      'api::seip-management.seip-management': ApiSeipManagementSeipManagement;
+      'api::student-affair.student-affair': ApiStudentAffairStudentAffair;
+      'api::teachers-and-staff.teachers-and-staff': ApiTeachersAndStaffTeachersAndStaff;
+      'api::vision-and-mission.vision-and-mission': ApiVisionAndMissionVisionAndMission;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

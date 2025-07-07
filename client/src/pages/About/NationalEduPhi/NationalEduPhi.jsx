@@ -128,25 +128,6 @@ const NationalEducationPhilosophy = () => {
             )}
           </div>
         </div>
-
-        {/* Call to Action Section */}
-        <div className="text-center mt-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 md:p-12 text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Join Our Educational Journey
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Discover how our national education philosophy shapes the learning
-            experience and prepares students for success in the 21st century.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg transition-colors duration-200">
-              Learn More About Our Programs
-            </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 px-8 rounded-lg transition-colors duration-200">
-              Contact Our Admissions Team
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -365,22 +365,6 @@ const SchoolIdentityPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="animate-fadeIn">{renderTabContent()}</div>
       </div>
-
-      {/* Footer CTA */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Join Our Educational Journey
-          </h2>
-          <p className="text-xl text-blue-100 mb-6">
-            Be part of a school community that values excellence, integrity, and
-            holistic development
-          </p>
-          <div className="text-2xl font-bold text-yellow-300">
-            TOGETHER TOWARDS EXCELLENCE
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

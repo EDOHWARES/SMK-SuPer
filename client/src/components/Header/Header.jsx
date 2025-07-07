@@ -1,16 +1,25 @@
 import { useState } from 'react';
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from "../../assets/images/logo.png";
 
 // Header Component
 export const Header = ({ navItems }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  // Helper to check if a nav or its subnav is active
+  const isNavActive = (item) => {
+    if (location.pathname === item.path) return true;
+    if (item.subNavs && item.subNavs.some(sub => location.pathname === sub.path)) return true;
+    return false;
+  };
+  const isSubNavActive = (subNav) => location.pathname === subNav.path;
 
   return (
     <header className="sticky top-0 bg-blue-900 text-white shadow-md z-[60]">
@@ -33,7 +42,11 @@ export const Header = ({ navItems }) => {
               >
                 <Link
                   to={item.path}
-                  className="font-medium hover:text-yellow-400 transition-colors flex items-center"
+                  className={`font-medium transition-colors flex items-center px-2 py-1 rounded-md ${
+                    isNavActive(item)
+                      ? 'bg-yellow-400 text-blue-900' // highlighted
+                      : 'hover:text-yellow-400'
+                  }`}
                 >
                   {item.key}
                   {item.subNavs && item.subNavs.length > 0 && (
@@ -48,7 +61,11 @@ export const Header = ({ navItems }) => {
                       <Link
                         key={subNav.key}
                         to={subNav.path}
-                        className="block px-4 py-2 text-sm text-blue-900 hover:bg-yellow-100 hover:text-blue-800"
+                        className={`block px-4 py-2 text-sm rounded-md transition-colors ${
+                          isSubNavActive(subNav)
+                            ? 'bg-yellow-400 text-blue-900 font-semibold'
+                            : 'text-blue-900 hover:bg-yellow-100 hover:text-blue-800'
+                        }`}
                       >
                         {subNav.key}
                       </Link>
@@ -71,13 +88,16 @@ export const Header = ({ navItems }) => {
       {/* Mobile Navigation Menu */}
       {isOpen && (
         <div className="lg:hidden bg-blue-800 fixed inset-0 z-50 overflow-y-auto mt-[90px]">
-          {/* pt-[72px] ensures the menu starts below the header (adjust if header height changes) */}
           <div className="px-2 pt-2 pb-3 space-y-1 min-h-screen">
             {navItems.map((item) => (
               <div key={item.key}>
                 <Link
                   to={item.path}
-                  className="block px-3 py-2 text-base font-medium text-white hover:bg-blue-700 rounded-md"
+                  className={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
+                    isNavActive(item)
+                      ? 'bg-yellow-400 text-blue-900'
+                      : 'text-white hover:bg-blue-700'
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   <div className="flex justify-between items-center">
@@ -93,7 +113,11 @@ export const Header = ({ navItems }) => {
                       <Link
                         key={subNav.key}
                         to={subNav.path}
-                        className="block px-3 py-2 text-sm text-gray-200 hover:bg-blue-700 rounded-md"
+                        className={`block px-3 py-2 text-sm rounded-md transition-colors ${
+                          isSubNavActive(subNav)
+                            ? 'bg-yellow-400 text-blue-900 font-semibold'
+                            : 'text-gray-200 hover:bg-blue-700'
+                        }`}
                         onClick={() => setIsOpen(false)}
                       >
                         {subNav.key}
