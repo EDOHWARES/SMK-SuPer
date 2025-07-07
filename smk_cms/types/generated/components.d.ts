@@ -1,5 +1,57 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AlumniAchievements extends Struct.ComponentSchema {
+  collectionName: 'components_alumni_achievements';
+  info: {
+    displayName: 'Achievements';
+  };
+  attributes: {
+    achievements: Schema.Attribute.Component<
+      'others.alumni-achievement-card1',
+      true
+    >;
+    achievements2: Schema.Attribute.Component<
+      'others.alumni-achievement-card2',
+      true
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface AlumniDirectory extends Struct.ComponentSchema {
+  collectionName: 'components_alumni_directories';
+  info: {
+    displayName: 'Directory';
+  };
+  attributes: {
+    directories: Schema.Attribute.Component<'others.alumni-dir-card', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface AlumniEvents extends Struct.ComponentSchema {
+  collectionName: 'components_alumni_events';
+  info: {
+    displayName: 'Events';
+  };
+  attributes: {
+    Events: Schema.Attribute.Component<'others.alumni-event-card', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface AlumniOverview extends Struct.ComponentSchema {
+  collectionName: 'components_alumni_overviews';
+  info: {
+    displayName: 'Overview';
+  };
+  attributes: {
+    greetings: Schema.Attribute.JSON;
+    Persons: Schema.Attribute.Component<'others.alumni-card', true>;
+    stats: Schema.Attribute.JSON;
+  };
+}
+
 export interface ContactUsCampusGallery extends Struct.ComponentSchema {
   collectionName: 'components_contact_us_campus_galleries';
   info: {
@@ -286,6 +338,72 @@ export interface OthersActivityCard extends Struct.ComponentSchema {
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface OthersAlumniAchievementCard1 extends Struct.ComponentSchema {
+  collectionName: 'components_others_alumni_achievement_card1s';
+  info: {
+    displayName: 'AlumniAchievementCard1';
+  };
+  attributes: {
+    award: Schema.Attribute.Text;
+    name: Schema.Attribute.String;
+  };
+}
+
+export interface OthersAlumniAchievementCard2 extends Struct.ComponentSchema {
+  collectionName: 'components_others_alumni_achievement_card2s';
+  info: {
+    displayName: 'AlumniAchievementCard2';
+  };
+  attributes: {
+    percentage: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface OthersAlumniCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_alumni_cards';
+  info: {
+    displayName: 'AlumniCard';
+  };
+  attributes: {
+    batch: Schema.Attribute.Date;
+    credit: Schema.Attribute.String;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    name: Schema.Attribute.String;
+    organization: Schema.Attribute.String;
+    role: Schema.Attribute.String;
+  };
+}
+
+export interface OthersAlumniDirCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_alumni_dir_cards';
+  info: {
+    displayName: 'AlumniDirCard';
+  };
+  attributes: {
+    batch: Schema.Attribute.Date;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    name: Schema.Attribute.String;
+    role: Schema.Attribute.String;
+  };
+}
+
+export interface OthersAlumniEventCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_alumni_event_cards';
+  info: {
+    displayName: 'AlumniEventCard';
+  };
+  attributes: {
+    date: Schema.Attribute.Date;
+    location: Schema.Attribute.String;
+    time: Schema.Attribute.Time;
+    title: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<
+      ['Reunion', 'Workshop', 'Networking', 'Others']
+    >;
   };
 }
 
@@ -735,6 +853,10 @@ export interface VisionAndMissionVision extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'alumni.achievements': AlumniAchievements;
+      'alumni.directory': AlumniDirectory;
+      'alumni.events': AlumniEvents;
+      'alumni.overview': AlumniOverview;
       'contact-us.campus-gallery': ContactUsCampusGallery;
       'contact-us.contact-info': ContactUsContactInfo;
       'contact-us.faqs': ContactUsFaqs;
@@ -760,6 +882,11 @@ declare module '@strapi/strapi' {
       'org-chart.stats': OrgChartStats;
       'others.acad-exc-card': OthersAcadExcCard;
       'others.activity-card': OthersActivityCard;
+      'others.alumni-achievement-card1': OthersAlumniAchievementCard1;
+      'others.alumni-achievement-card2': OthersAlumniAchievementCard2;
+      'others.alumni-card': OthersAlumniCard;
+      'others.alumni-dir-card': OthersAlumniDirCard;
+      'others.alumni-event-card': OthersAlumniEventCard;
       'others.card': OthersCard;
       'others.excel-in-num-card': OthersExcelInNumCard;
       'others.faq': OthersFaq;
