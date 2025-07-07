@@ -13,7 +13,7 @@ export const Header = ({ navItems }) => {
   };
 
   return (
-    <header className="sticky top-0 bg-blue-900 text-white shadow-md z-50">
+    <header className="sticky top-0 bg-blue-900 text-white shadow-md z-[60]">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex items-center space-x-4">
@@ -70,13 +70,15 @@ export const Header = ({ navItems }) => {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="lg:hidden bg-blue-800">
-          <div className="px-2 pt-2 pb-3 space-y-1 max-h-screen overflow-y-scroll">
+        <div className="lg:hidden bg-blue-800 fixed inset-0 z-50 overflow-y-auto mt-[90px]">
+          {/* pt-[72px] ensures the menu starts below the header (adjust if header height changes) */}
+          <div className="px-2 pt-2 pb-3 space-y-1 min-h-screen">
             {navItems.map((item) => (
               <div key={item.key}>
                 <Link
                   to={item.path}
                   className="block px-3 py-2 text-base font-medium text-white hover:bg-blue-700 rounded-md"
+                  onClick={() => setIsOpen(false)}
                 >
                   <div className="flex justify-between items-center">
                     <span>{item.key}</span>
@@ -92,6 +94,7 @@ export const Header = ({ navItems }) => {
                         key={subNav.key}
                         to={subNav.path}
                         className="block px-3 py-2 text-sm text-gray-200 hover:bg-blue-700 rounded-md"
+                        onClick={() => setIsOpen(false)}
                       >
                         {subNav.key}
                       </Link>
