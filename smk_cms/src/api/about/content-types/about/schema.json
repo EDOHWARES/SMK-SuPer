@@ -4,7 +4,7 @@
   "info": {
     "singularName": "about",
     "pluralName": "abouts",
-    "displayName": "About",
+    "displayName": "SchoolHistory",
     "description": "Write about yourself and the content you create"
   },
   "options": {
@@ -12,12 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "blocks": {
+    "Sections": {
       "type": "dynamiczone",
-      "components": ["shared.media", "shared.quote", "shared.rich-text", "shared.slider"]
+      "components": [
+        "school-history.pengenalan",
+        "school-history.pencapaian",
+        "school-history.misi-dan-matlamat",
+        "school-history.kepimpinan-sekolah",
+        "school-history.kemudahan-dan-pembinaan",
+        "school-history.garis-masa-sejarah"
+      ]
     }
   }
 }

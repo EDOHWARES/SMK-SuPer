@@ -1,5 +1,62 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ContactUsCampusGallery extends Struct.ComponentSchema {
+  collectionName: 'components_contact_us_campus_galleries';
+  info: {
+    displayName: 'CampusGallery';
+  };
+  attributes: {
+    galleries: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+  };
+}
+
+export interface ContactUsContactInfo extends Struct.ComponentSchema {
+  collectionName: 'components_contact_us_contact_infos';
+  info: {
+    displayName: 'ContactInfo';
+  };
+  attributes: {
+    email: Schema.Attribute.Email;
+    schoolAddress: Schema.Attribute.Blocks;
+    schoolHours: Schema.Attribute.Blocks;
+    telephone: Schema.Attribute.String;
+  };
+}
+
+export interface ContactUsFaqs extends Struct.ComponentSchema {
+  collectionName: 'components_contact_us_faqs';
+  info: {
+    displayName: 'Faqs';
+  };
+  attributes: {
+    faq: Schema.Attribute.Component<'others.faq', true>;
+  };
+}
+
+export interface ContactUsHowToReachUs extends Struct.ComponentSchema {
+  collectionName: 'components_contact_us_how_to_reachuses';
+  info: {
+    displayName: 'HowToReachUs';
+  };
+  attributes: {
+    byCar: Schema.Attribute.Text;
+    publicTransport: Schema.Attribute.Text;
+  };
+}
+
+export interface GalleriMomentMoment extends Struct.ComponentSchema {
+  collectionName: 'components_galleri_moment_moments';
+  info: {
+    displayName: 'Moment';
+  };
+  attributes: {
+    MomentCards: Schema.Attribute.Component<'others.moment-card', true>;
+  };
+}
+
 export interface HomepageAcademicExcellence extends Struct.ComponentSchema {
   collectionName: 'components_homepage_academic_excellences';
   info: {
@@ -155,6 +212,17 @@ export interface OthersExcelInNumCard extends Struct.ComponentSchema {
   };
 }
 
+export interface OthersFaq extends Struct.ComponentSchema {
+  collectionName: 'components_others_faqs';
+  info: {
+    displayName: 'faq';
+  };
+  attributes: {
+    answer: Schema.Attribute.Text;
+    question: Schema.Attribute.Text;
+  };
+}
+
 export interface OthersFootDetails extends Struct.ComponentSchema {
   collectionName: 'components_others_foot_details';
   info: {
@@ -163,6 +231,18 @@ export interface OthersFootDetails extends Struct.ComponentSchema {
   attributes: {
     contact: Schema.Attribute.JSON;
     motto: Schema.Attribute.Text;
+  };
+}
+
+export interface OthersGarisMasaSejarahCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_garis_masa_sejarah_cards';
+  info: {
+    displayName: 'GarisMasaSejarahCard';
+  };
+  attributes: {
+    date: Schema.Attribute.Date;
+    details: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -181,6 +261,20 @@ export interface OthersLatestUpdateCard extends Struct.ComponentSchema {
   };
 }
 
+export interface OthersMomentCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_moment_cards';
+  info: {
+    displayName: 'MomentCard';
+  };
+  attributes: {
+    date: Schema.Attribute.Date;
+    details: Schema.Attribute.Text;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    location: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface OthersTestimonyCArd extends Struct.ComponentSchema {
   collectionName: 'components_others_testimony_c_ards';
   info: {
@@ -194,15 +288,84 @@ export interface OthersTestimonyCArd extends Struct.ComponentSchema {
   };
 }
 
+export interface SchoolHistoryGarisMasaSejarah extends Struct.ComponentSchema {
+  collectionName: 'components_school_history_garis_masa_sejarahs';
+  info: {
+    displayName: 'GarisMasaSejarah';
+  };
+  attributes: {
+    GarisMasaSejarahCards: Schema.Attribute.Component<
+      'others.garis-masa-sejarah-card',
+      true
+    >;
+  };
+}
+
+export interface SchoolHistoryKemudahanDanPembinaan
+  extends Struct.ComponentSchema {
+  collectionName: 'components_school_history_kemudahan_dan_pembinaans';
+  info: {
+    displayName: 'KemudahanDanPembinaan';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    imgs: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+  };
+}
+
+export interface SchoolHistoryKepimpinanSekolah extends Struct.ComponentSchema {
+  collectionName: 'components_school_history_kepimpinan_sekolahs';
+  info: {
+    displayName: 'KepimpinanSekolah';
+  };
+  attributes: {
+    label: Schema.Attribute.Text;
+    list: Schema.Attribute.JSON;
+  };
+}
+
+export interface SchoolHistoryMisiDanMatlamat extends Struct.ComponentSchema {
+  collectionName: 'components_school_history_misi_dan_matlamats';
+  info: {
+    displayName: 'MisiDanMatlamat';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    quote: Schema.Attribute.Text;
+  };
+}
+
+export interface SchoolHistoryPencapaian extends Struct.ComponentSchema {
+  collectionName: 'components_school_history_pencapaians';
+  info: {
+    displayName: 'Pencapaian';
+  };
+  attributes: {
+    list: Schema.Attribute.JSON;
+  };
+}
+
+export interface SchoolHistoryPengenalan extends Struct.ComponentSchema {
+  collectionName: 'components_school_history_pengenalans';
+  info: {
+    displayName: 'Pengenalan';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    theNumbers: Schema.Attribute.JSON;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
     displayName: 'Media';
     icon: 'file-video';
   };
-  attributes: {
-    file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-  };
+  attributes: {};
 }
 
 export interface SharedQuote extends Struct.ComponentSchema {
@@ -259,6 +422,11 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'contact-us.campus-gallery': ContactUsCampusGallery;
+      'contact-us.contact-info': ContactUsContactInfo;
+      'contact-us.faqs': ContactUsFaqs;
+      'contact-us.how-to-reach-us': ContactUsHowToReachUs;
+      'galleri-moment.moment': GalleriMomentMoment;
       'homepage.academic-excellence': HomepageAcademicExcellence;
       'homepage.excellence-in-numbers': HomepageExcellenceInNumbers;
       'homepage.extra-activities-highlight': HomepageExtraActivitiesHighlight;
@@ -272,9 +440,18 @@ declare module '@strapi/strapi' {
       'others.acad-exc-card': OthersAcadExcCard;
       'others.activity-card': OthersActivityCard;
       'others.excel-in-num-card': OthersExcelInNumCard;
+      'others.faq': OthersFaq;
       'others.foot-details': OthersFootDetails;
+      'others.garis-masa-sejarah-card': OthersGarisMasaSejarahCard;
       'others.latest-update-card': OthersLatestUpdateCard;
+      'others.moment-card': OthersMomentCard;
       'others.testimony-c-ard': OthersTestimonyCArd;
+      'school-history.garis-masa-sejarah': SchoolHistoryGarisMasaSejarah;
+      'school-history.kemudahan-dan-pembinaan': SchoolHistoryKemudahanDanPembinaan;
+      'school-history.kepimpinan-sekolah': SchoolHistoryKepimpinanSekolah;
+      'school-history.misi-dan-matlamat': SchoolHistoryMisiDanMatlamat;
+      'school-history.pencapaian': SchoolHistoryPencapaian;
+      'school-history.pengenalan': SchoolHistoryPengenalan;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;

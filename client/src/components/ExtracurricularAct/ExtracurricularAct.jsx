@@ -11,6 +11,8 @@ export const ExtracurricularActivities = ({ data }) => {
       </div>
     );
 
+    console.log("extracurricular acts: ", data);
+
   const Cpu = (props) => {
     return (
       <svg

@@ -7,30 +7,35 @@ import imgslide3 from "../../../assets/images/home-imgs-slide/slideimg3.png"
 import imgslide4 from "../../../assets/images/home-imgs-slide/imgslide4.png"
 
 const SchoolSlideshow = ({data}) => {
+    if (!data)
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-900 to-blue-800">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-yellow-400"></div>
+      </div>
+    );
 
-  console.log("Slideshow Data: ", data);
   const slides = [
     {
       id: 1,
-      image: imgslide1,
+      image: data.images[3].formats.medium.url,
       title: 'Pencapaian Cemerlang SPM 2024',
       description: 'Menelusuri Kejayaan Pelajar dalam Usaha dan Dedikasi'
     },
     {
       id: 2,
-      image: imgslide2,
+      image: data.images[0].formats.medium.url,
       title: 'SMK Suria Perdana',
       description: 'Together Towards Excellence – Nurturing Futures in Parit Raja, Johor"'
     },
     {
       id: 3,
-      image: imgslide3,
+      image: data.images[1].formats.medium.url,
       title: 'Breaking Barriers in SPM 2024',
       description: 'A Decade of Consistency: From 71.95% to Perfect Scores'
     },
     {
       id: 4,
-      image: imgslide4,
+      image: data.images[2].formats.medium.url,
       title: 'SMK Suria Perdana’s Ecosystem',
       description: 'Where 2000+ Students, 1000+ Educators, and 500+ Staff Unite for Success'
     },
