@@ -154,41 +154,6 @@ const PTAPage = () => {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-yellow-50 to-yellow-50 rounded-2xl p-8 border border-purple-200">
-        <h3 className="text-2xl font-bold text-purple-800 mb-6">
-          Why Join PTA?
-        </h3>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="text-center">
-            <BookOpen className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">
-              Support Education
-            </h4>
-            <p className="text-gray-600">
-              Directly contribute to improving educational programs and
-              resources
-            </p>
-          </div>
-          <div className="text-center">
-            <Users className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">
-              Build Community
-            </h4>
-            <p className="text-gray-600">
-              Connect with other parents and teachers who share similar values
-            </p>
-          </div>
-          <div className="text-center">
-            <Heart className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">
-              Support Children
-            </h4>
-            <p className="text-gray-600">
-              Advocate for your child's needs and all students' well-being
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 

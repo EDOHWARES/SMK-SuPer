@@ -123,6 +123,16 @@ export default function RoomBookingSystem() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Prevent past date booking (extra validation)
+    const today = new Date();
+    const selectedDate = new Date(formData.date);
+    today.setHours(0,0,0,0);
+    selectedDate.setHours(0,0,0,0);
+    if (selectedDate < today) {
+      toast.error("You cannot book a room for a past date.");
+      return;
+    }
+
     // Check if all required fields are filled
     if (
       !formData.roomId ||
@@ -330,6 +340,7 @@ export default function RoomBookingSystem() {
                       name="date"
                       value={formData.date}
                       onChange={handleInputChange}
+                      min={new Date().toISOString().split("T")[0]}
                       className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>

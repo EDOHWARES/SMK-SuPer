@@ -408,6 +408,36 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiAchievementAchievement extends Struct.SingleTypeSchema {
+  collectionName: 'achievements';
+  info: {
+    displayName: 'Achievement';
+    pluralName: 'achievements';
+    singularName: 'achievement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::achievement.achievement'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.DynamicZone<
+      ['achievements.header', 'achievements.body', 'achievements.footer']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiAlumniiAlumnii extends Struct.SingleTypeSchema {
   collectionName: 'alumniis';
   info: {
@@ -870,6 +900,39 @@ export interface ApiPrincipalPrincipal extends Struct.SingleTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     Sections: Schema.Attribute.DynamicZone<
       ['principal.hero', 'principal.speech']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPtaPta extends Struct.SingleTypeSchema {
+  collectionName: 'ptas';
+  info: {
+    displayName: 'PTA';
+    pluralName: 'ptas';
+    singularName: 'pta';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::pta.pta'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.DynamicZone<
+      [
+        'pta.about',
+        'pta.action',
+        'pta.activities',
+        'pta.membership',
+        'pta.contact',
+      ]
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1615,6 +1678,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
+      'api::achievement.achievement': ApiAchievementAchievement;
       'api::alumnii.alumnii': ApiAlumniiAlumnii;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
@@ -1629,6 +1693,7 @@ declare module '@strapi/strapi' {
       'api::national-edu-philosophy.national-edu-philosophy': ApiNationalEduPhilosophyNationalEduPhilosophy;
       'api::org-chart.org-chart': ApiOrgChartOrgChart;
       'api::principal.principal': ApiPrincipalPrincipal;
+      'api::pta.pta': ApiPtaPta;
       'api::school-identity.school-identity': ApiSchoolIdentitySchoolIdentity;
       'api::school-management.school-management': ApiSchoolManagementSchoolManagement;
       'api::school-song.school-song': ApiSchoolSongSchoolSong;

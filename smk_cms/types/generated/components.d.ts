@@ -1,5 +1,36 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AchievementsBody extends Struct.ComponentSchema {
+  collectionName: 'components_achievements_bodies';
+  info: {
+    displayName: 'Body';
+  };
+  attributes: {
+    lists: Schema.Attribute.Component<'others.achievement-card', true>;
+  };
+}
+
+export interface AchievementsFooter extends Struct.ComponentSchema {
+  collectionName: 'components_achievements_footers';
+  info: {
+    displayName: 'Footer';
+  };
+  attributes: {
+    stats: Schema.Attribute.JSON;
+  };
+}
+
+export interface AchievementsHeader extends Struct.ComponentSchema {
+  collectionName: 'components_achievements_headers';
+  info: {
+    displayName: 'Header';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface AlumniAchievements extends Struct.ComponentSchema {
   collectionName: 'components_alumni_achievements';
   info: {
@@ -329,6 +360,24 @@ export interface OthersAcadExcCard extends Struct.ComponentSchema {
   };
 }
 
+export interface OthersAchievementCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_achievement_cards';
+  info: {
+    displayName: 'AchievementCard';
+  };
+  attributes: {
+    details: Schema.Attribute.JSON;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    reach: Schema.Attribute.Enumeration<
+      ['National', 'Regional', 'District', 'State']
+    >;
+    type: Schema.Attribute.Enumeration<
+      ['Academic', 'Sports', 'Science', 'Community']
+    >;
+    year: Schema.Attribute.Integer;
+  };
+}
+
 export interface OthersActivityCard extends Struct.ComponentSchema {
   collectionName: 'components_others_activity_cards';
   info: {
@@ -516,6 +565,51 @@ export interface OthersPrincipalCard extends Struct.ComponentSchema {
   };
 }
 
+export interface OthersPtaActionCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_pta_action_cards';
+  info: {
+    displayName: 'PtaActionCard';
+  };
+  attributes: {
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    text: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<
+      [
+        'Meetings',
+        'Events',
+        'Conferences',
+        'Workshops',
+        'Volunteering',
+        'Others',
+      ]
+    >;
+  };
+}
+
+export interface OthersPtaCommitteeCard extends Struct.ComponentSchema {
+  collectionName: 'components_others_pta_committee_cards';
+  info: {
+    displayName: 'PtaCommitteeCard';
+  };
+  attributes: {
+    email: Schema.Attribute.Email;
+    name: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface OthersPtaContactInfo extends Struct.ComponentSchema {
+  collectionName: 'components_others_pta_contact_infos';
+  info: {
+    displayName: 'PtaContactInfo';
+  };
+  attributes: {
+    text: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface OthersSchoolIdentityVisionCard extends Struct.ComponentSchema {
   collectionName: 'components_others_school_identity_vision_cards';
   info: {
@@ -593,6 +687,70 @@ export interface PrincipalSpeech extends Struct.ComponentSchema {
   };
   attributes: {
     details: Schema.Attribute.Blocks;
+  };
+}
+
+export interface PtaAbout extends Struct.ComponentSchema {
+  collectionName: 'components_pta_abouts';
+  info: {
+    displayName: 'About';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'others.card', true>;
+    details: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface PtaAction extends Struct.ComponentSchema {
+  collectionName: 'components_pta_actions';
+  info: {
+    displayName: 'Action';
+  };
+  attributes: {
+    Cards: Schema.Attribute.Component<'others.pta-action-card', true>;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface PtaActivities extends Struct.ComponentSchema {
+  collectionName: 'components_pta_activities';
+  info: {
+    displayName: 'Activities';
+  };
+  attributes: {
+    activities: Schema.Attribute.Component<'others.card', true>;
+    aEvents: Schema.Attribute.Component<'others.card', true>;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface PtaContact extends Struct.ComponentSchema {
+  collectionName: 'components_pta_contacts';
+  info: {
+    displayName: 'Contact';
+  };
+  attributes: {
+    committeeCards: Schema.Attribute.Component<
+      'others.pta-committee-card',
+      true
+    >;
+    contactInfos: Schema.Attribute.Component<'others.pta-contact-info', true>;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface PtaMembership extends Struct.ComponentSchema {
+  collectionName: 'components_pta_memberships';
+  info: {
+    displayName: 'Membership';
+  };
+  attributes: {
+    becomeAMember: Schema.Attribute.JSON;
+    schedule: Schema.Attribute.JSON;
   };
 }
 
@@ -853,6 +1011,9 @@ export interface VisionAndMissionVision extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'achievements.body': AchievementsBody;
+      'achievements.footer': AchievementsFooter;
+      'achievements.header': AchievementsHeader;
       'alumni.achievements': AlumniAchievements;
       'alumni.directory': AlumniDirectory;
       'alumni.events': AlumniEvents;
@@ -881,6 +1042,7 @@ declare module '@strapi/strapi' {
       'org-chart.chart': OrgChartChart;
       'org-chart.stats': OrgChartStats;
       'others.acad-exc-card': OthersAcadExcCard;
+      'others.achievement-card': OthersAchievementCard;
       'others.activity-card': OthersActivityCard;
       'others.alumni-achievement-card1': OthersAlumniAchievementCard1;
       'others.alumni-achievement-card2': OthersAlumniAchievementCard2;
@@ -896,6 +1058,9 @@ declare module '@strapi/strapi' {
       'others.mission-card': OthersMissionCard;
       'others.moment-card': OthersMomentCard;
       'others.principal-card': OthersPrincipalCard;
+      'others.pta-action-card': OthersPtaActionCard;
+      'others.pta-committee-card': OthersPtaCommitteeCard;
+      'others.pta-contact-info': OthersPtaContactInfo;
       'others.school-identity-vision-card': OthersSchoolIdentityVisionCard;
       'others.student-identity-core-values-card': OthersStudentIdentityCoreValuesCard;
       'others.student-identity-objective-card': OthersStudentIdentityObjectiveCard;
@@ -903,6 +1068,11 @@ declare module '@strapi/strapi' {
       'others.vision-card': OthersVisionCard;
       'principal.hero': PrincipalHero;
       'principal.speech': PrincipalSpeech;
+      'pta.about': PtaAbout;
+      'pta.action': PtaAction;
+      'pta.activities': PtaActivities;
+      'pta.contact': PtaContact;
+      'pta.membership': PtaMembership;
       'school-history.garis-masa-sejarah': SchoolHistoryGarisMasaSejarah;
       'school-history.kemudahan-dan-pembinaan': SchoolHistoryKemudahanDanPembinaan;
       'school-history.kepimpinan-sekolah': SchoolHistoryKepimpinanSekolah;

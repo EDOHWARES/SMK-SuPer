@@ -26,6 +26,8 @@ const ProductCard = ({ product, onAddToCart }) => {
     }
   };
 
+  console.log(product.images[0])
+
   return (
     <div
       className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
@@ -35,7 +37,7 @@ const ProductCard = ({ product, onAddToCart }) => {
       {/* ...rest of your UI code... */}
       <div className="relative h-48 overflow-hidden">
         <img
-          src={product.image || "/images/placeholder-product.jpg"}
+          src={product.images[0] || "https://imgs.search.brave.com/UNPIHR5JzZzZPFWBnw3msiniRZ7Ue5qHX_7xX0eVRHc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9kLXN0/YXRpb25lcnktaWNv/bnMtc2Nob29sLW9m/ZmljZS1zdXBwbGll/cy1yZW5kZXItY2Fy/dG9vbi1zZXQtcGVu/LXBlbmNpbC1ydWxl/ci1lcmFzZXItaXNv/bGF0ZWQtYmx1ZS1i/YWNrZ3JvdW5kLWQt/Mzg3MzQzODYzLmpw/Zw"}
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-500 transform-gpu"
           style={{ transform: isHovered ? "scale(1.05)" : "scale(1)" }}
