@@ -6,6 +6,7 @@ const Pibg = () => {
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
 
   const rawApiUrl = import.meta.env.VITE_API_URL;
   const baseUrl = rawApiUrl.replace(/\/api\/?$/, "");
@@ -42,6 +43,22 @@ const Pibg = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this payment? This action cannot be undone.")) return;
+    const api_url = import.meta.env.VITE_API_URL;
+    setDeletingId(id);
+    try {
+      await axios.delete(`${api_url}/pibg/${id}`);
+      toast.success("Payment deleted successfully");
+      fetchPayments();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to delete payment");
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   const downloadReport = async () => {
     const api_url = import.meta.env.VITE_API_URL;
     try {
@@ -60,6 +77,24 @@ const Pibg = () => {
       toast.error("Failed to download report");
     }
   };
+
+  const classOrder = [
+    "ELIT",
+    "MUSYTARI",
+    "UTARID",
+    "URANUS",
+    "ZUHRAH",
+    "ZUHAL",
+  ];
+
+  const sortedPayments = [...payments].sort((a, b) => {
+    const aIdx = classOrder.indexOf(a.class);
+    const bIdx = classOrder.indexOf(b.class);
+    if (aIdx === -1 && bIdx === -1) return 0;
+    if (aIdx === -1) return 1;
+    if (bIdx === -1) return -1;
+    return aIdx - bIdx;
+  });
 
   return (
     <section className="p-1">
@@ -95,7 +130,7 @@ const Pibg = () => {
               </tr>
             </thead>
             <tbody>
-              {payments.map((p) => (
+              {sortedPayments.map((p) => (
                 <tr key={p._id}>
                   <td className="px-4 py-2 border text-center">
                     {p.email}
@@ -132,15 +167,20 @@ const Pibg = () => {
                     <select
                       value={p.status || "pending"}
                       disabled={updatingId === p._id}
-                      onChange={(e) =>
-                        handleStatusChange(p._id, e.target.value)
-                      }
-                      className="border rounded px-2 py-1 text-center"
+                      onChange={(e) => handleStatusChange(p._id, e.target.value)}
+                      className="border rounded px-2 py-1 text-center mb-1"
                     >
                       <option value="pending">Pending</option>
                       <option value="verified">Verified</option>
                       <option value="rejected">Rejected</option>
                     </select>
+                    <button
+                      onClick={() => handleDelete(p._id)}
+                      disabled={deletingId === p._id}
+                      className="ml-2 bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700 text-xs"
+                    >
+                      {deletingId === p._id ? "Deleting..." : "Delete"}
+                    </button>
                   </td>
                 </tr>
               ))}

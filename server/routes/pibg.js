@@ -3,6 +3,7 @@ import multer from "multer";
 import Pibg from "../models/pibg.js";
 import dotenv from "dotenv";
 import sendPaymentStatusMail from "../utils/mailer.js";
+import fs from "fs";
 
 dotenv.config();
 const pibgRoutes = express.Router();
@@ -121,6 +122,31 @@ pibgRoutes.patch("/:id", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error updating payment" });
+  }
+});
+
+/**
+ * @desc Admin deletes a payment
+ * @route DELETE /api/pibg/:id
+ */
+pibgRoutes.delete('/:id', async (req, res) => {
+  try {
+    const payment = await Pibg.findByIdAndDelete(req.params.id);
+    if (!payment) {
+      return res.status(404).json({ message: 'Payment not found' });
+    }
+    // Delete the uploaded receipt file if it exists
+    if (payment.receipt) {
+      fs.unlink(payment.receipt, (err) => {
+        if (err) {
+          console.error('Error deleting receipt file:', err);
+        }
+      });
+    }
+    res.status(200).json({ message: 'Payment deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error deleting payment' });
   }
 });
 
