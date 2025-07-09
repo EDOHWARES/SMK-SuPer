@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaTrash } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
 import Sidebar from "../../components/Sidebar";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ const AdminPanel = () => {
     capacity: 100,
   });
   const [loading, setLoading] = useState(false); // Loader state
+  const [deletingBookingId, setDeletingBookingId] = useState(null);
 
   useEffect(() => {
     setToken(localStorage.getItem("adminToken"));
@@ -135,6 +136,24 @@ const AdminPanel = () => {
     }
   };
 
+  const handleBookingDelete = async (id) => {
+    const headers = { Authorization: `Bearer ${token}` };
+    if (!window.confirm("Are you sure you want to delete this booking? This action cannot be undone.")) return;
+    try {
+      setLoading(true);
+      setDeletingBookingId(id);
+      const api_url = import.meta.env.VITE_API_URL;
+      await axios.delete(`${api_url}/bookings/${id}`, { headers });
+      toast.success("Booking deleted");
+      fetchData(token);
+    } catch (err) {
+      toast.error("Failed to delete booking");
+    } finally {
+      setLoading(false);
+      setDeletingBookingId(null);
+    }
+  };
+
   const Header = () => (
     <div className="bg-white shadow p-4 flex justify-between items-center">
       <img src={logo} alt="logo" width={50} />
@@ -231,6 +250,14 @@ const AdminPanel = () => {
                               </button>
                             </div>
                           )}
+                          <button
+                            onClick={() => handleBookingDelete(b._id)}
+                            disabled={deletingBookingId === b._id}
+                            className="mt-1 text-red-600 hover:text-red-800 text-lg p-1 rounded-full focus:outline-none"
+                            title="Delete Booking"
+                          >
+                            <FaTrash />
+                          </button>
                         </td>
                       </tr>
                     ))}

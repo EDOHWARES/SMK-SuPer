@@ -111,4 +111,20 @@ bookingRoutes.get('/my-bookings', auth, async (req, res) => {
   }
 });
 
+// Delete a booking — only by school_admin, room_supervisor, or principal
+bookingRoutes.delete(
+  '/:id',
+  auth,
+  roleCheck('school_admin', 'room_supervisor', 'principal'),
+  async (req, res) => {
+    try {
+      const booking = await Booking.findByIdAndDelete(req.params.id);
+      if (!booking) return res.status(404).json({ error: 'Booking not found' });
+      res.json({ message: 'Booking deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  }
+);
+
 export default bookingRoutes;
