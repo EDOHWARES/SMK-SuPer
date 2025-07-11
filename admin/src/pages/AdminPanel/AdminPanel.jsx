@@ -23,6 +23,7 @@ const AdminPanel = () => {
   });
   const [loading, setLoading] = useState(false); // Loader state
   const [deletingBookingId, setDeletingBookingId] = useState(null);
+  const [roomTypeFilter, setRoomTypeFilter] = useState("all");
 
   useEffect(() => {
     setToken(localStorage.getItem("adminToken"));
@@ -183,6 +184,21 @@ const AdminPanel = () => {
     </div>
   );
 
+  // Room type options
+  const roomTypeOptions = [
+    { value: "all", label: "All Types" },
+    { value: "Seminar Room 1 (Bilik Seminar)", label: "Seminar Room 1 (Bilik Seminar)" },
+    { value: "Main Meeting Room (Bilik Mesyuarat Utama)", label: "Main Meeting Room (Bilik Mesyuarat Utama)" },
+    { value: "Library and Resource Center (Perpustakaan dan Pusat Sumber)", label: "Library and Resource Center (Perpustakaan dan Pusat Sumber)" },
+    { value: "Smart Room", label: "Smart Room" },
+  ];
+
+  // Filtered bookings
+  const filteredBookings = bookings.filter(b => {
+    if (roomTypeFilter === "all") return true;
+    return b.roomId?.name === roomTypeFilter;
+  });
+
   return (
     <div className="flex h-screen">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -199,6 +215,20 @@ const AdminPanel = () => {
           {!loading && activeTab === "dashboard" && (
             <section>
               <h2 className="text-2xl font-semibold mb-4">All Bookings</h2>
+              {/* Room Type Filter */}
+              <div className="mb-4 flex items-center gap-2">
+                <label htmlFor="roomTypeFilter" className="font-medium text-gray-700">Filter by Room Type:</label>
+                <select
+                  id="roomTypeFilter"
+                  value={roomTypeFilter}
+                  onChange={e => setRoomTypeFilter(e.target.value)}
+                  className="border px-2 py-1 rounded"
+                >
+                  {roomTypeOptions.map(opt => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+              </div>
               <div className="overflow-x-scroll">
                 <table className="w-full text-sm border">
                   <thead className="bg-gray-100">
@@ -214,7 +244,7 @@ const AdminPanel = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {bookings.map((b) => (
+                    {filteredBookings.map((b) => (
                       <tr key={b._id} className="border-t text-center">
                         <td className="p-2">{b.userId?.name}</td>
                         <td>{b.roomId?.name}</td>

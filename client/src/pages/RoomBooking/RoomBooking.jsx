@@ -29,7 +29,7 @@ export default function RoomBookingSystem() {
   useEffect(() => {
     const token = localStorage.getItem("smk-user-token");
     if (!token) {
-      navigate("/signup"); // Redirect to signup page if no token is found
+      navigate("/signin"); // Redirect to signin page if no token is found
     } else {
       fetchRooms();
     }
