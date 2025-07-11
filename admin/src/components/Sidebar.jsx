@@ -51,6 +51,14 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
           <FaStore /> <span className="hidden md:block">School Shop</span>
         </button>
         <button
+          onClick={() => setActiveTab("profile")}
+          className={`${
+            activeTab == "schoolShop" ? "bg-gray-500" : "bg-transparent"
+          } flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer`}
+        >
+          <FaUser /> <span className="hidden md:block">Profile</span>
+        </button>
+        <button
           onClick={logout}
           className="flex items-center gap-2 hover:bg-gray-500 py-2 rounded p-5 w-full cursor-pointer"
         >

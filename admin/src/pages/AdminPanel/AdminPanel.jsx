@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Pibg from "../Pibg/Pibg";
 import { MdConstruction } from "react-icons/md";
 import SchoolShopAdmin from "../../components/Shop/Shop";
+import Profile from "../Profile/Profile";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -139,7 +140,12 @@ const AdminPanel = () => {
 
   const handleBookingDelete = async (id) => {
     const headers = { Authorization: `Bearer ${token}` };
-    if (!window.confirm("Are you sure you want to delete this booking? This action cannot be undone.")) return;
+    if (
+      !window.confirm(
+        "Are you sure you want to delete this booking? This action cannot be undone."
+      )
+    )
+      return;
     try {
       setLoading(true);
       setDeletingBookingId(id);
@@ -187,14 +193,23 @@ const AdminPanel = () => {
   // Room type options
   const roomTypeOptions = [
     { value: "all", label: "All Types" },
-    { value: "Seminar Room 1 (Bilik Seminar)", label: "Seminar Room 1 (Bilik Seminar)" },
-    { value: "Main Meeting Room (Bilik Mesyuarat Utama)", label: "Main Meeting Room (Bilik Mesyuarat Utama)" },
-    { value: "Library and Resource Center (Perpustakaan dan Pusat Sumber)", label: "Library and Resource Center (Perpustakaan dan Pusat Sumber)" },
+    {
+      value: "Seminar Room 1 (Bilik Seminar)",
+      label: "Seminar Room 1 (Bilik Seminar)",
+    },
+    {
+      value: "Main Meeting Room (Bilik Mesyuarat Utama)",
+      label: "Main Meeting Room (Bilik Mesyuarat Utama)",
+    },
+    {
+      value: "Library and Resource Center (Perpustakaan dan Pusat Sumber)",
+      label: "Library and Resource Center (Perpustakaan dan Pusat Sumber)",
+    },
     { value: "Smart Room", label: "Smart Room" },
   ];
 
   // Filtered bookings
-  const filteredBookings = bookings.filter(b => {
+  const filteredBookings = bookings.filter((b) => {
     if (roomTypeFilter === "all") return true;
     return b.roomId?.name === roomTypeFilter;
   });
@@ -217,15 +232,22 @@ const AdminPanel = () => {
               <h2 className="text-2xl font-semibold mb-4">All Bookings</h2>
               {/* Room Type Filter */}
               <div className="mb-4 flex items-center gap-2">
-                <label htmlFor="roomTypeFilter" className="font-medium text-gray-700">Filter by Room Type:</label>
+                <label
+                  htmlFor="roomTypeFilter"
+                  className="font-medium text-gray-700"
+                >
+                  Filter by Room Type:
+                </label>
                 <select
                   id="roomTypeFilter"
                   value={roomTypeFilter}
-                  onChange={e => setRoomTypeFilter(e.target.value)}
+                  onChange={(e) => setRoomTypeFilter(e.target.value)}
                   className="border px-2 py-1 rounded"
                 >
-                  {roomTypeOptions.map(opt => (
-                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  {roomTypeOptions.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -358,9 +380,8 @@ const AdminPanel = () => {
           )}
 
           {!loading && activeTab === "pibg" && <Pibg />}
-          {!loading && activeTab === "schoolShop" && (
-            <SchoolShopAdmin />
-          )}
+          {!loading && activeTab === "schoolShop" && <SchoolShopAdmin />}
+          {!loading && activeTab === "profile" && <Profile />}
         </main>
       </div>
     </div>

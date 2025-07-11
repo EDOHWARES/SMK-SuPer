@@ -7,6 +7,7 @@ const Pibg = () => {
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
+  const [classFilter, setClassFilter] = useState("all");
 
   const rawApiUrl = import.meta.env.VITE_API_URL;
   const baseUrl = rawApiUrl.replace(/\/api\/?$/, "");
@@ -87,6 +88,16 @@ const Pibg = () => {
     "ZUHAL",
   ];
 
+  const classOptions = [
+    { value: "all", label: "All Classes" },
+    { value: "ELIT", label: "ELIT" },
+    { value: "MUSYTARI", label: "MUSYTARI" },
+    { value: "UTARID", label: "UTARID" },
+    { value: "URANUS", label: "URANUS" },
+    { value: "ZUHRAH", label: "ZUHRAH" },
+    { value: "ZUHAL", label: "ZUHAL" },
+  ];
+
   const sortedPayments = [...payments].sort((a, b) => {
     const aIdx = classOrder.indexOf(a.class);
     const bIdx = classOrder.indexOf(b.class);
@@ -96,16 +107,34 @@ const Pibg = () => {
     return aIdx - bIdx;
   });
 
+  const filteredPayments = sortedPayments.filter(p => {
+    if (classFilter === "all") return true;
+    return p.class === classFilter;
+  });
+
   return (
     <section className="p-1">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Payment Records</h2>
-        <button
-          onClick={downloadReport}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          Download CSV
-        </button>
+        <div className="flex gap-2 items-center">
+          <label htmlFor="classFilter" className="font-medium text-gray-700">Filter by Class:</label>
+          <select
+            id="classFilter"
+            value={classFilter}
+            onChange={e => setClassFilter(e.target.value)}
+            className="border px-2 py-1 rounded"
+          >
+            {classOptions.map(opt => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+          <button
+            onClick={downloadReport}
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            Download CSV
+          </button>
+        </div>
       </div>
 
       {loading ? (
@@ -130,7 +159,7 @@ const Pibg = () => {
               </tr>
             </thead>
             <tbody>
-              {sortedPayments.map((p) => (
+              {filteredPayments.map((p) => (
                 <tr key={p._id}>
                   <td className="px-4 py-2 border text-center">
                     {p.email}
